@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/project-wt12-front/static/css/main.7acaea2f.css",
+    "main.js": "/project-wt12-front/static/js/main.004caaa0.js",
+    "index.html": "/project-wt12-front/index.html",
+    "main.7acaea2f.css.map": "/project-wt12-front/static/css/main.7acaea2f.css.map",
+    "main.004caaa0.js.map": "/project-wt12-front/static/js/main.004caaa0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.004caaa0.js"
+  ]
+}
