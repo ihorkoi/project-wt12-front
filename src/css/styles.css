@@ -1,0 +1,16 @@
+@import '../../node_modules/modern-normalize/modern-normalize.css';
+@import url('./fonts.css');
+@import url('./reset.css');
+
+:root {
+    --primary-white: #fff;
+    --primary-color: #407BFF;
+    --primary-black: #2F2F2F;
+
+    --secondary-textcolor:#9EBBFF;
+    --secondary-orange:#FF9D43;
+    --secondary-red:#EF5050;
+    --secondary-lighblue:#D7E3FF;
+    --secondary-verylightblue:#ECF2FF;
+
+  }
