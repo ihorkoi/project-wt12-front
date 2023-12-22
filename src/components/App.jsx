@@ -4,7 +4,7 @@ export const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" />
+        <Route path="/" element={<div>Start</div>}/>
       </Routes>
     </div>
   );
