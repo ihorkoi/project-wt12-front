@@ -11,10 +11,24 @@ export const registerUser = createAsyncThunk(
 
   async (user, thunkAPI) => {
     try {
-        const {token} = await axios.post(user)
+        const {token} = await axios.post('auth/register',user)
         setToken(token)
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
+export const logIn = createAsyncThunk(
+    'auth/login',
+  //   'auth/login' - may be smth else, depends on backend
+  
+    async (user, thunkAPI) => {
+      try {
+          const {token} = await axios.post('auth/login', user)
+          setToken(token)
+      } catch (error) {
+        return thunkAPI.rejectWithValue(error.message);
+      }
+    }
+  );
