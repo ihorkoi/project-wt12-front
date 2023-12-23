@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/project-wt12-front/static/css/main.19888afc.css",
+    "main.css": "/project-wt12-front/static/css/main.ba77d751.css",
     "main.js": "/project-wt12-front/static/js/main.46bd46ff.js",
     "static/media/Roboto-Medium.ttf": "/project-wt12-front/static/media/Roboto-Medium.7c8d04cd831df3033c8a.ttf",
     "static/media/Roboto-Regular.ttf": "/project-wt12-front/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
@@ -12,11 +12,11 @@
     "static/media/Roboto-Bold.woff2": "/project-wt12-front/static/media/Roboto-Bold.6cd35edfbc0d7a417131.woff2",
     "static/media/Roboto-Regular.woff2": "/project-wt12-front/static/media/Roboto-Regular.a25806274237d06e00a6.woff2",
     "index.html": "/project-wt12-front/index.html",
-    "main.19888afc.css.map": "/project-wt12-front/static/css/main.19888afc.css.map",
+    "main.ba77d751.css.map": "/project-wt12-front/static/css/main.ba77d751.css.map",
     "main.46bd46ff.js.map": "/project-wt12-front/static/js/main.46bd46ff.js.map"
   },
   "entrypoints": [
-    "static/css/main.19888afc.css",
+    "static/css/main.ba77d751.css",
     "static/js/main.46bd46ff.js"
   ]
 }
