@@ -1,5 +1,5 @@
-import SignInPage from 'pages/SignInPage';
-import SignUpPage from 'pages/SignUpPage';
+import SignInPage from 'pages/SignInPage/SignInPage';
+import SignUpPage from 'pages/SignUpPage/SignUpPage';
 import { Routes, Route } from 'react-router-dom';
 
 export const App = () => {

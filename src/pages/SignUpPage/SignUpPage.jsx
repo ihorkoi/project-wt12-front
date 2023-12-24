@@ -1,12 +1,11 @@
 import { SignUpForm } from "components/SignUpForm/SignUpForm";
-
+import { Wrapper } from "./SignUpPage.styled";
 
 
 export default function SignUpPage() {
     return(
-    <div>
-        <title>Sing Up</title>
+    <Wrapper>
         <SignUpForm/>
-        </div>
+        </Wrapper>
     )
 }

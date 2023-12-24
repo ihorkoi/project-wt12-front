@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import botle from "../../img/desktop/bottle-sign-in.png";
 import {
     Wrapper,
     Paragrapher,
@@ -31,9 +30,7 @@ export function SignUpForm() {
 
     return (
         <Wrapper>
-            <div>
-                <img src={botle} alt="botle" />
-            </div>
+
                 <FormWrapper>
                     <Paragrapher>Sign Up</Paragrapher>
                     <Form>

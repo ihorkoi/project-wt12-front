@@ -1,10 +1,11 @@
 import { SignInForm } from "components/SignInForm/SignInForm";
+import { Wrapper } from "./SignInPage.styled";
+
 
 export default function SignInPage() {
     return(
-    <div>
-        <title>Sing In</title>
+    <Wrapper>
         <SignInForm/>
-        </div>
+        </Wrapper>
     )
 }

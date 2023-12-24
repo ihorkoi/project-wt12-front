@@ -3,9 +3,10 @@ import { NavLink } from 'react-router-dom';
 
 
 export const Wrapper = styled.div`
-display: flex;
-margin-top: 20px;
-`
+  display: flex;
+  margin-top: 20px;
+  justify-content: flex-end;
+`;
 
 export const Paragrapher = styled.h1`
   font-family: 'Roboto', sans-serif;
