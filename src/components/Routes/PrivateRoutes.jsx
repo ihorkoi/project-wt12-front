@@ -1,9 +1,14 @@
-import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn, selectIsRefreshing } from '../../redux/selectors';
 
-export const PrivateRoute = ({ homePage, welcomePage }) => {
-  const isRefreshing = false; //useSelector(isRefreshingSelector);
-  const isLoggedIn = true; //useSelector(isLoggedIn);
+export const PrivateRoute = ({
+  homePage: HomePage,
+  welcomePage: WelcomePage,
+}) => {
+  const isRefreshing = useSelector(selectIsRefreshing);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const isRestricted = !isLoggedIn && !isRefreshing;
 
-  return isRestricted ? welcomePage : homePage;
+  return isRestricted ? WelcomePage : HomePage;
 };

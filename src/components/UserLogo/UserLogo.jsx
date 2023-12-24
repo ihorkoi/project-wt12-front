@@ -7,7 +7,7 @@ import { UserLogoModal } from 'components/UserLogoModal/UserLogoModal';
 
 export function UserLogo() {
   const [isActiveModal, setIsActiveModal] = useState(false);
-  const onClickHandler = () => {
+  const onClickHandler = e => {
     setIsActiveModal(!isActiveModal);
   };
   return (

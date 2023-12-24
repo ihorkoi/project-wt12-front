@@ -23,7 +23,7 @@ export const SettingContainerStyled = styled.div`
     background-color: var(--primary-white);
     border-radius: 10px;
     padding: 32px 24px;
-    div {
+    >div {
         display: flex;
         align-items: center;
         margin-bottom: 24px;
@@ -35,6 +35,9 @@ export const SettingContainerStyled = styled.div`
         svg {
             margin-left: auto;
             cursor: pointer;
+            &:hover path, &:active path {
+                stroke: var(--secondary-orange);
+            }
         }
     }
     form {
@@ -45,13 +48,21 @@ export const SettingContainerStyled = styled.div`
             margin-bottom: 8px;
         }
         .photo-container{
-            img {
+            display: flex;
+            align-items: center;
+            
+               img {
                 display: block;
+                border-radius: 50%;
                 margin-right: 8px;
-            }
+                object-fit: cover;
+                object-position: center;
+                height: 80px;
+                } 
+            
+            
             .label-file {
                 display: flex;
-                align-items: center;
                 cursor: pointer;
                 p {
                 color: var(--primary-color);
@@ -60,6 +71,12 @@ export const SettingContainerStyled = styled.div`
                 }
                 svg {
                 margin-right: 8px;
+                }
+                &:hover p, &:active p{
+                    color: var(--secondary-orange)
+                }
+                &:hover path, &:active path{
+                    stroke: var(--secondary-orange)
                 }
             }
         }   

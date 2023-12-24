@@ -12,7 +12,7 @@ export const UserLogoModalStyled = styled.div`
   gap: 16px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(64, 123, 255, 0.2);
-  cursor: auto;
+  background-color: var(--primary-white);
   button {
     padding: 0;
     border: none;
@@ -28,8 +28,13 @@ export const UserLogoModalStyled = styled.div`
       line-height: 20px;
     }
     svg {
-      outline: var(--primary-color);
       margin-right: 8px;
     }
+     &:hover p, &:active p{
+        color: var(--secondary-orange);
+      }
+      &:hover path, &:active path{
+        stroke: var(--secondary-orange);
+      }
   }
 `;

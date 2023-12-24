@@ -6,7 +6,7 @@ import { UserInfoModal } from 'components/UserInfoModal/UserInfoModal';
 
 export function UserLogoModal({ setIsActiveModal }) {
   const [isActiveUserInfoModal, setIsActiveUserInfoModal] = useState(false);
-  const [isActiveLogoutModal, setIsActiveLogoutModal] = useState(false);
+  const [, setIsActiveLogoutModal] = useState(false);
 
   const handleCloseModal = () => {
     setIsActiveUserInfoModal(false);
@@ -25,7 +25,7 @@ export function UserLogoModal({ setIsActiveModal }) {
           <p>Setting</p>
         </button>
         <button onClick={() => hanleOpenModal(setIsActiveLogoutModal)}>
-          <Logouticon width={16} height={16} />
+          <Logouticon className="svg" width={16} height={16} />
           <p>Log out</p>
         </button>
       </UserLogoModalStyled>
