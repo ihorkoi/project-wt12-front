@@ -66,6 +66,10 @@ export const Input = styled.input`
     border-radius: 6px;
     border: 1px solid var(--secondary-lighblue);
   }
+
+  &::placeholder {
+    color: var(--secondary-textcolor);
+  }
 `;
 
 export const PasswordContainer = styled.div`

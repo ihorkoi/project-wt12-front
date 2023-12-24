@@ -28,13 +28,18 @@ export function SignInForm() {
                     <Paragrapher>Sign In</Paragrapher>
                         <Form>
                         <Label>Enter your email</Label>
-                        <Input type="text" id='email' />
+                    <Input
+                        type="text"
+                        id='email'
+                        placeholder='E-mail' />
                         <PasswordContainer>
                             <Label>Enter your password</Label>
                             <Input
                             type={showPassword ? 'text' : 'password'}
                             id="password"
-                            name="password" />
+                            name="password"
+                            placeholder='Password'
+                        />
                         <TogglePassword onClick={togglePasswordVisibility}>
                             {showPassword ? (
                                 <Img src={eye} alt="eye-icon" />) :

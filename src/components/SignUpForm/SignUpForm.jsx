@@ -35,13 +35,15 @@ export function SignUpForm() {
                     <Paragrapher>Sign Up</Paragrapher>
                     <Form>
                         <Label>Enter your email</Label>
-                        <Input type="text" id='email' />
+                        <Input type="text" id='email' placeholder='E-mail' />
                         <Label>Enter your password</Label>
                         <PasswordContainer>
                         <Input
                             type={showPassword ? 'text' : 'password'}
                             id="password"
-                            name="password" />
+                            name="password"
+                            placeholder='Password'
+                        />
                         <TogglePassword onClick={togglePasswordVisibility}>
                             {showPassword ? (
                                 <Img src={eye} alt="eye-icon" />) :
@@ -54,6 +56,7 @@ export function SignUpForm() {
                             type={showConfigPassword ? 'text' : 'password'}
                             id='passwordConfirmation'
                             name='passwordConfirmation'
+                            placeholder='Repeat password'
                         />
                         <TogglePassword onClick={togglePasswordConfirmationVisibility}>
                             {showConfigPassword ? (
