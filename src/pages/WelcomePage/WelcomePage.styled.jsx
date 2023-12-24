@@ -40,7 +40,8 @@ export const ComponentWrapper = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    padding: 80px 98px 185px 104px;
+    min-width: 1014px;
+    padding: 80px 80px 185px 80px;
     display: flex;
     gap: 81px;
   }

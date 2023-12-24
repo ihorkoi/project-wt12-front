@@ -59,11 +59,14 @@ export const BenefitsTitle = styled.h3`
 `;
 
 export const BenefitsList = styled.ul`
+  display: flex;
+  flex-direction: column;
   list-style: none;
   padding-bottom: 24px;
   gap: 16px;
   @media screen and (min-width: 768px) {
     display: flex;
+    flex-direction: row;
   }
   @media screen and (min-width: 1440px) {
     flex-direction: column;
