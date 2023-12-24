@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/project-wt12-front/static/css/main.ba77d751.css",
-    "main.js": "/project-wt12-front/static/js/main.46bd46ff.js",
+    "main.css": "/project-wt12-front/static/css/main.9ea8192a.css",
+    "main.js": "/project-wt12-front/static/js/main.70969c6e.js",
     "static/media/Roboto-Medium.ttf": "/project-wt12-front/static/media/Roboto-Medium.7c8d04cd831df3033c8a.ttf",
     "static/media/Roboto-Regular.ttf": "/project-wt12-front/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
     "static/media/Roboto-Bold.ttf": "/project-wt12-front/static/media/Roboto-Bold.f80816a5455d171f948d.ttf",
@@ -11,12 +11,18 @@
     "static/media/Roboto-Medium.woff2": "/project-wt12-front/static/media/Roboto-Medium.fc0337b9cf1cce2e6e1e.woff2",
     "static/media/Roboto-Bold.woff2": "/project-wt12-front/static/media/Roboto-Bold.6cd35edfbc0d7a417131.woff2",
     "static/media/Roboto-Regular.woff2": "/project-wt12-front/static/media/Roboto-Regular.a25806274237d06e00a6.woff2",
+    "static/media/background-main.png": "/project-wt12-front/static/media/background-main.a0d79c3b82dd6a1f5639.png",
+    "static/media/background-el-main.png": "/project-wt12-front/static/media/background-el-main.aebdcb013b3a8eef40c4.png",
+    "static/media/wrench-screwdriver.svg": "/project-wt12-front/static/media/wrench-screwdriver.1ef47b6378ba99b1bec33eba937a8039.svg",
+    "static/media/calendar-days.svg": "/project-wt12-front/static/media/calendar-days.566bea3a06cbe5f7ac704cdc07c7c3bf.svg",
     "index.html": "/project-wt12-front/index.html",
-    "main.ba77d751.css.map": "/project-wt12-front/static/css/main.ba77d751.css.map",
-    "main.46bd46ff.js.map": "/project-wt12-front/static/js/main.46bd46ff.js.map"
+    "static/media/presentation-chart-bar.svg": "/project-wt12-front/static/media/presentation-chart-bar.8cfec11a5c739ea320477bba603d1a57.svg",
+    "static/media/Ellipse.svg": "/project-wt12-front/static/media/Ellipse.efbb04fb3b837caf1313dbd9f171a6ed.svg",
+    "main.9ea8192a.css.map": "/project-wt12-front/static/css/main.9ea8192a.css.map",
+    "main.70969c6e.js.map": "/project-wt12-front/static/js/main.70969c6e.js.map"
   },
   "entrypoints": [
-    "static/css/main.ba77d751.css",
-    "static/js/main.46bd46ff.js"
+    "static/css/main.9ea8192a.css",
+    "static/js/main.70969c6e.js"
   ]
 }
