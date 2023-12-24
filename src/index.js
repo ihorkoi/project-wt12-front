@@ -9,7 +9,7 @@ import './index.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename='/project-wt12-front/'>
+      <BrowserRouter basename='/project-wt12-front'>
         <App />
       </BrowserRouter>
     </Provider>
