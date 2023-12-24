@@ -11,6 +11,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { userReducer } from './user/userSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -18,19 +19,21 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
-const persistedReducer = persistReducer(authPersistConfig, authReducer);
+const authPersistedReducer = persistReducer(authPersistConfig, authReducer);
+const userPersistedReducer = persistReducer(authPersistConfig, userReducer);
 
-
- 
 export const store = configureStore({
-    reducer: {auth: persistedReducer},
-    middleware: getDefaultMiddleware => {
-      return getDefaultMiddleware({
-        serializableCheck: {
-          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        },
-      });
-    },
-  });
+  reducer: {
+    auth: authPersistedReducer,
+    user: userPersistedReducer,
+  },
+  middleware: getDefaultMiddleware => {
+    return getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    });
+  },
+});
 
-  export const persistor = persistStore(store);
+export const persistor = persistStore(store);
