@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/project-wt12-front/static/css/main.9ea8192a.css",
-    "main.js": "/project-wt12-front/static/js/main.70969c6e.js",
+    "main.js": "/project-wt12-front/static/js/main.913dbeaa.js",
     "static/media/Roboto-Medium.ttf": "/project-wt12-front/static/media/Roboto-Medium.7c8d04cd831df3033c8a.ttf",
     "static/media/Roboto-Regular.ttf": "/project-wt12-front/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
     "static/media/Roboto-Bold.ttf": "/project-wt12-front/static/media/Roboto-Bold.f80816a5455d171f948d.ttf",
@@ -19,10 +19,10 @@
     "static/media/presentation-chart-bar.svg": "/project-wt12-front/static/media/presentation-chart-bar.8cfec11a5c739ea320477bba603d1a57.svg",
     "static/media/Ellipse.svg": "/project-wt12-front/static/media/Ellipse.efbb04fb3b837caf1313dbd9f171a6ed.svg",
     "main.9ea8192a.css.map": "/project-wt12-front/static/css/main.9ea8192a.css.map",
-    "main.70969c6e.js.map": "/project-wt12-front/static/js/main.70969c6e.js.map"
+    "main.913dbeaa.js.map": "/project-wt12-front/static/js/main.913dbeaa.js.map"
   },
   "entrypoints": [
     "static/css/main.9ea8192a.css",
-    "static/js/main.70969c6e.js"
+    "static/js/main.913dbeaa.js"
   ]
 }
