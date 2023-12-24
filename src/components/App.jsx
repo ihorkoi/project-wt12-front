@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { PrivateRoute } from './Routes/PrivateRoutes';
 import { RestrictedRoute } from './Routes/RestrictedRoutes';
+import WelcomePage from '../pages/WelcomePage';
 
 export const App = () => {
   return (
@@ -14,7 +15,7 @@ export const App = () => {
               <PrivateRoute
                 redirectTo="/signin"
                 homePage={<div>Home page</div>}
-                welcomePage={<div>Welcome page</div>}
+                welcomePage={WelcomePage}
               />
             }
           />
