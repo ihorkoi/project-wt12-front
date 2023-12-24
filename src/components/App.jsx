@@ -13,7 +13,8 @@ export const App = () => {
             element={
               <PrivateRoute
                 redirectTo="/signin"
-                component={<div>Home page</div>}
+                homePage={<div>Home page</div>}
+                welcomePage={<div>Welcome page</div>}
               />
             }
           />

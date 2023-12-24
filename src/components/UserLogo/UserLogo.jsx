@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { UserLogoModal } from 'components/UserLogoModal/UserLogoModal';
 
 export function UserLogo() {
-  const [isActiveModal, setIsActiveModal] = useState(true);
+  const [isActiveModal, setIsActiveModal] = useState(false);
   const onClickHandler = () => {
     setIsActiveModal(!isActiveModal);
   };
@@ -17,7 +17,7 @@ export function UserLogo() {
         <img width={28} height={28} src={usersvg} alt="user-img" />
         <ArrowIcon width={16} height={16} />
       </button>
-      {isActiveModal && <UserLogoModal />}
+      {isActiveModal && <UserLogoModal setIsActiveModal={onClickHandler} />}
     </UserLogoStyled>
   );
 }
