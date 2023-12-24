@@ -61,9 +61,9 @@ export const BenefitsTitle = styled.h3`
 export const BenefitsList = styled.ul`
   list-style: none;
   padding-bottom: 24px;
+  gap: 16px;
   @media screen and (min-width: 768px) {
     display: flex;
-    gap: 16px;
   }
   @media screen and (min-width: 1440px) {
     flex-direction: column;
@@ -77,20 +77,17 @@ export const BenefitsItem = styled.li`
   }
   gap: 6px;
   width: 216px;
-  margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
     width: 224px;
     margin-bottom: 0;
-  }
-  @media screen and (min-width: 1440px) {
-    margin-bottom: 16px;
   }
 `;
 
 export const BenefitsInfo = styled.p`
   font-family: 'Roboto-Regular', sans-serif;
   font-weight: 400;
+  color: var(--primary-black);
 
   font-size: 16px;
   line-height: 1.25;
@@ -104,7 +101,7 @@ export const BenefitsInfo = styled.p`
 `;
 
 export const TryTrackerBtn = styled.button`
-  width: 100%;
+  width: 280px;
   padding: 8px 30px 8px 30px;
   background-color: var(--primary-color);
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
@@ -113,12 +110,12 @@ export const TryTrackerBtn = styled.button`
 
   @media screen and (min-width: 768px) {
     padding: 10px 30px 10px 30px;
-    max-width: 276px;
+    min-width: 336px;
   }
 
-  //   @media screen and (min-width: 768px) {
-  //     max-width: 324px;
-  //   }
+  @media screen and (min-width: 1440px) {
+    min-width: 384px;
+  }
 `;
 
 export const TryTrackerLink = styled(NavLink)`

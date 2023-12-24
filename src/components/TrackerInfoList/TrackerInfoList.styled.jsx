@@ -17,7 +17,7 @@ export const InfoWrapper = styled.div`
   @media screen and (min-width: 1440px) {
     margin-top: auto;
     height: 332px;
-    width: 494px;
+    width: 535px;
     padding: 32px 24px;
     min-height: 0;
   }
@@ -51,6 +51,7 @@ export const InfoIconsWrapper = styled.div`
 
 export const InfoItemText = styled.p`
   font-family: 'Roboto-Regular', sans-serif;
+  color: var(--primary-black);
   font-size: 16px;
   line-height: 1.25;
   font-weight: 400;
