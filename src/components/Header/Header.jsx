@@ -10,7 +10,7 @@ export function Header() {
   return (
     <HeaderStyled>
       <Logo />
-      {isLogedIn ? <UserAuth /> : <UserLogo />}
+      {!isLogedIn ? <UserAuth /> : <UserLogo />}
     </HeaderStyled>
   );
 }
