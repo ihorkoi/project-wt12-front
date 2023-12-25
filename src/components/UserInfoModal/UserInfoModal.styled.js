@@ -28,7 +28,7 @@ export const SettingContainerStyled = styled.div`
         align-items: center;
         margin-bottom: 24px;
         p {
-        font-weight: 500;
+        font-family: 'Roboto-medium';
         font-size: 26px;
         line-height: 32px;
         } 
@@ -41,16 +41,27 @@ export const SettingContainerStyled = styled.div`
         }
     }
     form {
-        > p {
+        p {
+            font-family: 'Roboto-medium';
             font-size: 18px;
-            font-weight: 500;
             line-height: 20px;
             margin-bottom: 8px;
+        }
+        input[type='text'], input[type='password']{
+            border: 1px solid #D7E3FF;
+            outline: none;
+            border-radius: 6px;
+            width: 100%;
+            padding: 12px 10px;
+            color: var(--primary-color);
+             &::placeholder{
+                color: #9EBBFF;
+            }
         }
         .photo-container{
             display: flex;
             align-items: center;
-            
+            margin-bottom: 24px;
                img {
                 display: block;
                 border-radius: 50%;
@@ -59,8 +70,6 @@ export const SettingContainerStyled = styled.div`
                 object-position: center;
                 height: 80px;
                 } 
-            
-            
             .label-file {
                 display: flex;
                 cursor: pointer;
@@ -68,6 +77,7 @@ export const SettingContainerStyled = styled.div`
                 color: var(--primary-color);
                 font-size: 14px;
                 line-height: 18px;
+                margin-bottom: 0;
                 }
                 svg {
                 margin-right: 8px;
@@ -79,7 +89,81 @@ export const SettingContainerStyled = styled.div`
                     stroke: var(--secondary-orange)
                 }
             }
-        }   
-    } 
+        }
+        .under-photo-container {
+        display: flex;
+        gap: 24px;
+        .input-container {
+            width: 392px;
+            height: 272px;
+            p {
+                margin-bottom: 12px;
+                }
+              .input-text {
+                 margin-bottom: 24px;
+                 p{
+                    margin-bottom: 8px;
+                 }
+                }
+            .gender-container {
+                margin-bottom: 52px;
+                
+               
+                div{
+                   display: flex;
+                   align-items: center;
+                    height: 20px;
+                   input {
+                    margin-right: 8px;
+                    cursor: pointer;
+                    width: 14px;
+                    height: 14px;
+                   }
+                   label{
+                    cursor: pointer;
+                    margin-right: 24px;
+                   }
+                }
+            }
+        }
+    .password-input-container {
+        p{
+            font-family: 'Roboto-regular';
+            font-size: 16px;
+            line-height: 20px;
+            margin-bottom: 8px;
+        }
+        .password-input{
+            margin-bottom: 12px;
+            position: relative;
+            svg {
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                transform: translateY(-50%);
+                cursor: pointer;
+                path{
+                    stroke: var(--primary-color);
+                }
+            }
+        }
+    }  
+} 
+ 
+}
+.btn {
+    display: block;
+    position: absolute;
+    bottom: 32px;
+    right: 24px;
+    width: 160px;
+    height: 44px;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    font-family: 'Roboto-medium';
+    color: var(--primary-white);
+    font-size: 18px;
+    line-height: 24px;
+   }      
 `
 

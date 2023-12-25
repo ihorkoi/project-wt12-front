@@ -1,6 +1,7 @@
 import { BackDropStyled, SettingContainerStyled } from './UserInfoModal.styled';
 import { ReactComponent as CloseIcon } from '../../img/icons/close-icon.svg';
 import { ReactComponent as UploadIcon } from '../../img/icons/arrow-up-tray.svg';
+import { ReactComponent as EyeSlash } from '../../img/icons/eye-slash.svg';
 import defaultPhoto from '../../img/Default-photo.png';
 import { useRef } from 'react';
 
@@ -51,6 +52,52 @@ export function UserInfoModal({ handleCloseModal }) {
               <p>Upload a photo</p>
             </label>
           </div>
+          <div className="under-photo-container">
+            <div className="input-container">
+              <div className="gender-container">
+                <p>Your gender identity</p>
+                <div>
+                  <input type="radio" id="girl" name="gender"></input>
+                  <label htmlFor="girl">Girl</label>
+                  <input type="radio" id="man" name="gender"></input>
+                  <label htmlFor="man">Man</label>
+                </div>
+              </div>
+
+              <div className="input-text">
+                <p>Your name</p>
+                <input type="text" id="name" placeholder="Your name" />
+              </div>
+
+              <div className="input-text">
+                <p>E-mail</p>
+                <input type="text" id="email" placeholder="Email" />
+              </div>
+            </div>
+            <div className="input-container">
+              <p>Password</p>
+              <div className="password-input-container">
+                <p>Outdated password</p>
+                <div className="password-input">
+                  <input type="password" placeholder="Password" />
+                  <EyeSlash />
+                </div>
+                <p>New Password</p>
+                <div className="password-input">
+                  <input type="password" placeholder="Password" />
+                  <EyeSlash />
+                </div>
+                <p>Repeat new password</p>
+                <div className="password-input">
+                  <input type="password" placeholder="Password" />
+                  <EyeSlash />
+                </div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+
+          <button className="btn">Save</button>
         </form>
       </SettingContainerStyled>
     </>
