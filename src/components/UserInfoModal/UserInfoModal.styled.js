@@ -164,6 +164,10 @@ export const SettingContainerStyled = styled.div`
     color: var(--primary-white);
     font-size: 18px;
     line-height: 24px;
+    box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+    &:hover, &:active {
+        box-shadow: none;
+    }
    }      
 `
 
