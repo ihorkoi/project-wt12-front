@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../redux/auth/operations.js';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
 import {
     Wrapper,
     Paragrapher,
@@ -10,12 +15,53 @@ import {
     TogglePassword,
     Img,
     BTN,
-    NavLinkStyle
+    NavLinkStyle,
+    ErrorsMess
 } from "./SignUpForm.styled";
 import eyeSlash from "../../img/icons/eye-slash.svg";
-import eye from "../../img/icons/eye.svg"
-    ;
+import eye from "../../img/icons/eye.svg";
+
+export const registrationSchema = yup
+  .object()
+  .shape({
+    email: yup.string().email('Invalid email').required('Email is required'),
+    password: yup
+      .string()
+      .min(8, 'Password must be at least 8 characters long')
+          .required('Password is required'),
+    passwordConfirmation: yup.string()
+     .oneOf([yup.ref('password'), null], 'Passwords must match')
+  })
+  .required();
+
+
+
 export function SignUpForm() {  
+      const dispatch = useDispatch();
+
+      const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: { email: '', password: '', passwordConfirmation:'' },
+    resolver: yupResolver(registrationSchema),
+  });
+
+  const onSubmit = ({  email, password, passwordConfirmation}) => {
+    dispatch(signUp({  email, password, passwordConfirmation }))
+      .unwrap()
+      .then(() => alert('Account successfully created!'))
+      .catch(e =>
+        e === 'Request failed with status code 400'
+          ? alert(
+              'This user already exist! Use Log In button'
+            )
+          : alert('Something went wrong, try one nore time!')
+      );
+  };
+    
+    
     const [showPassword, setShowPassword] = useState(false);
     const [showConfigPassword, setShowConfigPassword] = useState(false)
 
@@ -30,15 +76,16 @@ export function SignUpForm() {
 
     return (
         <Wrapper>
-
                 <FormWrapper>
                     <Paragrapher>Sign Up</Paragrapher>
-                    <Form>
+                    <Form onSubmit={handleSubmit(onSubmit)}>
                         <Label>Enter your email</Label>
-                        <Input type="text" id='email' placeholder='E-mail' />
+                    <Input {...register('email')} type="text" id='email' placeholder='E-mail' />
+                            <ErrorsMess>{errors.email?.message}</ErrorsMess>
                         <Label>Enter your password</Label>
                         <PasswordContainer>
                         <Input
+                            {...register('password')}
                             type={showPassword ? 'text' : 'password'}
                             id="password"
                             name="password"
@@ -48,11 +95,13 @@ export function SignUpForm() {
                             {showPassword ? (
                                 <Img src={eye} alt="eye-icon" />) :
                                 (<Img src={eyeSlash} alt="eye-slash-icon" />)}
-                            </TogglePassword>
+                        </TogglePassword>
+                                <ErrorsMess>{errors.password?.message}</ErrorsMess>
                             </PasswordContainer>
                         <Label>Repeat password</Label>
                         <PasswordContainer>
                         <Input
+                            {...register('passwordConfirmation')}
                             type={showConfigPassword ? 'text' : 'password'}
                             id='passwordConfirmation'
                             name='passwordConfirmation'
@@ -62,7 +111,8 @@ export function SignUpForm() {
                             {showConfigPassword ? (
                                 <Img src={eye} alt="eye-icon" />) :
                                 (<Img src={eyeSlash} alt="eye-slash-icon" />)}
-                            </TogglePassword>
+                        </TogglePassword>
+                        <ErrorsMess>{errors.passwordConfirmation?.message}</ErrorsMess>
                             </PasswordContainer>
                         <BTN type="submit">Sign Up</BTN>
                 </Form>

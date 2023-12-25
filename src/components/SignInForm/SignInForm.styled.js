@@ -28,6 +28,15 @@ export const Form = styled.form`
   width: 320px;
 `;
 
+export const ErrorsMess = styled.p`
+  color: var(--secondary-red);
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.29;
+`;
+
 export const Label = styled.label`
   display: flex;
   flex-direction: column;

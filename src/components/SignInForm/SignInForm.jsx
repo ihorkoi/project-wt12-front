@@ -1,19 +1,60 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form'
+import {signIn} from '../../redux/auth/operations.js'
 import {
     Wrapper,
     FormWrapper,
     Form, Label,
     Input, BTN, Paragrapher,
     NavLinkStyle,
-    PasswordContainer, TogglePassword, Img
+    PasswordContainer, TogglePassword, Img,
+    ErrorsMess
 } from "./SignInForm.styled";
 
 import eyeSlash from "../../img/icons/eye-slash.svg";
 import eye from "../../img/icons/eye.svg";
 
+ export const loginSchema = yup
+  .object()
+  .shape({
+    email: yup.string().email('Invalid email').required('Email is required'),
+    password: yup
+      .string()
+      .min(8, 'Password must be at least 8 characters long')
+      .required('Password is required'),
+  })
+  .required();
+
 
 
 export function SignInForm() {
+      const dispatch = useDispatch();
+ const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: { email: '', password: '' },
+    resolver: yupResolver(loginSchema),
+  });
+
+  const onSubmit = ({ email, password }) => {
+    dispatch(signIn({ email, password }))
+      .unwrap()
+      .then(resp => {
+       alert(`Successfully logged in `);
+      })
+      .catch(e => {
+        e === 'Request failed with status code 400'
+          ? alert('Wrong email or password')
+          :alert('Something went wrong, try one nore time!');
+      });
+  };
+
+
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -26,15 +67,18 @@ export function SignInForm() {
          <Wrapper>
                 <FormWrapper>
                     <Paragrapher>Sign In</Paragrapher>
-                        <Form>
+                        <Form onSubmit={handleSubmit(onSubmit)}>
                         <Label>Enter your email</Label>
                     <Input
+                        {...register('email')}
                         type="text"
                         id='email'
                         placeholder='E-mail' />
+                            <ErrorsMess>{errors.email?.message}</ErrorsMess>
                         <PasswordContainer>
                             <Label>Enter your password</Label>
-                            <Input
+                        <Input
+                            {...register('password')}
                             type={showPassword ? 'text' : 'password'}
                             id="password"
                             name="password"
@@ -45,6 +89,7 @@ export function SignInForm() {
                                 <Img src={eye} alt="eye-icon" />) :
                                 (<Img src={eyeSlash} alt="eye-slash-icon" />)}
                         </TogglePassword>
+                                <ErrorsMess>{errors.password?.message}</ErrorsMess>
                     </PasswordContainer>
                         <BTN type="submit">Sign In</BTN>
                     </Form>

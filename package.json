@@ -4,10 +4,12 @@
   "private": true,
   "homepage": "hhttps://ihorkoi.github.io/project-wt12-front/",
   "dependencies": {
+    "@hookform/resolvers": "^3.3.2",
     "@reduxjs/toolkit": "^2.0.1",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.2",
     "formik": "^2.4.5",
     "modern-normalize": "^2.0.0",
     "react": "^18.1.0",
@@ -18,7 +20,8 @@
     "react-router-dom": "^6.21.1",
     "react-scripts": "5.0.1",
     "styled-components": "^6.1.3",
-    "web-vitals": "^2.1.3"
+    "web-vitals": "^2.1.3",
+    "yup": "^1.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
