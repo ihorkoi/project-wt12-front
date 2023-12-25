@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { signUp } from '../../redux/auth/operations.js';
+import { registerUser } from '../../redux/auth/authOperations';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -42,14 +42,14 @@ export function SignUpForm() {
       const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors,isDirty  },
   } = useForm({
     defaultValues: { email: '', password: '', passwordConfirmation:'' },
     resolver: yupResolver(registrationSchema),
   });
 
   const onSubmit = ({  email, password, passwordConfirmation}) => {
-    dispatch(signUp({  email, password, passwordConfirmation }))
+    dispatch(registerUser({  email, password, passwordConfirmation }))
       .unwrap()
       .then(() => alert('Account successfully created!'))
       .catch(e =>
@@ -80,7 +80,13 @@ export function SignUpForm() {
                     <Paragrapher>Sign Up</Paragrapher>
                     <Form onSubmit={handleSubmit(onSubmit)}>
                         <Label>Enter your email</Label>
-                    <Input {...register('email')} type="text" id='email' placeholder='E-mail' />
+                    <Input
+                        {...register('email')}
+                        type="text"
+                        id='email'
+                        placeholder='E-mail'
+                        {...(isDirty && !!errors.email ? { haserror: "true" } : {})}
+                    />
                             <ErrorsMess>{errors.email?.message}</ErrorsMess>
                         <Label>Enter your password</Label>
                         <PasswordContainer>
@@ -90,6 +96,7 @@ export function SignUpForm() {
                             id="password"
                             name="password"
                             placeholder='Password'
+                            {...(isDirty && !!errors.password ? { haserror: "true" } : {})}
                         />
                         <TogglePassword onClick={togglePasswordVisibility}>
                             {showPassword ? (
@@ -106,6 +113,7 @@ export function SignUpForm() {
                             id='passwordConfirmation'
                             name='passwordConfirmation'
                             placeholder='Repeat password'
+                            {...(isDirty && !!errors.passwordConfirmation ? { haserror: "true" } : {})}
                         />
                         <TogglePassword onClick={togglePasswordConfirmationVisibility}>
                             {showConfigPassword ? (

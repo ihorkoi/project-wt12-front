@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form'
-import {signIn} from '../../redux/auth/operations.js'
+import {login} from '../../redux/auth/authOperations'
 import {
     Wrapper,
     FormWrapper,
@@ -35,14 +35,14 @@ export function SignInForm() {
  const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm({
     defaultValues: { email: '', password: '' },
     resolver: yupResolver(loginSchema),
   });
 
   const onSubmit = ({ email, password }) => {
-    dispatch(signIn({ email, password }))
+    dispatch(login({ email, password }))
       .unwrap()
       .then(resp => {
        alert(`Successfully logged in `);
@@ -73,7 +73,9 @@ export function SignInForm() {
                         {...register('email')}
                         type="text"
                         id='email'
-                        placeholder='E-mail' />
+                        placeholder='E-mail'
+                        {...(isDirty && !!errors.email ? { haserror: "true" } : {})}
+                    />
                             <ErrorsMess>{errors.email?.message}</ErrorsMess>
                         <PasswordContainer>
                             <Label>Enter your password</Label>
@@ -83,6 +85,7 @@ export function SignInForm() {
                             id="password"
                             name="password"
                             placeholder='Password'
+                            {...(isDirty && !!errors.password ? { haserror: "true" } : {})}
                         />
                         <TogglePassword onClick={togglePasswordVisibility}>
                             {showPassword ? (

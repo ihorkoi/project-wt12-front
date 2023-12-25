@@ -1,6 +1,5 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
-
 
 export const Wrapper = styled.div`
   display: flex;
@@ -65,7 +64,9 @@ export const Label = styled.label`
   margin-bottom: 8px;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input.attrs(props => ({
+  haserror: props.haserror,
+}))`
   width: 280px;
   height: 44px;
   border-radius: 6px;
@@ -98,6 +99,12 @@ export const Input = styled.input`
   &::placeholder {
     color: var(--secondary-textcolor);
   }
+
+  ${(props) =>
+    props.haserror &&
+    css`
+      border-color: red;
+    `}
 `;
 
 export const PasswordContainer = styled.div`
@@ -107,9 +114,17 @@ export const PasswordContainer = styled.div`
 export const TogglePassword = styled.span`
   position: absolute;
   right: 10px;
-  top: 14px;
+  top: 50%;
+  transform: translateY(-50%);
   @media screen and (min-width: 768px) {
     right: 66px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @media screen and (min-width: 1440px) {
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 `;
 
