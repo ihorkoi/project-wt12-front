@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 export const Wrapper = styled.div`
   display: flex;
   margin-top: 20px;
-  justify-content: flex-end;
+  flex-direction: column;
 `;
 
 export const Paragrapher = styled.h1`
@@ -19,13 +19,29 @@ export const Paragrapher = styled.h1`
 `;
 
 export const FormWrapper = styled.div`
-display: flex;
-flex-direction: column;
-margin: 113px 198px 157px 89px;
-`
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: 768px) {
+    justify-content: flex-start;
+    margin-top: 40px;
+  }
+  @media screen and (min-width: 1440px) {
+    justify-content: flex-end;
+    padding-top: 148px;
+    padding-left: 822px;
+    padding-bottom: 156px;
+    padding-right: 198px;
+  }
+`;
 
 export const Form = styled.form`
-  width: 320px;
+  width: 280px;
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 384px;
+  }
 `;
 
 export const ErrorsMess = styled.p`
@@ -50,7 +66,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  width: 384px;
+  width: 280px;
   height: 44px;
   border-radius: 6px;
   border: 1px solid #d7e3ff;
@@ -65,6 +81,9 @@ export const Input = styled.input`
   font-weight: 400;
   line-height: 1.25;
   outline: none;
+  @media screen and (min-width: 1440px) {
+    width: 384px;
+  }
 
   &:focus {
     border-radius: 6px;
@@ -87,19 +106,22 @@ export const PasswordContainer = styled.div`
 
 export const TogglePassword = styled.span`
   position: absolute;
-  right: -50px;
-  top: 50%;
+  right: 10px;
+  top: 14px;
+  @media screen and (min-width: 768px) {
+    right: 66px;
+  }
 `;
 
 export const Img = styled.img`
-width: 16px;
-`
+  width: 16px;
+`;
 
 export const BTN = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 384px;
+  width: 280px;
   border-radius: 10px;
   border: none;
   background-color: var(--primary-color);
@@ -111,10 +133,14 @@ export const BTN = styled.button`
   font-weight: 500;
   line-height: 1.33;
   margin-top: 16px;
+
+  @media screen and (min-width: 1440px) {
+    width: 384px;
+  }
 `;
 
-
 export const NavLinkStyle = styled(NavLink)`
+  margin-bottom: 184px;
   color: var(--primary-color);
   font-family: Roboto;
   font-size: 16px;
@@ -122,4 +148,17 @@ export const NavLinkStyle = styled(NavLink)`
   font-weight: 400;
   line-height: 1.25;
   margin-top: 16px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 70px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 0;
+    color: var(--primary-color);
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-top: 16px;
+  }
 `;
