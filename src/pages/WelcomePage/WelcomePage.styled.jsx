@@ -8,13 +8,11 @@ export const Wrapper = styled.section`
   background-size: cover;
   background-position: bottom center;
   background-repeat: no-repeat;
-  width: 100vw;
-  height: 100vh;
+  min-height: calc(100vh - 65px);
   background-image: url(${bg_waves_mob});
 
   @media screen and (min-width: 768px) {
-    width: 100vw;
-    height: 100vh;
+    min-height: calc(100vh - 65px);
     background-image: url(${bg_waves_tab});
     background-size: cover;
     background-position: bottom center;
