@@ -1,3 +1,4 @@
+import { AddWater } from '../AddWater/AddWater';
 import {
   WelcomeTrackerWrapper,
   WelcomeTrackerTitle,
@@ -45,6 +46,7 @@ const WelcomeTracker = () => {
       <TryTrackerBtn>
         <TryTrackerLink to="/signup">Try Tracker</TryTrackerLink>
       </TryTrackerBtn>
+      <AddWater />
     </WelcomeTrackerWrapper>
   );
 };
