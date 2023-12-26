@@ -25,7 +25,7 @@ export const App = () => {
             element={
               <RestrictedRoute
                 redirectTo="/"
-                component={<div>Sigup page</div>}
+                component={<SignUpPage/>}
               />
             }
           />
@@ -34,7 +34,7 @@ export const App = () => {
             element={
               <RestrictedRoute
                 redirectTo="/"
-                component={<div>Sigin page</div>}
+                component={<SignInPage/>}
               />
             }
           />
