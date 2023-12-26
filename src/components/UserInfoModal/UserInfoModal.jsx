@@ -3,10 +3,23 @@ import { ReactComponent as CloseIcon } from '../../img/icons/close-icon.svg';
 import { ReactComponent as UploadIcon } from '../../img/icons/arrow-up-tray.svg';
 import { ReactComponent as EyeSlash } from '../../img/icons/eye-slash.svg';
 import defaultPhoto from '../../img/Default-photo.png';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 export function UserInfoModal({ handleCloseModal }) {
   const imgRef = useRef();
+
+  useEffect(() => {
+    const handleKeyPress = event => {
+      if (event.key === 'Escape') {
+        handleCloseModal();
+      }
+    };
+    document.addEventListener('keydown', handleKeyPress);
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [handleCloseModal]);
+
   const handleFileChange = e => {
     const file = e.target.files[0];
     if (file) {
@@ -20,15 +33,11 @@ export function UserInfoModal({ handleCloseModal }) {
   };
   return (
     <>
-      <BackDropStyled onClick={() => handleCloseModal()}></BackDropStyled>
+      <BackDropStyled onClick={handleCloseModal}></BackDropStyled>
       <SettingContainerStyled>
         <div>
           <p>Setting</p>
-          <CloseIcon
-            width={12}
-            height={12}
-            onClick={() => handleCloseModal()}
-          />
+          <CloseIcon width={12} height={12} onClick={handleCloseModal} />
         </div>
         <form>
           <p>Your photo</p>
