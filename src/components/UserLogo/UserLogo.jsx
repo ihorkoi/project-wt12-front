@@ -5,19 +5,22 @@ import { useState } from 'react';
 import { UserLogoModal } from 'components/UserLogoModal/UserLogoModal';
 
 export function UserLogo() {
-  const [isActiveModal, setIsActiveModal] = useState(false);
+  const [isActiveLogoModal, setIsActiveLogoModal] = useState(false);
 
-  const onClickHandler = e => {
-    setIsActiveModal(!isActiveModal);
+  const handleLogoModal = e => {
+    setIsActiveLogoModal(!isActiveLogoModal);
   };
+
   return (
     <UserLogoStyled>
-      <button onClick={onClickHandler}>
+      <button onClick={handleLogoModal}>
         <p>david</p>
         <img width={28} height={28} src={usersvg} alt="user-img" />
         <ArrowIcon width={16} height={16} />
       </button>
-      {isActiveModal && <UserLogoModal setIsActiveModal={onClickHandler} />}
+      {isActiveLogoModal && (
+        <UserLogoModal setIsActiveLogoModal={handleLogoModal} />
+      )}
     </UserLogoStyled>
   );
 }
