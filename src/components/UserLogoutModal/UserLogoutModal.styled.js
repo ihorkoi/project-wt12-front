@@ -24,24 +24,6 @@ export const LogoutContainerStyled = styled.div`
     background-color: var(--primary-white);
     border-radius: 10px;
     padding: 32px 24px;
-    @media screen and (max-width: 1024px) {
-            top: 200px;
-            transform: translate(-50%, 0);
-            .btn-container {
-                justify-content: end;
-            }
-        } 
-    @media screen and (max-width: 767px) {
-            top: 80px;
-            max-width: 280px;
-            max-height: 260px;
-            .btn-container {
-                flex-direction: column;
-            }
-            .logout-btn, .cancel-btn{
-                width: 100%;
-            }
-        }
     .title-container{
         display: flex;
         align-items: center;
@@ -90,4 +72,22 @@ export const LogoutContainerStyled = styled.div`
             box-shadow: none;
         }
     }
+    @media screen and (max-width: 1024px) {
+            top: 200px;
+            transform: translate(-50%, 0);
+            .btn-container {
+                justify-content: end;
+            }
+        } 
+    @media screen and (max-width: 767px) {
+            top: 80px;
+            max-width: 280px;
+            max-height: 260px;
+            .btn-container {
+                flex-direction: column;
+            }
+            .logout-btn, .cancel-btn{
+                width: 100%;
+            }
+        }
 `
