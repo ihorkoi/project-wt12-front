@@ -3,8 +3,10 @@ import { NavLink } from 'react-router-dom';
 
 export const Wrapper = styled.div`
   display: flex;
-  margin-top: 20px;
   flex-direction: column;
+  @media screen and (max-width: 768px) {
+    margin-top: 24px;
+  }
 `;
 
 export const Paragrapher = styled.h1`
@@ -20,14 +22,16 @@ export const Paragrapher = styled.h1`
 export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0;
   @media screen and (min-width: 768px) {
     justify-content: flex-start;
     margin-top: 40px;
   }
   @media screen and (min-width: 1440px) {
+    margin-top: 0;
     justify-content: flex-end;
     padding-top: 148px;
-    padding-left: 822px;
+    padding-left: 722px;
     padding-bottom: 156px;
     padding-right: 198px;
   }
@@ -35,6 +39,7 @@ export const FormWrapper = styled.div`
 
 export const Form = styled.form`
   width: 280px;
+
   @media screen and (min-width: 768px) {
     width: 336px;
   }
@@ -67,13 +72,15 @@ export const Label = styled.label`
 export const Input = styled.input.attrs(props => ({
   haserror: props.haserror,
 }))`
+  @media screen and (max-width: 320px) {
+    max-width: 220px;
+  }
   width: 280px;
   height: 44px;
   border-radius: 6px;
   border: 1px solid #d7e3ff;
   padding: 12px 36px 12px 10px;
   background-color: #ffffff;
-  box-shadow: 1px 2px 6px 0px rgba(33, 83, 60, 0.5);
   margin-bottom: 16px;
   color: var(--primary-color);
   font-family: Roboto;
@@ -100,7 +107,7 @@ export const Input = styled.input.attrs(props => ({
     color: var(--secondary-textcolor);
   }
 
-  ${(props) =>
+  ${props =>
     props.haserror &&
     css`
       border-color: red;
@@ -114,17 +121,21 @@ export const PasswordContainer = styled.div`
 export const TogglePassword = styled.span`
   position: absolute;
   right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 25%;
+  transform: translateY(-25%);
+  @media screen and (max-width: 320px) {
+    right: 70px;
+    top: 32%;
+    transform: translateY(-32%);
+  }
+
   @media screen and (min-width: 768px) {
     right: 66px;
-    top: 50%;
-    transform: translateY(-50%);
   }
   @media screen and (min-width: 1440px) {
     right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 25%;
+    transform: translateY(-25%);
   }
 `;
 
@@ -133,6 +144,9 @@ export const Img = styled.img`
 `;
 
 export const BTN = styled.button`
+  @media screen and (max-width: 320px) {
+    width: 220px;
+  }
   display: flex;
   justify-content: center;
   align-items: center;

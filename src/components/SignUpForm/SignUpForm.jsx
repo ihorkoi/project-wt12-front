@@ -23,7 +23,7 @@ import eye from "../../img/icons/eye.svg";
 
 export const registrationSchema = yup
   .object()
-  .shape({
+    .shape({
     email: yup.string().email('Invalid email').required('Email is required'),
     password: yup
       .string()
@@ -44,12 +44,13 @@ export function SignUpForm() {
     handleSubmit,
     formState: { errors,isDirty  },
   } = useForm({
-    defaultValues: { email: '', password: '', passwordConfirmation:'' },
+      defaultValues: { email: '', password: '', passwordConfirmation:'' },
     resolver: yupResolver(registrationSchema),
   });
 
-  const onSubmit = ({  email, password, passwordConfirmation}) => {
-    dispatch(registerUser({  email, password, passwordConfirmation }))
+    const onSubmit = ({ email, password, passwordConfirmation }) => {
+        const name = email;
+    dispatch(registerUser({  email, name, password, passwordConfirmation }))
       .unwrap()
       .then(() => alert('Account successfully created!'))
       .catch(e =>

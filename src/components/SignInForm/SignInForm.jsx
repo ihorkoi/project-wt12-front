@@ -77,8 +77,9 @@ export function SignInForm() {
                         {...(isDirty && !!errors.email ? { haserror: "true" } : {})}
                     />
                             <ErrorsMess>{errors.email?.message}</ErrorsMess>
-                        <PasswordContainer>
-                            <Label>Enter your password</Label>
+                        
+                    <Label>Enter your password</Label>
+                    <PasswordContainer>    
                         <Input
                             {...register('password')}
                             type={showPassword ? 'text' : 'password'}
