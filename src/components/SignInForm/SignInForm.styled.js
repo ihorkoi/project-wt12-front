@@ -40,8 +40,6 @@ export const FormWrapper = styled.div`
 `;
 
 export const Form = styled.form`
-  width: 320px;
-
   @media screen and (min-width: 768px) {
     width: 336px;
   }
@@ -75,7 +73,7 @@ export const Input = styled.input.attrs(props => ({
   haserror: props.haserror,
 }))`
 
-  width: 320px;
+  width: 100%;
   height: 44px;
   border-radius: 6px;
   border: 1px solid #d7e3ff;
@@ -124,14 +122,9 @@ export const TogglePassword = styled.span`
   top: 30%;
   transform: translateY(-30%);
   
-  /* @media screen and (max-width: 320px) {
-    right: 70px;
-    top: 32%;
-    transform: translateY(-32%);
-  } */
 
   @media screen and (min-width: 768px) {
-    right: 30px;
+    right: 10px;
   }
   @media screen and (min-width: 1440px) {
     right: 10px;
@@ -149,7 +142,7 @@ export const BTN = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 320px;
+  width: 100%;
   border-radius: 10px;
   border: none;
   background-color: var(--primary-color);

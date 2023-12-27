@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form'
 import {login} from '../../redux/auth/authOperations'
 import {
-    Wrapper,
+    // Wrapper,
     FormWrapper,
     Form, Label,
     Input, BTN, Paragrapher,
