@@ -3,14 +3,16 @@ import { ReactComponent as Logouticon } from '../../img/icons/arrow-right-on-rec
 import { UserLogoModalStyled } from './UserLogoModal.styled';
 import { useState } from 'react';
 import { UserInfoModal } from 'components/UserInfoModal/UserInfoModal';
+import { UserLogoutModal } from 'components/UserLogoutModal/UserLogoutModal';
 
-export function UserLogoModal({ setIsActiveModal }) {
+export function UserLogoModal({ setIsActiveLogoModal }) {
   const [isActiveUserInfoModal, setIsActiveUserInfoModal] = useState(false);
-  const [, setIsActiveLogoutModal] = useState(false);
+  const [isActiveLogoutModal, setIsActiveLogoutModal] = useState(false);
 
   const handleCloseModal = () => {
     setIsActiveUserInfoModal(false);
-    setIsActiveModal();
+    setIsActiveLogoutModal(false);
+    setIsActiveLogoModal();
   };
 
   const hanleOpenModal = callback => {
@@ -31,6 +33,9 @@ export function UserLogoModal({ setIsActiveModal }) {
       </UserLogoModalStyled>
       {isActiveUserInfoModal && (
         <UserInfoModal handleCloseModal={handleCloseModal} />
+      )}
+      {isActiveLogoutModal && (
+        <UserLogoutModal handleCloseModal={handleCloseModal} />
       )}
     </>
   );
