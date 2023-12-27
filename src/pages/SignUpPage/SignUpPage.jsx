@@ -8,13 +8,12 @@ import { StyleSheetManager } from 'styled-components';
 
 export default function SignUpPage() {
     return(
-        <Container>
-                    <Wrapper>
+        <Wrapper>
+            <Container>
                 <StyleSheetManager shouldForwardProp={(prop) => prop !== 'haserror'}>
                  <SignUpForm/>
-                </StyleSheetManager>
-                        </Wrapper>
-
+                 </StyleSheetManager>
             </Container>
+        </Wrapper>
     )
 }
