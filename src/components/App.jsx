@@ -1,3 +1,5 @@
+import SignInPage from 'pages/SignInPage/SignInPage';
+import SignUpPage from 'pages/SignUpPage/SignUpPage';
 import { Routes, Route } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { PrivateRoute } from './Routes/PrivateRoutes';
@@ -23,7 +25,7 @@ export const App = () => {
             element={
               <RestrictedRoute
                 redirectTo="/"
-                component={<div>Sigup page</div>}
+                component={<SignUpPage/>}
               />
             }
           />
@@ -32,7 +34,7 @@ export const App = () => {
             element={
               <RestrictedRoute
                 redirectTo="/"
-                component={<div>Sigin page</div>}
+                component={<SignInPage/>}
               />
             }
           />
