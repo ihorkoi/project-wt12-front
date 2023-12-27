@@ -1,13 +1,14 @@
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  @media screen and (max-width: 768px) {
-    margin-top: 24px;
-  }
-`;
+// export const Wrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   padding: 0;
+//   @media screen and (max-width: 768px) {
+//     margin-top: 24px;
+//   }
+// `;
 
 export const Paragrapher = styled.h1`
   font-family: 'Roboto', sans-serif;
@@ -22,7 +23,8 @@ export const Paragrapher = styled.h1`
 export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0;
+  margin-top: 24px;
+
   @media screen and (min-width: 768px) {
     justify-content: flex-start;
     margin-top: 40px;
@@ -38,7 +40,7 @@ export const FormWrapper = styled.div`
 `;
 
 export const Form = styled.form`
-  width: 280px;
+  width: 320px;
 
   @media screen and (min-width: 768px) {
     width: 336px;
@@ -72,10 +74,8 @@ export const Label = styled.label`
 export const Input = styled.input.attrs(props => ({
   haserror: props.haserror,
 }))`
-  @media screen and (max-width: 320px) {
-    max-width: 220px;
-  }
-  width: 280px;
+
+  width: 320px;
   height: 44px;
   border-radius: 6px;
   border: 1px solid #d7e3ff;
@@ -121,16 +121,17 @@ export const PasswordContainer = styled.div`
 export const TogglePassword = styled.span`
   position: absolute;
   right: 10px;
-  top: 25%;
-  transform: translateY(-25%);
-  @media screen and (max-width: 320px) {
+  top: 30%;
+  transform: translateY(-30%);
+  
+  /* @media screen and (max-width: 320px) {
     right: 70px;
     top: 32%;
     transform: translateY(-32%);
-  }
+  } */
 
   @media screen and (min-width: 768px) {
-    right: 66px;
+    right: 30px;
   }
   @media screen and (min-width: 1440px) {
     right: 10px;
@@ -144,13 +145,11 @@ export const Img = styled.img`
 `;
 
 export const BTN = styled.button`
-  @media screen and (max-width: 320px) {
-    width: 220px;
-  }
+
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 280px;
+  width: 320px;
   border-radius: 10px;
   border: none;
   background-color: var(--primary-color);
@@ -162,7 +161,6 @@ export const BTN = styled.button`
   font-weight: 500;
   line-height: 1.33;
   margin-top: 16px;
-
   @media screen and (min-width: 1440px) {
     width: 384px;
   }

@@ -8,13 +8,14 @@ import { StyleSheetManager } from 'styled-components';
 
 export default function SignInPage() {
     return(
-        <Wrapper>
-            <Container>
+        <Container>
+                    <Wrapper>
+
                     <StyleSheetManager shouldForwardProp={(prop) => prop !== 'haserror'}>
                     <SignInForm />
                         </StyleSheetManager>
+        </Wrapper>
 
             </Container>
-        </Wrapper>
     )
 }

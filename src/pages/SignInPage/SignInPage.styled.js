@@ -8,12 +8,14 @@ import bottle_mob from '../../img/mobile/bottle-sign-in.png';
 
 
 export const Wrapper = styled.div`
+  /* min-height: calc(100vh - 65px); */
   background-size: auto;
   background-position: bottom 10px right 50%;
   background-repeat: no-repeat;
   background-image: url(${bottle_mob}), url(${bg_waves_mob});
 
   @media screen and (min-width: 768px) {
+    /* min-height: calc(100vh - 65px); */
     background-image: url(${botle_desk}), url(${bg_waves_desk});
     background-size: contain;
     background-position: right bottom;
@@ -21,6 +23,7 @@ export const Wrapper = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
+    /* min-height: calc(100vh - 65px); */
     background-image: url(${botle_desk}), url(${bg_waves_desk});
     background-size: contain;
     background-position: left bottom;

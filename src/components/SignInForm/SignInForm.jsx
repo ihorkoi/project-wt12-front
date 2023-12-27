@@ -64,7 +64,7 @@ export function SignInForm() {
     
 
     return (
-         <Wrapper>
+        //  <Wrapper>
                 <FormWrapper>
                     <Paragrapher>Sign In</Paragrapher>
                         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -101,6 +101,6 @@ export function SignInForm() {
                         Sign Up
                     </NavLinkStyle>
                 </FormWrapper>
-            </Wrapper>
+            // </Wrapper>
         )
 }

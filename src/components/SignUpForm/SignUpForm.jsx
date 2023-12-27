@@ -48,9 +48,9 @@ export function SignUpForm() {
     resolver: yupResolver(registrationSchema),
   });
 
-    const onSubmit = ({ email, password, passwordConfirmation }) => {
+    const onSubmit = ({ email, password }) => {
         const name = email;
-    dispatch(registerUser({  email, name, password, passwordConfirmation }))
+    dispatch(registerUser({  email, name, password }))
       .unwrap()
       .then(() => alert('Account successfully created!'))
       .catch(e =>
@@ -76,7 +76,7 @@ export function SignUpForm() {
 
 
     return (
-        <Wrapper>
+        // <Wrapper>
                 <FormWrapper>
                     <Paragrapher>Sign Up</Paragrapher>
                     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -129,7 +129,7 @@ export function SignUpForm() {
                     Sign In
                 </NavLinkStyle>
                     </FormWrapper>
-        </Wrapper>
+        // </Wrapper>
     )
     }
   
