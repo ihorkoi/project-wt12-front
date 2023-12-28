@@ -20,6 +20,7 @@ import {
   SpanText,
   ResultWater,
 } from './AddWater_styled';
+import { TimeChange } from './Datepicker';
 
 const customStyles = {
   content: {
@@ -38,18 +39,10 @@ const customStyles = {
 // Modal.setAppElement('#modal_addWater-root');
 
 export const AddWater = () => {
-  const currentDate = new Date();
-
-  const formattedTime = currentDate.toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-
-  console.log(formattedTime);
-
   const [modalIsOpen, setIsOpen] = useState(false);
   const [currentWater, setCurrentWater] = useState(0);
-  const [currentTime, setCurrentTime] = useState(formattedTime);
+  // const [currentTime, setCurrentTime] = useState(formattedTime);
+  const [startDate, setStartDate] = useState(new Date());
 
   const openModal = () => {
     setIsOpen(true);
@@ -72,6 +65,10 @@ export const AddWater = () => {
       return;
     }
     setCurrentWater(currentWater - 50);
+  };
+
+  const handleWater = e => {
+    setCurrentWater(e.target.value);
   };
 
   return (
@@ -99,16 +96,15 @@ export const AddWater = () => {
           <StyledForm>
             <InfoTime>
               Recording time:
-              {/* <StyledField type="date" value={currentTime} /> */}
-              <StyledField
-                type="time"
-                value={currentTime}
-                onChange={e => setCurrentTime(e.target.value)}
-              />
+              <TimeChange startDate={startDate} setStartDate={setStartDate} />
             </InfoTime>
             <IntoWaterData>
               Enter the value of the water used:
-              <StyledField type="number" value={currentWater} />
+              <StyledField
+                type="number"
+                value={currentWater}
+                onChange={handleWater}
+              />
             </IntoWaterData>
           </StyledForm>
         </Formik>
