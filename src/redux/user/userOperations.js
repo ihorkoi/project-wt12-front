@@ -3,11 +3,11 @@ import axios from 'axios';
 
 axios.defaults.baseURL = '';
 
-export const fetchTasks = createAsyncThunk(
-  'tasks/fetchAll',
+export const fetchStorages = createAsyncThunk(
+  'storages/fetchStorages',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/tasks');
+      const response = await axios.get('/storages');
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -15,11 +15,11 @@ export const fetchTasks = createAsyncThunk(
   }
 );
 
-export const addTask = createAsyncThunk(
-  'tasks/addTask',
+export const addStorage = createAsyncThunk(
+  'storages/addStorage',
   async ({ count }, thunkApi) => {
     try {
-      const respone = await axios.post('/tasks', { count });
+      const respone = await axios.post('/storages', { count });
       return respone.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error);
@@ -27,11 +27,11 @@ export const addTask = createAsyncThunk(
   }
 );
 
-export const deleteTask = createAsyncThunk(
-  'tasks/deleteTask',
+export const deleteStorage = createAsyncThunk(
+  'storages/deleteStorage',
   async (id, thunkAPI) => {
     try {
-      const response = await axios.delete(`/tasks/${id}`);
+      const response = await axios.delete(`/storages/${id}`);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

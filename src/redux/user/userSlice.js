@@ -12,39 +12,39 @@ const userSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(fetchTasks.pending, state => {
+      .addCase(fetchStorages.pending, state => {
         state.status = 'loading';
       })
-      .addCase(fetchTasks.fulfilled, (state, action) => {
+      .addCase(fetchStorages.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.tasks = action.payload;
         state.error = null;
       })
-      .addCase(fetchTasks.rejected, (state, action) => {
+      .addCase(fetchStorages.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       })
-      .addCase(addTask.pending, state => {
+      .addCase(addStorage.pending, state => {
         state.status = 'loading';
       })
-      .addCase(addTask.fulfilled, (state, action) => {
+      .addCase(addStorage.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.tasks.push(action.payload);
         state.error = null;
       })
-      .addCase(addTask.rejected, (state, action) => {
+      .addCase(addStorage.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       })
-      .addCase(deleteTask.pending, state => {
+      .addCase(deleteStorage.pending, state => {
         state.status = 'loading';
       })
-      .addCase(deleteTask.fulfilled, (state, action) => {
+      .addCase(deleteStorage.fulfilled, (state, action) => {
         state.tasks = state.items.filter(item => item.id !== action.payload.id);
         state.status = 'succeeded';
         state.error = null;
       })
-      .addCase(deleteTask.rejected, (state, action) => {
+      .addCase(deleteStorage.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
