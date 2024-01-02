@@ -1,11 +1,14 @@
 import Modal from 'react-modal';
+import { useMediaQuery } from 'react-responsive';
+import axios from 'axios';
 import { useState } from 'react';
 import { Formik } from 'formik';
+import * as Yup from 'yup';
 import {
   IconClose,
   ModalName,
   Subtitle,
-  WrapperName,
+  Wrapper,
   InfoWater,
   ContainerCalcWater,
   ButtonMinus,
@@ -22,7 +25,46 @@ import {
 } from './AddWater_styled';
 import { TimeChange } from './Datepicker';
 
-const customStyles = {
+const waterSchema = Yup.object().shape({
+  name: Yup.number()
+    .min(5)
+    .max(5000, 'Must be less than 5000')
+    .positive()
+    .integer()
+    .required(),
+});
+
+const customStylesPhone = {
+  content: {
+    marginRight: '20px',
+    marginLeft: '20px',
+    bottom: 'auto',
+    minWidth: '280px',
+    padding: '24px 12px',
+    borderRadius: '10px',
+    background: '#FFF',
+  },
+  overlay: {
+    background: 'rgba(0, 0, 0, 0.80)',
+  },
+};
+
+const customStylesTablet = {
+  content: {
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    bottom: 'auto',
+    width: '704px',
+    padding: '32px 24px',
+    borderRadius: '10px',
+    background: '#FFF',
+  },
+  overlay: {
+    background: 'rgba(0, 0, 0, 0.80)',
+  },
+};
+
+const customStylesDesktop = {
   content: {
     top: '50%',
     left: '50%',
@@ -31,18 +73,31 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     width: '592px',
-    // height: '504px',
     padding: '32px 24px',
+    borderRadius: '10px',
+    background: '#FFF',
+  },
+  overlay: {
+    background: 'rgba(0, 0, 0, 0.80)',
   },
 };
 
-// Modal.setAppElement('#modal_addWater-root');
+Modal.setAppElement('#modal_addWater-root');
+
+axios.defaults.baseURL = 'https://localhost:3000';
+
+// const API_KEY = '';
 
 export const AddWater = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [currentWater, setCurrentWater] = useState(0);
-  // const [currentTime, setCurrentTime] = useState(formattedTime);
   const [startDate, setStartDate] = useState(new Date());
+
+  const isPhone = useMediaQuery({ query: '(max-width: 767px)' });
+  const isTablet = useMediaQuery({
+    query: '(min-width: 768px) and (max-width: 1439px)',
+  });
+  // const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
 
   const openModal = () => {
     setIsOpen(true);
@@ -57,7 +112,7 @@ export const AddWater = () => {
   };
 
   const increment = () => {
-    setCurrentWater(currentWater + 50);
+    setCurrentWater(Number(currentWater) + 50);
   };
   const decrement = () => {
     if (currentWater < 50) {
@@ -68,7 +123,24 @@ export const AddWater = () => {
   };
 
   const handleWater = e => {
-    setCurrentWater(e.target.value);
+    setCurrentWater(Math.abs(e.target.value));
+  };
+
+  const fetchData = async (currentWater, startDate) => {
+    const resp = await axios.post(
+      `/api/water?water=${currentWater}&time=${startDate}`
+    );
+    return resp.data;
+  };
+
+  const handleSubmit = async values => {
+    try {
+      const data = await fetchData(values.currentWater, values.startDate);
+
+      console.log('Server response:', data);
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   return (
@@ -78,13 +150,19 @@ export const AddWater = () => {
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
-        style={customStyles}
+        style={
+          isPhone
+            ? customStylesPhone
+            : isTablet
+            ? customStylesTablet
+            : customStylesDesktop
+        }
         contentLabel="Example Modal"
       >
-        <WrapperName>
+        <Wrapper>
           <ModalName>Add water</ModalName>
           <IconClose onClick={closeModal} />
-        </WrapperName>
+        </Wrapper>
         <Subtitle>Choose a value:</Subtitle>
         <InfoWater>Amount of water: </InfoWater>
         <ContainerCalcWater>
@@ -92,11 +170,22 @@ export const AddWater = () => {
           <DataWater>{currentWater}ml</DataWater>
           <ButtonPlus type="button" onClick={increment} />
         </ContainerCalcWater>
-        <Formik>
+        <Formik
+          initialValues={{
+            currentWater,
+            startDate,
+          }}
+          validationSchema={waterSchema}
+          onSubmit={handleSubmit}
+        >
           <StyledForm>
             <InfoTime>
               Recording time:
-              <TimeChange startDate={startDate} setStartDate={setStartDate} />
+              <TimeChange
+                value={startDate}
+                startDate={startDate}
+                setStartDate={setStartDate}
+              />
             </InfoTime>
             <IntoWaterData>
               Enter the value of the water used:

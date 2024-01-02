@@ -3,10 +3,12 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import { PrivateRoute } from './Routes/PrivateRoutes';
 import { RestrictedRoute } from './Routes/RestrictedRoutes';
 import WelcomePage from 'pages/WelcomePage';
+import { AddWater } from './AddWater/AddWater';
 
 export const App = () => {
   return (
     <div>
+      <AddWater />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route
