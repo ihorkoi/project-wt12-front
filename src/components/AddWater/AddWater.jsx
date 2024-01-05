@@ -22,16 +22,19 @@ import {
   ButtonSave,
   SpanText,
   ResultWater,
+  ErrorMsg,
 } from './AddWater_styled';
 import { TimeChange } from './Datepicker';
 
 const waterSchema = Yup.object().shape({
-  name: Yup.number()
-    .min(5)
+  water: Yup.number()
     .max(5000, 'Must be less than 5000')
     .positive()
     .integer()
     .required(),
+  // .matches(/^\d{1,9}$/, {
+  //   message: 'Must be less than 5000',
+  // }),
 });
 
 const customStylesPhone = {
@@ -84,7 +87,7 @@ const customStylesDesktop = {
 
 Modal.setAppElement('#modal_addWater-root');
 
-axios.defaults.baseURL = 'https://localhost:3000';
+axios.defaults.baseURL = 'http://localhost:3000';
 
 // const API_KEY = '';
 
@@ -126,18 +129,14 @@ export const AddWater = () => {
     setCurrentWater(Math.abs(e.target.value));
   };
 
-  const fetchData = async (currentWater, startDate) => {
-    const resp = await axios.post(
-      `/api/water?water=${currentWater}&time=${startDate}`
-    );
-    return resp.data;
-  };
-
-  const handleSubmit = async values => {
+  const handleSubmit = async (currentWater, startDate) => {
     try {
-      const data = await fetchData(values.currentWater, values.startDate);
+      const resp = await axios.post('/api/water', {
+        waterAmount: currentWater,
+        time: startDate,
+      });
 
-      console.log('Server response:', data);
+      return resp.data;
     } catch (error) {
       console.error(error.message);
     }
@@ -191,9 +190,11 @@ export const AddWater = () => {
               Enter the value of the water used:
               <StyledField
                 type="number"
+                name="water"
                 value={currentWater}
                 onChange={handleWater}
               />
+              <ErrorMsg name="name" component="div" />
             </IntoWaterData>
           </StyledForm>
         </Formik>

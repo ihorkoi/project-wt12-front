@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Form, Field } from 'formik';
+import { Form, Field, ErrorMessage } from 'formik';
 import { ReactComponent as CloseIcon } from '../../img/icons/close-icon.svg';
 import { ReactComponent as DecrementBtn } from '../../img/icons/minus-small.svg';
 import { ReactComponent as IncrementBtn } from '../../img/icons/plus-small.svg';
@@ -149,6 +149,11 @@ export const StyledField = styled(Field)`
   @media (min-width: 768px) {
     width: 100%;
   }
+`;
+
+export const ErrorMsg = styled(ErrorMessage)`
+  font-size: 16px;
+  color: red;
 `;
 
 export const WrapperResult = styled.div`
