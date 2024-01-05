@@ -3,6 +3,7 @@ import { addWaterRecord, editWaterRecord, deletetWaterRecord } from './waterOper
 
 const initialState = {
     waterTodayRecords: [],
+    waterMonthRecords: [],
 };
 
 const waterSlice = createSlice({
