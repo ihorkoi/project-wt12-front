@@ -23,10 +23,10 @@ export const Calendar = () => {
         {/* {selectMonthRecords.map(data => (
           <li key={''}></li>
         ))} */}
-        {data.map(day => {
+        {data.map((day, idx) => {
           return (
             <DayWrapper key={day.cratedAt}>
-              <Day>{day.waterAmount}</Day>
+              <Day>{idx + 1}</Day>
               <DayPercent>{day.percent}%</DayPercent>
             </DayWrapper>
           );
