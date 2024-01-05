@@ -30,11 +30,6 @@ img {
   height: auto;
 }
 
-body {
-  font-family: 'Roboto-regular',
-    sans-serif;
-}
-
 * {
   box-sizing: border-box;
 }

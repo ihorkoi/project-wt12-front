@@ -1,20 +1,37 @@
 import { useState } from 'react';
+import {
+  CalendarTitle,
+  PickerWrapper,
+  DaysList,
+  DayWrapper,
+  Day,
+  DayPercent,
+} from './Calendar.styled';
 // import { selectMonthRecords } from 'redux/selectors';
+import data from './data-exp.json';
 import { MonthPicker } from 'components/MonthPicker/MonthPicker';
 
 export const Calendar = () => {
   const [newDate, setNewDate] = useState(new Date());
   return (
-    <>
-      <div>
-        <h2>Month</h2>
+    <div style={{ backgroundColor: 'var(--secondary-verylightblue' }}>
+      <PickerWrapper>
+        <CalendarTitle>Month</CalendarTitle>
         <MonthPicker newDate={newDate} setNewDate={setNewDate} />
-      </div>
-      <ul>
+      </PickerWrapper>
+      <DaysList>
         {/* {selectMonthRecords.map(data => (
           <li key={''}></li>
         ))} */}
-      </ul>
-    </>
+        {data.map(day => {
+          return (
+            <DayWrapper key={day.cratedAt}>
+              <Day>{day.waterAmount}</Day>
+              <DayPercent>{day.percent}%</DayPercent>
+            </DayWrapper>
+          );
+        })}
+      </DaysList>
+    </div>
   );
 };

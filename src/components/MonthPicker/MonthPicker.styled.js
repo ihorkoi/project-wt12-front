@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Picker = styled.div`
 display: flex;
-gap: 12px;
 align-items: baseline;`
 
 export const PickerButton = styled.button`
@@ -15,5 +14,5 @@ color:var(--primary-color);
  font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
-  width: 80px;
+  width: 75px;
   text-align: center`
