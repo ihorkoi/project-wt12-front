@@ -1,9 +1,12 @@
 import { TodayWaterList } from "components/TodayWaterList/TodayWaterList";
+import Container from 'components/common/Container';
 
 export default function HomePage() {
     return(
         <div>
-            <TodayWaterList/>
+            <Container>
+                 <TodayWaterList/>
+            </Container>
 </div>
     )
 }
