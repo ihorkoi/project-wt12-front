@@ -21,8 +21,6 @@ const authPersistConfig = {
 
 const persistedReducer = persistReducer(authPersistConfig, authReducer);
 
-
-
 export const store = configureStore({
   reducer: { auth: persistedReducer, water: waterReducer },
   middleware: getDefaultMiddleware => {

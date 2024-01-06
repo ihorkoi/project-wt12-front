@@ -1,5 +1,5 @@
 import {
-  // fetchAllConsumption,
+  fetchAllConsumption,
   addWatter, deleteWatter, editWater
 } from './waterConsumptionOperations';
 import { createSlice } from '@reduxjs/toolkit';
@@ -17,18 +17,18 @@ const waterConsumptionSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      // .addCase(fetchAllConsumption.pending, state => {
-      //   state.isLoading = true;
-      // })
-      // .addCase(fetchAllConsumption.rejected, (state, action) => {
-      //   state.isLoading = false;
-      //   state.error = action.error.message;
-      // })
-      // .addCase(fetchAllConsumption.fulfilled, (state, action) => {
-      //   state.isLoading = false;
-      //   state.error = null;
-      //   state.items = action.payload;
-      // })
+      .addCase(fetchAllConsumption.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(fetchAllConsumption.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(fetchAllConsumption.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items = action.payload;
+      })
       .addCase(addWatter.pending, state => {
         state.isLoading = true;
       })

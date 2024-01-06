@@ -4,7 +4,11 @@ import {
   fetchAllConsumption,
   addWatter,
 } from '../../redux/waterConsumptionOperations.js';
-import { selectWaterrate, selectIsLoading, selectError } from '../../redux/selectors';
+import {
+  selectTodayWater,
+  selectIsLoading,
+  selectError,
+} from '../../redux/selectors';
 import { TodayWaterListItemInfo } from '../TodayWaterListItemInfo/TodayWaterListItemInfo.js';
 import {
   Paragrapher,
@@ -15,11 +19,10 @@ import {
   MainWrapper,
   PagagrapherForEmpty,
 } from './TodayWaterList.styled.js';
-import plus from '../../img/icons/plus-small.svg'
-
+import plus from '../../img/icons/plus-small.svg';
 
 export function TodayWaterList() {
-  const waterConsumptions = useSelector(selectWaterrate);
+  const waterConsumptions = useSelector(selectTodayWater);
   const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
 
@@ -45,10 +48,12 @@ export function TodayWaterList() {
         {isLoading && !error ? (
           <PagagrapherForEmpty>please waite</PagagrapherForEmpty>
         ) : waterConsumptions.length === 0 && !error ? (
-          <PagagrapherForEmpty>You haven't drunk water yet. <br/>Drink some water.</PagagrapherForEmpty>
+          <PagagrapherForEmpty>
+            You haven't drunk water yet. <br />
+            Drink some water.
+          </PagagrapherForEmpty>
         ) : (
           waterConsumptions.map(({ id, time, milliliters }) => (
-            
             <TodayWaterListItemInfo
               key={id}
               record={{ id, milliliters, time }}
