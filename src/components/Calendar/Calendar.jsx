@@ -7,14 +7,15 @@ import {
   Day,
   DayPercent,
 } from './Calendar.styled';
-// import { selectMonthRecords } from 'redux/selectors';
+import { WaterPanel } from 'components/WaterPanel/WaterPanel';
+import { selectMonthRecords } from '../../redux/selectors.js';
 import data from './data-exp.json';
 import { MonthPicker } from 'components/MonthPicker/MonthPicker';
 
 export const Calendar = () => {
   const [newDate, setNewDate] = useState(new Date());
   return (
-    <div style={{ backgroundColor: 'var(--secondary-verylightblue' }}>
+    <WaterPanel>
       <PickerWrapper>
         <CalendarTitle>Month</CalendarTitle>
         <MonthPicker newDate={newDate} setNewDate={setNewDate} />
@@ -24,14 +25,23 @@ export const Calendar = () => {
           <li key={''}></li>
         ))} */}
         {data.map((day, idx) => {
+          const completed = day.percent >= 100;
           return (
             <DayWrapper key={day.cratedAt}>
-              <Day>{idx + 1}</Day>
+              <Day
+                style={
+                  completed
+                    ? {}
+                    : { border: '1px solid var(--secondary-orange)' }
+                }
+              >
+                {idx + 1}
+              </Day>
               <DayPercent>{day.percent}%</DayPercent>
             </DayWrapper>
           );
         })}
       </DaysList>
-    </div>
+    </WaterPanel>
   );
 };

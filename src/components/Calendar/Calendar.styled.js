@@ -9,14 +9,26 @@ export const CalendarTitle = styled.p`
 export const PickerWrapper = styled.div`
   display: flex;
   margin-bottom:16px;
-  gap: 102px;
+  justify-content: space-between;
   align-items: center;
+  @media screen and (min-width: 768px) {
+  
+  }
   `
 
 export const DaysList = styled.ul`
 display:flex;
 flex-wrap:wrap;
-gap:26px;
+width:320px;
+column-gap:26px;
+@media screen and (min-width: 768px) {
+    width:646px;
+    column-gap:34px;
+  }
+@media screen and (min-width: 1440px) {
+   width:538px;
+   column-gap:22px;
+}
 `
 
 export const DayWrapper = styled.li`
@@ -33,7 +45,8 @@ text-align: center;
 font-size: 14px;
 font-weight: 400;
 line-height: 1.29;
-border-radius:50%`
+border-radius:50%;
+cursor:pointer;`
 
 export const DayPercent = styled.p`
 text-align:center;
