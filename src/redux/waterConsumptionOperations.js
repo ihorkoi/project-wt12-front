@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://localhost:3000/api';
+// axios.defaults.baseURL = 'https://localhost:3000/api';
 
 export const fetchAllConsumption = createAsyncThunk(
   'water/fetchAll',

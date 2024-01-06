@@ -53,10 +53,10 @@ export function TodayWaterList() {
             Drink some water.
           </PagagrapherForEmpty>
         ) : (
-          waterConsumptions.map(({ id, time, milliliters }) => (
+          waterConsumptions.map(({ id, time, waterAmount }) => (
             <TodayWaterListItemInfo
               key={id}
-              record={{ id, milliliters, time }}
+              record={{ id, waterAmount, time }}
             />
           ))
         )}

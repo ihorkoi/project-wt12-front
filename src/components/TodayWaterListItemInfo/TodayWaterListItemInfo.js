@@ -19,7 +19,7 @@ export function TodayWaterListItemInfo({ record }) {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteWatter(record.id));
+    dispatch(deleteWatter(record._id));
   };
 
   const handleUpdate = () => {
@@ -27,20 +27,20 @@ export function TodayWaterListItemInfo({ record }) {
   };
 
   return (
-      <ListItem>
-        <img src={cup} alt="cup" width={36} height={36} />
-        <WrapperForParagrapher>
-          <PagagrapherForAmount>{record.milliliters}</PagagrapherForAmount>
-          <PagagrapherForTime>{record.time}</PagagrapherForTime>
-        </WrapperForParagrapher>
-        <div>
-          <BTN onClick={handleUpdate}>
-            <img src={pencilSquare} alt="pencil-square" />
-          </BTN>
-          <BTN onClick={handleDelete}>
-            <img src={trash} alt="trash" />
-          </BTN>
-        </div>
-      </ListItem>
+    <ListItem>
+      <img src={cup} alt="cup" width={36} height={36} />
+      <WrapperForParagrapher>
+        <PagagrapherForAmount>{record.waterAmount}</PagagrapherForAmount>
+        <PagagrapherForTime>{record.time}</PagagrapherForTime>
+      </WrapperForParagrapher>
+      <div>
+        <BTN onClick={handleUpdate}>
+          <img src={pencilSquare} alt="pencil-square" />
+        </BTN>
+        <BTN onClick={handleDelete}>
+          <img src={trash} alt="trash" />
+        </BTN>
+      </div>
+    </ListItem>
   );
 }
