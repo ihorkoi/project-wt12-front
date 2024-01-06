@@ -2,17 +2,17 @@ import { Picker, PickerButton, PickerMonthName } from './MonthPicker.styled';
 import { ReactComponent as LeftArr } from '../../img/icons/chevron-left.svg';
 import { ReactComponent as RightArr } from '../../img/icons/chevron-right.svg';
 
-export const MonthPicker = ({ newDate, setNewDate }) => {
+export const MonthPicker = ({ currentDate, setCurrentDate }) => {
   const nextMonth = () => {
-    const dateCopy = new Date(newDate);
+    const dateCopy = new Date(currentDate);
     dateCopy.setMonth(dateCopy.getMonth() + 1);
-    setNewDate(dateCopy);
+    setCurrentDate(dateCopy);
   };
 
   const prevMonth = () => {
-    const dateCopy = new Date(newDate);
+    const dateCopy = new Date(currentDate);
     dateCopy.setMonth(dateCopy.getMonth() - 1);
-    setNewDate(dateCopy);
+    setCurrentDate(dateCopy);
   };
 
   return (
@@ -21,7 +21,7 @@ export const MonthPicker = ({ newDate, setNewDate }) => {
         <LeftArr />
       </PickerButton>
       <PickerMonthName>
-        {newDate.toLocaleString('en-GB', { month: 'long' })}
+        {currentDate.toLocaleString('en-GB', { month: 'long' })}
       </PickerMonthName>
       <PickerButton onClick={nextMonth}>
         <RightArr />
