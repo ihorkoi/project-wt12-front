@@ -23,7 +23,7 @@ export const App = () => {
             index
             element={
               <PrivateRoute
-                homePage={<div>Homepage</div>}
+                homePage={<HomePage />}
                 welcomePage={<WelcomePage />}
               />
             }
