@@ -11,8 +11,9 @@ export const TimeChange = ({ startDate, setStartDate }) => {
         showTimeSelect
         showTimeSelectOnly
         timeIntervals={5}
-        timeCaption="Time"
-        dateFormat="h:mm a"
+        timeCaption="time"
+        dateFormat="HH:mm"
+        timeFormat="HH:mm"
         isClearable={true}
       />
       <CalendarGlobalStyles />

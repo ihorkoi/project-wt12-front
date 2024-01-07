@@ -17,7 +17,6 @@ export const Wrapper = styled.div`
     font-size: 16px;
     font-weight: 400;
     line-height: 1.25;
-    width: 524px;
     outline: none;
 
     @media (min-width: 768px) {
@@ -35,22 +34,20 @@ export const CalendarGlobalStyles = createGlobalStyle`
   }
   .react-datepicker {
     position: absolute;
-    left: 10px;
     top: 50%;
-    transform: translate(-15%, 0%);
     padding: 5px;
     background-color: var(--primary-white);
     border: 1px solid var(--secondary-textcolor);
     border-radius: 10px;
     color: var(--primary-black);
-    font-size: 12px;
+    font-size: 16px;
     display: flex;
-    width: 100px;
 }
   .react-datepicker__header {
     position: relative;
     background-color: var(--primary-color);    
     text-align: center;
+    padding: 10px;
   }
 
   .react-datepicker__header:not(.react-datepicker__header--has-time-select) {
@@ -60,13 +57,17 @@ export const CalendarGlobalStyles = createGlobalStyle`
   .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
     height: 150px;
     list-style: none;
-    margin: 0;
+    margin: 0 10px;
     overflow-y: scroll;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
     width: 100%;
 }
   .react-datepicker__close-icon {
     display: none;
   }
+
+.react-datepicker__aria-live {
+  display: none;
+}
 `;

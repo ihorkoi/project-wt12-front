@@ -4,6 +4,20 @@ import { ReactComponent as CloseIcon } from '../../img/icons/close-icon.svg';
 import { ReactComponent as DecrementBtn } from '../../img/icons/minus-small.svg';
 import { ReactComponent as IncrementBtn } from '../../img/icons/plus-small.svg';
 
+export const ButtonModal = styled.button`
+  border: none;
+  background: var(--primary-color);
+`;
+
+export const SpanTextModal = styled.span`
+  color: var(--primary-white);
+  text-align: center;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.33;
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   margin-bottom: 24px;
@@ -49,6 +63,11 @@ export const ContainerCalcWater = styled.div`
   display: flex;
   gap: 10px;
   margin-bottom: 28px;
+`;
+
+export const Btn = styled.button`
+  border: none;
+  background: transparent;
 `;
 
 export const ButtonMinus = styled(DecrementBtn)`
@@ -143,7 +162,7 @@ export const StyledField = styled(Field)`
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
-  min-width: 280px;
+  width: 50%;
   outline: none;
 
   @media (min-width: 768px) {
@@ -168,13 +187,14 @@ export const WrapperResult = styled.div`
 
 export const ButtonSave = styled.button`
   width: 100%;
-  margin-top: 16px;
   border-radius: 10px;
   background: var(--primary-color);
+  margin-top: 16px;
 
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
 
   @media (min-width: 768px) {
+    margin-top: 0;
     width: 160px;
     display: flex;
     padding: 10px 30px;

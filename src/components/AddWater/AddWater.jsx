@@ -22,6 +22,9 @@ import {
   SpanText,
   ResultWater,
   ErrorMsg,
+  ButtonModal,
+  SpanTextModal,
+  Btn,
 } from './AddWater_styled';
 import { TimeChange } from './Datepicker';
 import { useDispatch } from 'react-redux';
@@ -43,7 +46,6 @@ const customStylesPhone = {
     marginRight: 'auto',
     marginLeft: 'auto',
     bottom: 'auto',
-    // minWidth: '280px',
     padding: '24px 12px',
     borderRadius: '10px',
     background: '#FFF',
@@ -124,7 +126,7 @@ export const AddWaterModal = () => {
   };
 
   const handleWater = e => {
-    setCurrentWater(Math.abs(e.target.value));
+    setCurrentWater(e.target.value);
   };
 
   const handleSubmit = (values, { resetForm }) => {
@@ -139,7 +141,9 @@ export const AddWaterModal = () => {
 
   return (
     <>
-      <button onClick={openModal}>Add water</button>
+      <ButtonModal onClick={openModal}>
+        <SpanTextModal>Add water</SpanTextModal>
+      </ButtonModal>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -160,9 +164,13 @@ export const AddWaterModal = () => {
         <Subtitle>Choose a value:</Subtitle>
         <InfoWater>Amount of water: </InfoWater>
         <ContainerCalcWater>
-          <ButtonMinus type="button" onClick={decrement} />
+          <Btn>
+            <ButtonMinus type="button" onClick={decrement} />
+          </Btn>
           <DataWater>{currentWater}ml</DataWater>
-          <ButtonPlus type="button" onClick={increment} />
+          <Btn>
+            <ButtonPlus type="button" onClick={increment} />
+          </Btn>
         </ContainerCalcWater>
         <Formik
           initialValues={{
@@ -176,6 +184,7 @@ export const AddWaterModal = () => {
             <InfoTime>
               Recording time:
               <TimeChange
+                name="time"
                 value={startDate}
                 startDate={startDate}
                 setStartDate={setStartDate}

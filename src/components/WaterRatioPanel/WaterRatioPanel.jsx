@@ -9,27 +9,42 @@ import {
   RangeWrapper,
   SpanText,
   TodayRange,
+  WrapperTextBtn,
 } from './WaterRatioPanel_styled';
 
-export const WaterRatioPanel = (isOpen, children) => {
+const Scale = ({ minValue, maxValue, step, value }) => {
+  const scaleItems = [];
+
+  for (let i = minValue; i <= maxValue; i += step) {
+    scaleItems.push(
+      <div key={i} className={`scale-item ${i === value ? 'active' : ''}`}>
+        {i}
+      </div>
+    );
+  }
+};
+
+export const WaterRatioPanel = () => {
   return (
     <>
       <ContainerTodayWater>
         <RangeWrapper>
           <TodayRange>Today</TodayRange>
-          <Range></Range>
+          {/* <Range></Range> */}
+          {/* <div className="scale">{scaleItems}</div> */}
           <RangeList>
             <RangeItem>0%</RangeItem>
             <RangeItem>50%</RangeItem>
             <RangeItem>100%</RangeItem>
           </RangeList>
         </RangeWrapper>
-        <Button onClick={() => isOpen}>
-          <Plus />
-          <SpanText>Add Water</SpanText>
+        <Button>
+          <WrapperTextBtn>
+            <Plus />
+            <SpanText>{<AddWaterModal />}</SpanText>
+          </WrapperTextBtn>
         </Button>
       </ContainerTodayWater>
-      <AddWaterModal />
     </>
   );
 };
