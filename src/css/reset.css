@@ -31,12 +31,10 @@ img {
 }
 
 body {
-  font-family: 'DMSans-Bold', sans-serif;
+  font-family: 'Roboto-regular',
+    sans-serif;
 }
 
 * {
   box-sizing: border-box;
 }
-
-
-
