@@ -136,6 +136,6 @@ export const SaveBtnWrapper = styled.div`
 `;
 
 export const CloseIcon = styled(CloseSvg)`
-  width: 24px;
-  height: 24px;
+  width: 12px;
+  height: 12px;
 `;
