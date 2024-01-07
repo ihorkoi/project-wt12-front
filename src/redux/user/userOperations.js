@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = '';
 
 // export const fetchStorages = createAsyncThunk(
 //   'storages/fetchStorages',
