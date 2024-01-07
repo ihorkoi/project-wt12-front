@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "hhttps://ihorkoi.github.io/project-wt12-front/",
   "dependencies": {
+    "@hookform/resolvers": "^3.3.2",
     "@reduxjs/toolkit": "^2.0.1",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",

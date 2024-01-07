@@ -25,7 +25,7 @@ import {
 } from './AddWater_styled';
 import { TimeChange } from './Datepicker';
 import { useDispatch } from 'react-redux';
-import { addWater } from '../../redux/waterAdd/waterOperations';
+import { addWaterRecord } from '../../redux/water/waterOperations';
 
 // const waterSchema = Yup.object().shape({
 //   number: Yup.number()
@@ -40,10 +40,10 @@ import { addWater } from '../../redux/waterAdd/waterOperations';
 
 const customStylesPhone = {
   content: {
-    marginRight: '20px',
-    marginLeft: '20px',
+    marginRight: 'auto',
+    marginLeft: 'auto',
     bottom: 'auto',
-    minWidth: '280px',
+    // minWidth: '280px',
     padding: '24px 12px',
     borderRadius: '10px',
     background: '#FFF',
@@ -133,7 +133,7 @@ export const AddWaterModal = () => {
       time: values.startDate,
     };
 
-    dispatch(addWater(newCupWater));
+    dispatch(addWaterRecord(newCupWater));
     resetForm();
   };
 
