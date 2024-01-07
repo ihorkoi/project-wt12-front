@@ -8,6 +8,7 @@ import { RestrictedRoute } from './Routes/RestrictedRoutes';
 import WelcomePage from 'pages/WelcomePage';
 import SignInPage from 'pages/SignInPage/SignInPage';
 import SignUpPage from 'pages/SignUpPage/SignUpPage';
+import HomePage from 'pages/HomePage/HomePage';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ export const App = () => {
             index
             element={
               <PrivateRoute
-                homePage={<div>Homepage</div>}
+                homePage={<HomePage />}
                 welcomePage={<WelcomePage />}
               />
             }
