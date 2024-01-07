@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { updateUserInfo } from './userOperations';
 
 const initialState = {
   avatar: '',
@@ -13,16 +14,16 @@ const userSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(updateUserInfoAsync.pending, state => {
+      .addCase(updateUserInfo.pending, state => {
         state.status = 'loading';
       })
-      .addCase(updateUserInfoAsync.fulfilled, (state, action) => {
+      .addCase(updateUserInfo.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.avatar = action.payload.avatar;
         state.name = action.payload.name;
         state.dailyNorma = action.payload.dailyNorma;
       })
-      .addCase(updateUserInfoAsync.rejected, (state, action) => {
+      .addCase(updateUserInfo.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
@@ -66,3 +67,4 @@ const userSlice = createSlice({
 });
 
 export const userReducer = userSlice.reducer;
+export { updateUserInfoAsync };
