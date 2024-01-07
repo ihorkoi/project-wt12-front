@@ -7,12 +7,10 @@ import {
   Day,
   DayPercent,
 } from './Calendar.styled';
-import { WaterPanel } from 'components/WaterPanel/WaterPanel';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMonthWater } from '../../redux/water/waterOperations';
 
 import { selectMonthRecords } from '../../redux/selectors.js';
-import data from './data-exp.json';
 import { MonthPicker } from 'components/MonthPicker/MonthPicker';
 
 export const Calendar = () => {
@@ -46,7 +44,7 @@ export const Calendar = () => {
   };
 
   return (
-    <WaterPanel>
+    <>
       <PickerWrapper>
         <CalendarTitle>Month</CalendarTitle>
         <MonthPicker
@@ -81,6 +79,6 @@ export const Calendar = () => {
           );
         })}
       </DaysList>
-    </WaterPanel>
+    </>
   );
 };
