@@ -7,3 +7,7 @@ export const selectUser = store => store.auth.user;
 export const selectTodayWater = store => store.water.waterTodayRecords;
 
 export const selectMonthRecords = store => store.water.waterMonthRecords
+
+export const selectIsLoading = store => store.water.isLoading;
+
+export const selectError = store => store.water.error;
