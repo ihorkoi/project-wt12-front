@@ -3,7 +3,6 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import { PrivateRoute } from './Routes/PrivateRoutes';
 import { RestrictedRoute } from './Routes/RestrictedRoutes';
 import WelcomePage from 'pages/WelcomePage';
-import { TodayRangeWater } from './TodayRangeWater/TodayRangeWater';
 
 export const App = () => {
   return (
@@ -39,7 +38,6 @@ export const App = () => {
           />
         </Route>
       </Routes>
-      <TodayRangeWater />
     </div>
   );
 };

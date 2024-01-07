@@ -1,9 +1,8 @@
 import Modal from 'react-modal';
 import { useMediaQuery } from 'react-responsive';
-import axios from 'axios';
 import { useState } from 'react';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
+// import * as Yup from 'yup';
 import {
   IconClose,
   ModalName,
@@ -25,17 +24,19 @@ import {
   ErrorMsg,
 } from './AddWater_styled';
 import { TimeChange } from './Datepicker';
+import { useDispatch } from 'react-redux';
+import { addWater } from '../../redux/waterAdd/waterOperations';
 
-const waterSchema = Yup.object().shape({
-  water: Yup.number()
-    .max(5000, 'Must be less than 5000')
-    .positive()
-    .integer()
-    .required(),
-  // .matches(/^\d{1,9}$/, {
-  //   message: 'Must be less than 5000',
-  // }),
-});
+// const waterSchema = Yup.object().shape({
+//   number: Yup.number()
+//     .max(5000, 'Must be less than 5000')
+//     .positive()
+//     .integer()
+//     .required(),
+//   // .matches(/^\d{1,9}$/, {
+//   //   message: 'Must be less than 5000',
+//   // }),
+// });
 
 const customStylesPhone = {
   content: {
@@ -87,14 +88,11 @@ const customStylesDesktop = {
 
 Modal.setAppElement('#modal_addWater-root');
 
-axios.defaults.baseURL = 'http://localhost:3000';
-
-// const API_KEY = '';
-
-export const AddWater = () => {
+export const AddWaterModal = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [currentWater, setCurrentWater] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
+  const dispatch = useDispatch();
 
   const isPhone = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({
@@ -129,17 +127,14 @@ export const AddWater = () => {
     setCurrentWater(Math.abs(e.target.value));
   };
 
-  const handleSubmit = async (currentWater, startDate) => {
-    try {
-      const resp = await axios.post('/api/water', {
-        waterAmount: currentWater,
-        time: startDate,
-      });
+  const handleSubmit = (values, { resetForm }) => {
+    const newCupWater = {
+      waterAmount: values.currentWater,
+      time: values.startDate,
+    };
 
-      return resp.data;
-    } catch (error) {
-      console.error(error.message);
-    }
+    dispatch(addWater(newCupWater));
+    resetForm();
   };
 
   return (
@@ -174,7 +169,7 @@ export const AddWater = () => {
             currentWater,
             startDate,
           }}
-          validationSchema={waterSchema}
+          // validationSchema={waterSchema}
           onSubmit={handleSubmit}
         >
           <StyledForm>
@@ -190,20 +185,22 @@ export const AddWater = () => {
               Enter the value of the water used:
               <StyledField
                 type="number"
-                name="water"
+                name="number"
+                min={1}
+                max={5000}
                 value={currentWater}
                 onChange={handleWater}
               />
               <ErrorMsg name="name" component="div" />
             </IntoWaterData>
+            <WrapperResult>
+              <ResultWater>{currentWater}ml</ResultWater>
+              <ButtonSave type="submit">
+                <SpanText>Save</SpanText>
+              </ButtonSave>
+            </WrapperResult>
           </StyledForm>
         </Formik>
-        <WrapperResult>
-          <ResultWater>{currentWater}ml</ResultWater>
-          <ButtonSave type="submit">
-            <SpanText>Save</SpanText>
-          </ButtonSave>
-        </WrapperResult>
       </Modal>
     </>
   );

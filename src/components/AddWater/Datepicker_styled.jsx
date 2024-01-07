@@ -45,7 +45,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
     color: var(--primary-black);
     font-size: 12px;
     display: flex;
-    width: 90px;
+    width: 100px;
 }
   .react-datepicker__header {
     position: relative;
