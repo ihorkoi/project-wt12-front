@@ -67,4 +67,4 @@ const userSlice = createSlice({
 });
 
 export const userReducer = userSlice.reducer;
-export { updateUserInfoAsync };
+export { updateUserInfo };
