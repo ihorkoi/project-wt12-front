@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from '../../redux/selectors';
 import { useFormik } from 'formik';
 import Input from '../common/Input';
 import Button from '../common/Button';
@@ -24,7 +23,7 @@ import {
   CloseIcon,
 } from './MyDailyNormaModal.styled';
 
-import { editWaterRecord } from '../../redux/water/waterOperations';
+import { updateUserInfo } from '../../redux/user/userSlice';
 import { useContext } from 'react';
 import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
 import * as Yup from 'yup';
@@ -43,7 +42,7 @@ const validationSchema = Yup.object({
 const MyDailyNormaModal = () => {
   const dispatch = useDispatch();
   const toggleModal = useContext(ModalContext);
-  const user = useSelector(selectUser);
+  const userGender = useSelector(state => state.user.gender);
 
   const [WaterAmount, setWaterAmount] = useState(0);
 
@@ -57,7 +56,7 @@ const MyDailyNormaModal = () => {
   }, []);
 
   const handleSubmit = async () => {
-    dispatch(editWaterRecord(formik.values.drunkWaterAmount));
+    dispatch(updateUserInfo(formik.values.drunkWaterAmount));
     formik.resetForm();
 
     toggleModal();
@@ -75,7 +74,7 @@ const MyDailyNormaModal = () => {
 
   const formik = useFormik({
     initialValues: {
-      gender: user.gender,
+      gender: userGender,
       weight: 0,
       activityTime: 0,
       drunkWaterAmount: 0,
