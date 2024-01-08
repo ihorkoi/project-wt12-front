@@ -7,6 +7,7 @@ export const addWaterRecord = createAsyncThunk(
         const { time, waterAmount } = water;
         try {
             const data = await axios.post("/waterrate/", { waterAmount, time });
+            console.log('inside')
             return data;
         }
         catch (error) {
@@ -43,5 +44,25 @@ export const deletetWaterRecord = createAsyncThunk(
     }
 );
 
-export const getTodayWater = createAsyncThunk()
-export const getMonthWater = createAsyncThunk()
+export const getTodayWater = createAsyncThunk(
+    "today/getTodayWater",
+    async (_, thunkAPI) => {
+        try {
+            const response = await axios.get('/today/');
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    })
+
+export const getMonthWater = createAsyncThunk(
+    "waterrate/getMonthWater",
+    async (date, thunkAPI) => {
+        try {
+            const response = await axios.get('/waterrate/getMonthWater/', { params: { date } });
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message);
+        }
+
+    })

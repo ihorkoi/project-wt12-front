@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import {
-  deleteWatter,
-  editWater,
-} from '../../redux/waterConsumptionOperations';
+  deletetWaterRecord,
+  editWaterRecord,
+} from '../../redux/water/waterOperations.js';
 import {
   ListItem,
   WrapperForParagrapher,
@@ -19,11 +19,11 @@ export function TodayWaterListItemInfo({ record }) {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteWatter(record._id));
+    dispatch(deletetWaterRecord(record._id));
   };
 
   const handleUpdate = () => {
-    dispatch(editWater(record));
+    dispatch(editWaterRecord(record));
   };
 
   return (
