@@ -20,7 +20,6 @@ export const DaysList = styled.ul`
 display:flex;
 flex-wrap:wrap;
 width:320px;
-height:272px;
 column-gap:26px;
 @media screen and (min-width: 768px) {
     width:646px;
