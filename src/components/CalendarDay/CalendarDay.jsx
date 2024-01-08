@@ -3,11 +3,12 @@ import { DayWrapper, Day, DayPercent } from './CalendarDay.styled';
 export const CalendarDay = ({
   idx,
   handleClick,
-  completedDays,
+  // completedDays,
   monthWater,
 }) => {
   const dayNumber = idx + 1;
   // const isNotCompleted = completedDays.includes(dayNumber);
+  const currentDate = new Date();
 
   const dayData = monthWater.find(data => data.dayNumber === dayNumber);
   const percent = dayData ? Math.round(dayData.percent) : 0;

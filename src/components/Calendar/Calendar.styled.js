@@ -19,10 +19,10 @@ export const PickerWrapper = styled.div`
 export const DaysList = styled.ul`
 display:flex;
 flex-wrap:wrap;
-width:320px;
+// width:320px;
 column-gap:26px;
 @media screen and (min-width: 768px) {
-    width:646px;
+    // width:656px; 
     column-gap:34px;
   }
 @media screen and (min-width: 1440px) {
