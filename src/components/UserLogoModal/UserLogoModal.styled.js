@@ -4,7 +4,7 @@ export const UserLogoModalStyled = styled.div`
   position: absolute;
   top: 100%;
   right: 0;
-  width: 118px;
+  width: 120px;
   height: 88px;
   padding: 16px;
   display: flex;
@@ -20,7 +20,6 @@ export const UserLogoModalStyled = styled.div`
     display: flex;
     align-items: center;
     position: relative;
-    width: 86px;
     height: 20px;
     p {
       color: var(--primary-color);
