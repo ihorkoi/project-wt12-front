@@ -9,7 +9,7 @@ export default function HomePage() {
   return (
     <Wrapper>
       <Container>
-        <WaterRatioPanel/>
+        <WaterRatioPanel />
         <WaterPanel>
           <TodayWaterList />
           <Calendar />
