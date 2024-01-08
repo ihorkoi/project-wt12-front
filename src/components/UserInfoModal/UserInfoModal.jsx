@@ -4,6 +4,7 @@ import { ReactComponent as UploadIcon } from '../../img/icons/arrow-up-tray.svg'
 import { ReactComponent as EyeSlash } from '../../img/icons/eye-slash.svg';
 import defaultPhoto from '../../img/Default-photo.png';
 import { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 
 export function UserInfoModal({ handleCloseModal }) {
   const imgRef = useRef();
@@ -31,7 +32,7 @@ export function UserInfoModal({ handleCloseModal }) {
       reader.readAsDataURL(file);
     }
   };
-  return (
+  return createPortal(
     <>
       <BackDropStyled onClick={handleCloseModal}></BackDropStyled>
       <SettingContainerStyled>
@@ -109,6 +110,7 @@ export function UserInfoModal({ handleCloseModal }) {
           <button className="btn">Save</button>
         </form>
       </SettingContainerStyled>
-    </>
+    </>,
+    document.getElementById('portal')
   );
 }
