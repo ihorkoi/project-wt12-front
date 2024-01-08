@@ -21,7 +21,8 @@ export const MonthPicker = ({ currentDate, setCurrentDate }) => {
         <LeftArr />
       </PickerButton>
       <PickerMonthName>
-        {currentDate.toLocaleString('en-GB', { month: 'long' })}
+        {currentDate.toLocaleString('en-GB', { month: 'long' })},{' '}
+        {currentDate.getFullYear()}
       </PickerMonthName>
       <PickerButton onClick={nextMonth}>
         <RightArr />

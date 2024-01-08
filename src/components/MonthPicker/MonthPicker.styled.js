@@ -14,5 +14,5 @@ color:var(--primary-color);
  font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
-  width: 75px;
+  width: 125px;
   text-align: center`
