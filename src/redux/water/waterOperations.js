@@ -45,10 +45,10 @@ export const deletetWaterRecord = createAsyncThunk(
 );
 
 export const getTodayWater = createAsyncThunk(
-    "waterrate/getTodayWater",
+    "today/getTodayWater",
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get('/waterrate/getTodayWater');
+            const response = await axios.get('/today/');
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
