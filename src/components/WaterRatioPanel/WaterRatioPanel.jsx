@@ -1,4 +1,4 @@
-// import { AddWaterModal } from 'components/AddWater/AddWater';
+import { AddWaterModal } from 'components/AddWater/AddWater';
 import {
   Button,
   CircleIcon,
@@ -78,7 +78,7 @@ export const WaterRatioPanel = () => {
         <Button>
           <WrapperTextBtn>
             <Plus />
-            {/* <SpanText>{<AddWaterModal />}</SpanText> */}
+            <SpanText>{<AddWaterModal />}</SpanText>
           </WrapperTextBtn>
         </Button>
       </ContainerTodayWater>

@@ -3,12 +3,12 @@ import styled from 'styled-components';
 export const MainWrapper = styled.div`
   width: 264px;
   height: 258px;
-  padding-top: 16px;
+  // padding-top: 16px;
 
   @media screen and (min-width: 768px) {
     width: 656px;
     height: 260px;
-    padding-top: 32px;
+    // padding-top: 32px;
   }
 
   @media screen and (min-width: 1440px) {
