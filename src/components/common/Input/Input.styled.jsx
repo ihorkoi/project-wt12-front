@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import '../../css/styles.css';
-import '../../css/fonts.css';
+import '../../../css/styles.css';
+import '../../../css/fonts.css';
 
 export const Label = styled.label`
   font-size: 18px;
@@ -16,7 +16,7 @@ export const FormInput = styled.input`
   color: var(--primary-color);
   border-radius: 6px;
   border: 1px solid var(--secondary-lighblue);
-  background-color: var(--secondary-verylightblue);
+  background-color: transparent;
 
   font-size: 16px;
   line-height: 1.25;

@@ -4,17 +4,20 @@ import {
   WaterAmountWrapper,
   Header,
   WaterAmount,
-} from './DailyNorma.styled';
-import { useAuth } from 'hooks/useAuth';
+} from './MyDailyNormaHome.styled';
+import { useSelector } from 'react-redux';
 import MyDailyNormaModal from 'components/MyDailyNormaModal';
+import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
+import { useContext } from 'react';
+import { selectTodayWater } from '../../redux/selectors';
 
-const MyDailyNormaHome = ({ openModal }) => {
-  const { dailyNorma } = useAuth();
+const MyDailyNormaHome = () => {
+  const toggleModal = useContext(ModalContext);
+  const dailyNorma = useSelector(selectTodayWater);
 
   const openMyDailyNormaModal = () => {
-    openModal(<MyDailyNormaModal />);
+    toggleModal(<MyDailyNormaModal />);
   };
-
   return (
     <Container>
       <Header>My daily norma</Header>

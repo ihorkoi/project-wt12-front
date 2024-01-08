@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../../redux/selectors';
 import { useFormik } from 'formik';
 import Input from '../common/Input';
 import Button from '../common/Button';
@@ -12,6 +13,7 @@ import {
   FormulasWrapper,
   Gender,
   Formula,
+  HighlightedAsterisk,
   FormulasDescription,
   StyledForm,
   FormTitle,
@@ -23,7 +25,8 @@ import {
 } from './MyDailyNormaModal.styled';
 
 import { editWaterRecord } from '../../redux/water/waterOperations';
-import { useAuth } from 'hooks/useAuth';
+import { useContext } from 'react';
+import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object({
@@ -37,9 +40,10 @@ const validationSchema = Yup.object({
   drunkWaterAmount: Yup.number().required('Required'),
 });
 
-const MyDailyNormaModal = ({ onClose }) => {
+const MyDailyNormaModal = () => {
   const dispatch = useDispatch();
-  const { user } = useAuth();
+  const toggleModal = useContext(ModalContext);
+  const user = useSelector(selectUser);
 
   const [WaterAmount, setWaterAmount] = useState(0);
 
@@ -56,7 +60,7 @@ const MyDailyNormaModal = ({ onClose }) => {
     dispatch(editWaterRecord(formik.values.drunkWaterAmount));
     formik.resetForm();
 
-    onClose();
+    toggleModal();
   };
 
   const handleInputChange = (e, fieldName) => {
@@ -84,13 +88,17 @@ const MyDailyNormaModal = ({ onClose }) => {
     calculateWaterAmount(formik.values);
   }, [calculateWaterAmount, formik.values]);
 
+  const onClickModalClose = () => {
+    toggleModal();
+  };
+
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={toggleModal}>
       <ModalWrapper>
         <>
           <ModalHeader>
             My daily norma
-            <CloseBtn onClick={onClose}>
+            <CloseBtn onClick={onClickModalClose}>
               <CloseIcon />
             </CloseBtn>
           </ModalHeader>
@@ -107,10 +115,11 @@ const MyDailyNormaModal = ({ onClose }) => {
           </FormulasWrapper>
 
           <FormulasDescription>
-            *V is the volume of the water norm in liters per day, M is your body
-            weight, T is the time of active sports, or another type of activity
-            commensurate in terms of loads (in the absence of these, you must
-            set 0)
+            {' '}
+            <HighlightedAsterisk>*</HighlightedAsterisk> V is the volume of the
+            water norm in liters per day, M is your body weight, T is the time
+            of active sports, or another type of activity commensurate in terms
+            of loads (in the absence of these, you must set 0)
           </FormulasDescription>
 
           <StyledForm>
@@ -139,8 +148,7 @@ const MyDailyNormaModal = ({ onClose }) => {
             </CalculatesWrapper>
 
             <Input
-              label="Enter your weight in kilograms:"
-              inputType="dailyNorma"
+              label="Your weight in kilograms:"
               value={formik.values.weight}
               onChange={e => handleInputChange(e, 'weight')}
               onBlur={formik.handleBlur}
@@ -149,9 +157,8 @@ const MyDailyNormaModal = ({ onClose }) => {
             />
 
             <Input
-              label="Enter the time of active participation in sports or other
+              label="The time of active participation in sports or other
                 activities with a high physical load:"
-              inputType="dailyNorma"
               value={formik.values.activityTime}
               onChange={e => handleInputChange(e, 'activityTime')}
               onBlur={formik.handleBlur}
@@ -167,8 +174,18 @@ const MyDailyNormaModal = ({ onClose }) => {
             </RequiredAmount>
 
             <Input
-              label="Write down how much water you will drink:"
-              inputType="dailyNorma"
+              label={
+                <span
+                  style={{
+                    fontWeight: 'bold',
+                    fontSize: '18px',
+                    fontStyle: 'normal',
+                    lineHeight: '111.1%',
+                  }}
+                >
+                  Write down how much water you will drink:
+                </span>
+              }
               value={formik.values.drunkWaterAmount}
               onChange={e => handleInputChange(e, 'drunkWaterAmount')}
               onBlur={formik.handleBlur}

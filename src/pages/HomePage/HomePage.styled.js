@@ -5,6 +5,7 @@ import bg_waves_tab from '../../img/tablet/background-main.png';
 import bg_waves_mob from '../../img/mobile/background-main.png';
 
 export const Wrapper = styled.section`
+  padding-top: 40px;
   background-size: cover;
   background-position: bottom center;
   background-repeat: no-repeat;

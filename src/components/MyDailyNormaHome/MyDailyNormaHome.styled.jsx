@@ -6,7 +6,6 @@ export const Container = styled.div`
   width: 164px;
   padding: 8px 20px 8px 20px;
   border-radius: 10px;
-  border: 1px solid var(--secondary-textcolor);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -25,7 +24,7 @@ export const Button = styled.button`
 
 export const Header = styled.p`
   font-size: 18px;
-  font-weight: 500;
+  font-weight: bold;
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;

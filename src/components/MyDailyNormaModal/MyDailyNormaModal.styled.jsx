@@ -4,17 +4,32 @@ import '../../css/fonts.css';
 import { ReactComponent as CloseSvg } from '../../img/icons/close-icon.svg';
 
 export const ModalWrapper = styled.div`
-  width: 256px;
-  margin: 0 auto;
+  z-index: 1000;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: white;
+  width: 280px;
+  padding: 24px 12px 24px 12px;
+  border-radius: 10px;
+
+  overflow: hidden;
+  overflow-y: auto;
+
+  min-height: 816px;
 
   @media screen and (min-width: 768px) {
-    width: 652px;
-    margin: 0 auto;
+    padding: 32px 24px 32px 24px;
+    min-height: 676px;
+    width: 656px;
   }
-
   @media screen and (min-width: 1440px) {
+    min-height: 712px;
     width: 544px;
-    margin: 0 auto;
   }
 `;
 
@@ -26,12 +41,16 @@ export const ModalHeader = styled.div`
   align-items: center;
 
   font-size: 26px;
-  font-weight: 500;
+  font-weight: bold;
+  font-style: normal;
   line-height: 1.23;
 `;
 
 export const CloseBtn = styled.button`
+  width: 24px;
+  height: 24px;
   background-color: transparent;
+  border: transparent;
 `;
 
 export const FormulasWrapper = styled.div`
@@ -60,15 +79,24 @@ export const Formula = styled.span`
   line-height: 1.33;
 `;
 
+export const HighlightedAsterisk = styled.span`
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 1.33;
+`;
+
 export const FormulasDescription = styled.p`
   padding: 10px;
   margin-bottom: 24px;
 
-  //   color: var(--secondary-lighblue);
+  color: var(--secondart-grey);
   border-radius: 10px;
   border: 1px solid var(--secondary-lighblue);
 
   font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
   line-height: 1.33;
 `;
 
@@ -90,6 +118,7 @@ export const CalculatesWrapper = styled.div`
   gap: 24px;
   display: flex;
   align-items: center;
+  transition: background-color 0.3s;
 
   label {
     display: flex;
@@ -100,8 +129,11 @@ export const CalculatesWrapper = styled.div`
     line-height: 1.25;
   }
 
-  input:checked {
-    fill: var(--primary-color);
+  input[type='radio'] {
+    &:checked {
+      background-color: var(--primary-color); 
+      border-color: var(--primary-color); /
+    }
   }
 `;
 
@@ -136,6 +168,6 @@ export const SaveBtnWrapper = styled.div`
 `;
 
 export const CloseIcon = styled(CloseSvg)`
-  width: 12px;
-  height: 12px;
+  width: 100%;
+  height: 100%;
 `;

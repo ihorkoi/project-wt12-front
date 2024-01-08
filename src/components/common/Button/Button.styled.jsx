@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import '../../css/styles.css';
-import '../../css/fonts.css';
+import '../../../css/styles.css';
+import '../../../css/fonts.css';
 
 // const Button = styled.button(({ width, buttonType }) => ({
 //   width: `${width}px`,
@@ -13,13 +13,14 @@ import '../../css/fonts.css';
 //       : `var(--primary-color)`,
 // }));
 
-export const ButtonContainer = styled.button`
+export const ButtonWrapper = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   color: var(--primary-white);
-  backgroundcolor: var(--primary-color);
+  background-color: var(--primary-color);
+  border: transparent;
 
   padding: 10px 30px;
 
