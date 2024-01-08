@@ -1,47 +1,19 @@
 import Modal from 'react-modal';
 import { useMediaQuery } from 'react-responsive';
 import { useState } from 'react';
-import { Formik } from 'formik';
-// import * as Yup from 'yup';
 import {
   IconClose,
   ModalName,
   Subtitle,
   Wrapper,
-  InfoWater,
-  ContainerCalcWater,
-  ButtonMinus,
-  ButtonPlus,
-  DataWater,
-  InfoTime,
-  StyledForm,
-  IntoWaterData,
-  StyledField,
-  WrapperResult,
-  ButtonSave,
-  SpanText,
-  ResultWater,
-  ErrorMsg,
   ButtonModal,
   SpanTextModal,
-  Btn,
 } from './AddWater_styled';
-import { TimeChange } from './Datepicker';
+import { ModalParams } from './CommonModalComp';
 import { useDispatch } from 'react-redux';
 import { addWaterRecord } from '../../redux/water/waterOperations';
 
-// const waterSchema = Yup.object().shape({
-//   number: Yup.number()
-//     .max(5000, 'Must be less than 5000')
-//     .positive()
-//     .integer()
-//     .required(),
-//   // .matches(/^\d{1,9}$/, {
-//   //   message: 'Must be less than 5000',
-//   // }),
-// });
-
-const customStylesPhone = {
+export const customStylesPhone = {
   content: {
     marginRight: 'auto',
     marginLeft: 'auto',
@@ -57,7 +29,7 @@ const customStylesPhone = {
   },
 };
 
-const customStylesTablet = {
+export const customStylesTablet = {
   content: {
     marginRight: 'auto',
     marginLeft: 'auto',
@@ -72,7 +44,7 @@ const customStylesTablet = {
   },
 };
 
-const customStylesDesktop = {
+export const customStylesDesktop = {
   content: {
     top: '50%',
     left: '50%',
@@ -102,7 +74,6 @@ export const AddWaterModal = () => {
   const isTablet = useMediaQuery({
     query: '(min-width: 768px) and (max-width: 1439px)',
   });
-  // const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
 
   const openModal = () => {
     setIsOpen(true);
@@ -164,54 +135,15 @@ export const AddWaterModal = () => {
           <IconClose onClick={closeModal} />
         </Wrapper>
         <Subtitle>Choose a value:</Subtitle>
-        <InfoWater>Amount of water: </InfoWater>
-        <ContainerCalcWater>
-          <Btn>
-            <ButtonMinus type="button" onClick={decrement} />
-          </Btn>
-          <DataWater>{currentWater}ml</DataWater>
-          <Btn>
-            <ButtonPlus type="button" onClick={increment} />
-          </Btn>
-        </ContainerCalcWater>
-        <Formik
-          initialValues={{
-            currentWater,
-            startDate,
-          }}
-          // validationSchema={waterSchema}
-          onSubmit={handleSubmit}
-        >
-          <StyledForm>
-            <InfoTime>
-              Recording time:
-              <TimeChange
-                name="time"
-                value={startDate}
-                startDate={startDate}
-                setStartDate={setStartDate}
-              />
-            </InfoTime>
-            <IntoWaterData>
-              Enter the value of the water used:
-              <StyledField
-                type="number"
-                name="number"
-                min={1}
-                max={5000}
-                value={currentWater}
-                onChange={handleWater}
-              />
-              <ErrorMsg name="name" component="div" />
-            </IntoWaterData>
-            <WrapperResult>
-              <ResultWater>{currentWater}ml</ResultWater>
-              <ButtonSave type="submit">
-                <SpanText>Save</SpanText>
-              </ButtonSave>
-            </WrapperResult>
-          </StyledForm>
-        </Formik>
+        <ModalParams
+          decrement={decrement}
+          increment={increment}
+          currentWater={currentWater}
+          startDate={startDate}
+          setStartDate={setStartDate}
+          handleSubmit={handleSubmit}
+          handleWater={handleWater}
+        />
       </Modal>
     </>
   );
