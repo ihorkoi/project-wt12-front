@@ -68,6 +68,11 @@ export const ContainerCalcWater = styled.div`
 export const Btn = styled.button`
   border: none;
   background: transparent;
+
+  &:hover,
+  &:active {
+    cursor: pointer;
+  }
 `;
 
 export const ButtonMinus = styled(DecrementBtn)`
@@ -189,7 +194,9 @@ export const ButtonSave = styled.button`
   width: 100%;
   border-radius: 10px;
   background: var(--primary-color);
+  padding: 8px 30px;
   margin-top: 16px;
+  border: none;
 
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
 

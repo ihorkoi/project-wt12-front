@@ -20,9 +20,7 @@ export const Wrapper = styled.div`
     outline: none;
 
     @media (min-width: 768px) {
-      input {
-        width: 100%;
-      }
+      width: 100%;
     }
   }
 `;

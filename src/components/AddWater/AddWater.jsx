@@ -49,6 +49,8 @@ const customStylesPhone = {
     padding: '24px 12px',
     borderRadius: '10px',
     background: '#FFF',
+    minWidth: '280px',
+    inset: '40px 20px auto',
   },
   overlay: {
     background: 'rgba(0, 0, 0, 0.80)',
