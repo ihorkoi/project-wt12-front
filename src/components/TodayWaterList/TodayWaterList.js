@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  getTodayWater,
-  addWaterRecord,
-} from '../../redux/water/waterOperations.js';
+  fetchAllConsumption,
+  addWatter,
+} from '../../redux/waterConsumptionOperations.js';
 import {
   selectTodayWater,
   selectIsLoading,
@@ -29,7 +29,7 @@ export function TodayWaterList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTodayWater());
+    dispatch(fetchAllConsumption());
   }, [dispatch]);
 
   const handleAddWater = () => {
@@ -38,7 +38,7 @@ export function TodayWaterList() {
       minute: '2-digit',
     });
 
-    dispatch(addWaterRecord({ waterAmount: 250, time: currentTime }));
+    dispatch(addWatter({ waterAmount: 250, time: currentTime }));
   };
 
   return (
