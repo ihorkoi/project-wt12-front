@@ -59,7 +59,8 @@ export const getMonthWater = createAsyncThunk(
     "waterrate/getMonthWater",
     async (date, thunkAPI) => {
         try {
-            const response = await axios.get('/waterrate/getMonthWater', { params: { date } });
+            console.log(date.date)
+            const response = await axios.get('/waterrate/getMonthWater/', { params: { date } });
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);

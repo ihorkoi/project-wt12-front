@@ -21,9 +21,9 @@ export const Calendar = () => {
 
   useEffect(() => {
     dispatch(
-      getMonthWater({
-        date: currentDate,
-      })
+      getMonthWater(
+        currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1)
+      )
     );
   }, [dispatch, currentDate]);
 
