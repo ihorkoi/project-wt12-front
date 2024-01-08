@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { ReactComponent as PlusCircle } from '../../img/icons/plus-circle.svg';
+import { ReactComponent as Elipse } from '../../img/icons/ellipse2.svg';
 
 export const ContainerTodayWater = styled.div`
   display: block;
+  margin-bottom: 16px;
 
   @media (min-width: 768px) {
     display: flex;
@@ -20,18 +22,17 @@ export const RangeWrapper = styled.div`
   width: 280px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 16px;
+  margin-bottom: 52px;
 
   @media (min-width: 768px) {
     gap: 16px;
     width: 356px;
-    margin-left: 32px;
+    margin-left: 0;
     margin-right: 0;
   }
 
   @media (min-width: 1440px) {
     width: 391px;
-    margin-left: 112px;
   }
 `;
 
@@ -57,16 +58,17 @@ export const Range = styled.div`
   border-radius: 10px;
   background: var(--secondary-lighblue);
   margin-top: 16px;
-  margin-bottom: 16px;
+
+  &.active {
+    background: var(--secondary-textcolor);
+  }
 `;
 
 export const RangeList = styled.ul`
   display: flex;
   width: 280px;
-  /* margin-left: 20px;
-  margin-right: 20px; */
   justify-content: space-between;
-  margin-top: 16px;
+  margin-top: 24px;
 
   @media (min-width: 768px) {
     width: 356px;
@@ -84,6 +86,13 @@ export const RangeItem = styled.li`
   font-size: 12px;
   font-weight: 400;
   line-height: 1.33;
+
+  &.active {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.25;
+  }
 `;
 
 export const Button = styled.button`
@@ -141,4 +150,10 @@ export const Plus = styled(PlusCircle)`
   stroke: var(--primary-white);
   color: #fff;
   background-color: transparent;
+`;
+
+export const CircleIcon = styled(Elipse)`
+  width: 14px;
+  height: 14px;
+  stroke-width: 1px;
 `;
