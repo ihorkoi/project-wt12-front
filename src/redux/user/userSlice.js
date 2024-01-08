@@ -22,6 +22,7 @@ const userSlice = createSlice({
         state.avatar = action.payload.avatar;
         state.name = action.payload.name;
         state.dailyNorma = action.payload.dailyNorma;
+        state.gender = action.payload.gender;
       })
       .addCase(updateUserInfo.rejected, (state, action) => {
         state.status = 'failed';
