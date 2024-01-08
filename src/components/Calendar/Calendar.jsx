@@ -40,7 +40,7 @@ export const Calendar = () => {
   };
 
   const getCompletedDays = () => {
-    const completedDays = monthWater.filter(data => data.percent >= 100);
+    const completedDays = monthWater.filter(data => data.percent < 100);
     return completedDays.map(day => day.dayNumber);
   };
 
