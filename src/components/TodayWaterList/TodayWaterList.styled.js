@@ -33,7 +33,7 @@ export const Paragrapher = styled.p`
 `;
 
 export const List = styled.ul`
-  display: flex;
+  /* display: flex; */
   margin-bottom: 12px;
 `;
 
@@ -62,7 +62,7 @@ margin-right: 8px;
 `
 
 export const PagagrapherForEmpty = styled.p`
-  color: #EF5050;
+  color: #2f2f2f;
   font-family: Roboto;
   font-size: 18px;
   font-style: normal;
