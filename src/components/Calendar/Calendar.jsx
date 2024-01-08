@@ -1,21 +1,19 @@
 import { useState, useEffect } from 'react';
-import {
-  CalendarTitle,
-  PickerWrapper,
-  DaysList,
-  DayWrapper,
-  Day,
-  DayPercent,
-} from './Calendar.styled';
+import { CalendarTitle, PickerWrapper, DaysList } from './Calendar.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMonthWater } from '../../redux/water/waterOperations';
 
 import { selectMonthRecords } from '../../redux/selectors.js';
 import { MonthPicker } from 'components/MonthPicker/MonthPicker';
+// import { CalendarModal } from 'components/CalendarModal/CalendarModal';
+import { CalendarDay } from 'components/CalendarDay/CalendarDay';
 
 export const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isActiveDayModal, setIsActiveDayModal] = useState(false);
+  const [selectedDay, setSelectedDay] = useState(null);
+
+  const monthWater = useSelector(selectMonthRecords);
 
   const dispatch = useDispatch();
 
@@ -37,12 +35,21 @@ export const Calendar = () => {
     );
   };
 
-  const handleClick = evt => {
-    console.log('click');
-    console.log(evt.currentTarget.getAttribute('id'));
-    setIsActiveDayModal(!isActiveDayModal);
+  const findSelectedDay = idx => {
+    return monthWater.filter(data => data.dayNumber === Number(idx) + 1);
   };
 
+  const getCompletedDays = () => {
+    const completedDays = monthWater.filter(data => data.percent >= 100);
+    return completedDays.map(day => day.dayNumber);
+  };
+
+  const handleClick = evt => {
+    setSelectedDay(findSelectedDay(evt.currentTarget.getAttribute('id')));
+    setIsActiveDayModal(!isActiveDayModal);
+  };
+  const completedDays = getCompletedDays();
+  console.log(selectedDay);
   return (
     <>
       <PickerWrapper>
@@ -53,29 +60,15 @@ export const Calendar = () => {
         />
       </PickerWrapper>
       <DaysList>
-        {/* {data.map((day, idx) => {
-          const completed = day.percent >= 100;
-          return (
-            <DayWrapper key={day.cratedAt}>
-              <Day
-                style={
-                  completed
-                    ? {}
-                    : { border: '1px solid var(--secondary-orange)' }
-                }
-              >
-                {idx + 1}
-              </Day>
-              <DayPercent>{day.percent}%</DayPercent>
-            </DayWrapper>
-          );
-        })} */}
         {getDaysInMonth(currentYear, currentMonth).map((day, idx) => {
           return (
-            <DayWrapper key={idx} onClick={handleClick} id={idx}>
-              <Day>{idx + 1}</Day>
-              <DayPercent>{0}%</DayPercent>
-            </DayWrapper>
+            <CalendarDay
+              key={idx}
+              idx={idx}
+              handleClick={handleClick}
+              completedDays={completedDays}
+              monthWater={monthWater}
+            />
           );
         })}
       </DaysList>

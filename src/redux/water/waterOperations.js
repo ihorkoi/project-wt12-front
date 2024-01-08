@@ -35,7 +35,7 @@ export const deletetWaterRecord = createAsyncThunk(
     async (water, thunkAPI) => {
         const { id, time, waterAmount } = water;
         try {
-            const data = await axios.put(`/waterrate/${id}`, { waterAmount, time });
+            const data = await axios.delete(`/waterrate/${id}`, { waterAmount, time });
             return data;
         }
         catch (error) {
@@ -59,7 +59,6 @@ export const getMonthWater = createAsyncThunk(
     "waterrate/getMonthWater",
     async (date, thunkAPI) => {
         try {
-            console.log(date.date)
             const response = await axios.get('/waterrate/getMonthWater/', { params: { date } });
             return response.data;
         } catch (error) {
