@@ -68,6 +68,8 @@ export const Calendar = () => {
               handleClick={handleClick}
               completedDays={completedDays}
               monthWater={monthWater}
+              currentYear={currentYear}
+              currentMonth={currentMonth}
             />
           );
         })}

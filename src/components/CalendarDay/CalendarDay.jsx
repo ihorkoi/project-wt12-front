@@ -5,10 +5,13 @@ export const CalendarDay = ({
   handleClick,
   // completedDays,
   monthWater,
+  currentMonth,
+  currentYear,
 }) => {
   const dayNumber = idx + 1;
   // const isNotCompleted = completedDays.includes(dayNumber);
-  const currentDate = new Date();
+  const moreThanCurrentDate =
+    new Date() > new Date(currentYear, currentMonth - 1, dayNumber);
 
   const dayData = monthWater.find(data => data.dayNumber === dayNumber);
   const percent = dayData ? Math.round(dayData.percent) : 0;
@@ -17,7 +20,10 @@ export const CalendarDay = ({
     <DayWrapper onClick={handleClick} id={idx}>
       <Day
         style={{
-          border: percent < 100 ? '1px solid var(--secondary-orange)' : '',
+          border:
+            percent < 100 && moreThanCurrentDate
+              ? '1px solid var(--secondary-orange)'
+              : '',
         }}
       >
         {idx + 1}
