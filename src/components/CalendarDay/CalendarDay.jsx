@@ -7,7 +7,7 @@ export const CalendarDay = ({
   monthWater,
 }) => {
   const dayNumber = idx + 1;
-  const isCompleted = completedDays.includes(dayNumber);
+  // const isNotCompleted = completedDays.includes(dayNumber);
 
   const dayData = monthWater.find(data => data.dayNumber === dayNumber);
   const percent = dayData ? Math.round(dayData.percent) : 0;
@@ -16,7 +16,7 @@ export const CalendarDay = ({
     <DayWrapper onClick={handleClick} id={idx}>
       <Day
         style={{
-          border: isCompleted ? '1px solid var(--secondary-orange)' : '',
+          border: percent < 100 ? '1px solid var(--secondary-orange)' : '',
         }}
       >
         {idx + 1}

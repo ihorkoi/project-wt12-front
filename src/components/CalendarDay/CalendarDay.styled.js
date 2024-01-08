@@ -13,9 +13,12 @@ background-color:var(--primary-white);
 text-align: center;
 font-size: 14px;
 font-weight: 400;
-line-height: 1.29;
 border-radius:50%;
-cursor:pointer;`
+cursor:pointer;
+@media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+`
 
 export const DayPercent = styled.p`
 text-align:center;
