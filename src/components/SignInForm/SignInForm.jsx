@@ -13,6 +13,9 @@ import {
     PasswordContainer, TogglePassword, Img,
     ErrorsMess
 } from "./SignInForm.styled";
+import Notiflix from 'notiflix';
+
+
 
 import eyeSlash from "../../img/icons/eye-slash.svg";
 import eye from "../../img/icons/eye.svg";
@@ -45,12 +48,12 @@ export function SignInForm() {
     dispatch(login({ email, password }))
       .unwrap()
       .then(resp => {
-       alert(`Successfully logged in `);
+       Notiflix.Notify.success(`Successfully logged in `);
       })
       .catch(e => {
         e === 'Request failed with status code 400'
-          ? alert('Wrong email or password')
-          :alert('Something went wrong, try one nore time!');
+          ? Notiflix.Notify.warning('Wrong email or password')
+          :Notiflix.Notify.failure('Something went wrong, try one nore time!');
       });
   };
 

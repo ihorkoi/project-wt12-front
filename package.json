@@ -12,6 +12,7 @@
     "axios": "^1.6.3",
     "formik": "^2.4.5",
     "modern-normalize": "^2.0.0",
+    "notiflix": "^3.2.7",
     "react": "^18.1.0",
     "react-datepicker": "^4.25.0",
     "react-dom": "^18.1.0",
