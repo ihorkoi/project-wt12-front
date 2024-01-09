@@ -14,6 +14,8 @@ import {
 } from './WaterRatioPanel_styled';
 import { Resizable } from 'react-resizable';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectTodayWater } from '../../redux/selectors';
 // import { Scale } from './Scale';
 
 const RatioSize = [
@@ -26,7 +28,11 @@ const RatioSize = [
 export const WaterRatioPanel = () => {
   //   const [value, setValue] = useState();
   const [ratio, setRatio] = useState(RatioSize);
-  const [activePercentage, setActivePercentage] = useState(50);
+  const [activePercentage, setActivePercentage] = useState(0);
+
+  const dailyNorma = useSelector(selectTodayWater);
+
+  // const  =
 
   const onResize = (event, { size }) => {
     setRatio({
