@@ -1,6 +1,7 @@
 import Modal from 'react-modal';
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { useSelector } from 'react-redux';
 import {
   customStylesTablet,
   customStylesPhone,
@@ -19,27 +20,40 @@ import {
   WaterMl,
   PreviousTime,
 } from './EditWater_styled';
-import { editWaterRecord } from '../../redux/water/waterOperations';
-import { useDispatch } from 'react-redux';
+import { selectTodayWater } from '../../redux/selectors';
 
 Modal.setAppElement('#modal_addWater-root');
 
-export const EditWaterModal = ({
-  openModal,
-  afterOpenModal,
-  closeModal,
-  increment,
-  decrement,
-}) => {
+export const EditWaterModal = ({ increment, decrement, handleSubmit }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [currentWater, setCurrentWater] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
-  const dispatch = useDispatch();
+
+  const waterLastCup = useSelector(selectTodayWater);
+  const lastCupInfo = waterLastCup.map(({ id, time, waterAmount }) => (
+    <>
+      key={id}
+      currentWater={{ waterAmount }}
+      starDate={{ time }}
+    </>
+  ));
 
   const isPhone = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({
     query: '(min-width: 768px) and (max-width: 1439px)',
   });
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const afterOpenModal = () => {
+    return;
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   const updateWater = value => {
     setCurrentWater(value);
@@ -47,11 +61,6 @@ export const EditWaterModal = ({
 
   const updateStartDate = date => {
     setStartDate(date);
-  };
-
-  const handleUpdate = () => {
-    dispatch(editWaterRecord({ waterAmount: currentWater, time: startDate }));
-    closeModal();
   };
 
   return (
@@ -78,8 +87,18 @@ export const EditWaterModal = ({
         </Wrapper>
         <WaterInfo>
           <WaterGlass />
-          <WaterMl>{currentWater} ml</WaterMl>
-          <PreviousTime>{startDate}</PreviousTime>
+          {waterLastCup.length === 0 ? (
+            <WaterMl>0 ml</WaterMl>
+          ) : (
+            <WaterMl>{lastCupInfo.currentWater} ml</WaterMl>
+          )}
+          {waterLastCup.length === 0 ? (
+            <PreviousTime>No notes yet</PreviousTime>
+          ) : (
+            <PreviousTime>{startDate}</PreviousTime>
+          )}
+
+          <PreviousTime>{lastCupInfo.startDate}</PreviousTime>
         </WaterInfo>
 
         <Subtitle>Correct entered data:</Subtitle>
@@ -89,7 +108,7 @@ export const EditWaterModal = ({
           currentWater={currentWater}
           startDate={startDate}
           setStartDate={updateStartDate}
-          handleSubmit={handleUpdate}
+          handleSubmit={handleSubmit}
           handleWater={updateWater}
         />
       </Modal>
