@@ -25,8 +25,8 @@ import { selectTodayWater } from '../../redux/selectors';
 
 Modal.setAppElement('#modal_addWater-root');
 
-export const EditWaterModal = () => {
-  const [modalIsOpen, setIsOpen] = useState(false);
+export const EditWaterModal = ({ modalIsOpen, setIsOpen }) => {
+  // const [modalIsOpen, setIsOpen] = useState(false);
   const [currentWater, setCurrentWater] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
@@ -79,9 +79,6 @@ export const EditWaterModal = () => {
 
   return (
     <>
-      <ButtonEditModal onClick={openModal}>
-        <SpanTextModal>Edit water</SpanTextModal>
-      </ButtonEditModal>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
