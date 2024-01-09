@@ -1,7 +1,8 @@
 import Modal from 'react-modal';
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { addWaterRecord } from '../../redux/water/waterOperations';
 import {
   customStylesTablet,
   customStylesPhone,
@@ -24,19 +25,14 @@ import { selectTodayWater } from '../../redux/selectors';
 
 Modal.setAppElement('#modal_addWater-root');
 
-export const EditWaterModal = ({ increment, decrement, handleSubmit }) => {
+export const EditWaterModal = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [currentWater, setCurrentWater] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
+  const dispatch = useDispatch();
 
   const waterLastCup = useSelector(selectTodayWater);
-  const lastCupInfo = waterLastCup.map(({ id, time, waterAmount }) => (
-    <>
-      key={id}
-      currentWater={{ waterAmount }}
-      starDate={{ time }}
-    </>
-  ));
+  const lastCup = waterLastCup[waterLastCup.length - 1];
 
   const isPhone = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({
@@ -55,12 +51,30 @@ export const EditWaterModal = ({ increment, decrement, handleSubmit }) => {
     setIsOpen(false);
   };
 
-  const updateWater = value => {
-    setCurrentWater(value);
+  const increment = () => {
+    setCurrentWater(Number(currentWater) + 50);
+  };
+  const decrement = () => {
+    if (currentWater < 50) {
+      setCurrentWater(0);
+      return;
+    }
+    setCurrentWater(currentWater - 50);
   };
 
-  const updateStartDate = date => {
-    setStartDate(date);
+  const handleWater = e => {
+    setCurrentWater(e.target.value);
+  };
+
+  const handleSubmit = (values, { resetForm }) => {
+    const newCupWater = {
+      waterAmount: values.currentWater,
+      time: values.startDate,
+    };
+
+    dispatch(addWaterRecord(newCupWater));
+    resetForm();
+    closeModal();
   };
 
   return (
@@ -90,15 +104,13 @@ export const EditWaterModal = ({ increment, decrement, handleSubmit }) => {
           {waterLastCup.length === 0 ? (
             <WaterMl>0 ml</WaterMl>
           ) : (
-            <WaterMl>{lastCupInfo.currentWater} ml</WaterMl>
+            <WaterMl>{lastCup.currentWater} ml</WaterMl>
           )}
           {waterLastCup.length === 0 ? (
             <PreviousTime>No notes yet</PreviousTime>
           ) : (
-            <PreviousTime>{startDate}</PreviousTime>
+            <PreviousTime>{lastCup.startDate}</PreviousTime>
           )}
-
-          <PreviousTime>{lastCupInfo.startDate}</PreviousTime>
         </WaterInfo>
 
         <Subtitle>Correct entered data:</Subtitle>
@@ -107,9 +119,9 @@ export const EditWaterModal = ({ increment, decrement, handleSubmit }) => {
           increment={increment}
           currentWater={currentWater}
           startDate={startDate}
-          setStartDate={updateStartDate}
+          setStartDate={setStartDate}
           handleSubmit={handleSubmit}
-          handleWater={updateWater}
+          handleWater={handleWater}
         />
       </Modal>
     </>
