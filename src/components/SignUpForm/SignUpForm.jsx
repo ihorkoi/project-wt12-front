@@ -20,6 +20,8 @@ import {
 } from "./SignUpForm.styled";
 import eyeSlash from "../../img/icons/eye-slash.svg";
 import eye from "../../img/icons/eye.svg";
+import Notiflix from 'notiflix';
+
 
 export const registrationSchema = yup
   .object()
@@ -52,13 +54,13 @@ export function SignUpForm() {
         const name = email;
     dispatch(registerUser({  email, name, password }))
       .unwrap()
-      .then(() => alert('Account successfully created!'))
+      .then(() => Notiflix.Notify.success('Account successfully created!'))
       .catch(e =>
         e === 'Request failed with status code 400'
-          ? alert(
+          ? Notiflix.Notify.warning(
               'This user already exist! Use Log In button'
             )
-          : alert('Something went wrong, try one nore time!')
+          : Notiflix.Notify.failure('Something went wrong, try one nore time!')
       );
   };
     
