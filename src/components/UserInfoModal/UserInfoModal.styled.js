@@ -166,6 +166,7 @@ export const SettingContainerStyled = styled.div`
     height: 44px;
     background-color: var(--primary-color);
     border-radius: 10px;
+    border:none;
     font-family: 'Roboto-medium';
     color: var(--primary-white);
     font-size: 18px;
