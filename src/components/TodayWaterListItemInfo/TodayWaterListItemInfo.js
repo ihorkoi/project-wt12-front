@@ -13,11 +13,16 @@ import {
   ButtonWrappper,
 } from './TodayWaterListItemInfo.styled';
 
+import { EditWaterModal } from 'components/EditWater/EditWater.jsx';
+
 import pencilSquare from '../../img/icons/pencilSquare.svg';
 import trash from '../../img/icons/trash.svg';
 import cup from '../../img/icons/cup.svg'
+import { useState } from 'react';
 
 export function TodayWaterListItemInfo({ record }) {
+
+  const [editModalIsOpen, setEditModalIsOpen] = useState(false);
   const dispatch = useDispatch();
 
   const handleDelete = () => {
@@ -25,7 +30,8 @@ export function TodayWaterListItemInfo({ record }) {
   };
 
   const handleUpdate = () => {
-    dispatch(editWaterRecord(record));
+    setEditModalIsOpen(true)
+    // dispatch(editWaterRecord(record));
   };
 
   return (
@@ -39,6 +45,7 @@ export function TodayWaterListItemInfo({ record }) {
         <BTN onClick={handleUpdate}>
           <img src={pencilSquare} alt="pencil-square" />
         </BTN>
+        <EditWaterModal modalIsOpen={editModalIsOpen} setIsOpen={setEditModalIsOpen} waterAmount={record.waterAmount} _id={record._id} />
         <BTN onClick={handleDelete}>
           <img src={trash} alt="trash" />
         </BTN>

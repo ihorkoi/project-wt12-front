@@ -35,9 +35,11 @@ const waterSlice = createSlice({
             })
             .addCase(editWaterRecord.fulfilled, (state, action) => {
                 const idx = state.waterTodayRecords.findIndex(
-                    water => water.id === action.payload.id
+                    water => water._id === action.payload._id
                 );
-                state.waterTodayRecords[idx] = { ...state.waterTodayRecords[idx], ...action.payload }
+                state.isLoading = false;
+                state.waterTodayRecords[idx].time = action.payload.time;
+                state.waterTodayRecords[idx].waterAmount = action.payload.waterAmount;
             })
             .addCase(deletetWaterRecord.pending, state => {
                 state.isLoading = true;
