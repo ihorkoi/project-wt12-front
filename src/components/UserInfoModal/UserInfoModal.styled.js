@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
 export const BackDropStyled = styled.div`
-position: fixed;
-top: 0;
-left: 0;
-width: 100vw;
-height: 100vh;
-background-color: rgba(0, 0, 0, 0.8);
-z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10;
 `;
 
 export const SettingContainerStyled = styled.div`
@@ -131,32 +133,60 @@ export const SettingContainerStyled = styled.div`
                 }
             }
         }
+        svg {
+          margin-right: 8px;
+        }
+        &:hover p,
+        &:active p {
+          color: var(--secondary-orange);
+        }
+        &:hover path,
+        &:active path {
+          stroke: var(--secondary-orange);
+        }
+      }
+    }
+  }
+  .under-photo-container {
+    display: flex;
+    gap: 24px;
     .password-input-container {
-        p{
-            font-family: 'Roboto-regular';
-            font-size: 16px;
-            line-height: 20px;
-            margin-bottom: 8px;
+      p {
+        font-family: 'Roboto-regular';
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 8px;
+      }
+      .password-input {
+        margin-bottom: 12px;
+        position: relative;
+        svg {
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          transform: translateY(-50%);
+          cursor: pointer;
+          path {
+            stroke: var(--primary-color);
+          }
         }
-        .password-input{
-            margin-bottom: 12px;
-            position: relative;
-            svg {
-                position: absolute;
-                top: 50%;
-                right: 10px;
-                transform: translateY(-50%);
-                cursor: pointer;
-                path{
-                    stroke: var(--primary-color);
-                }
-            }
-        }
-    }  
-} 
- 
-}
-.btn {
+      }
+    }
+  }
+  .input-container {
+    width: 100%;
+    max-width: 392px;
+    p {
+      margin-bottom: 12px;
+    }
+    .input-text {
+      margin-bottom: 24px;
+      p {
+        margin-bottom: 8px;
+      }
+    }
+  }
+  .btn {
     display: block;
     // position: absolute;
     bottom: 32px;
@@ -171,8 +201,10 @@ export const SettingContainerStyled = styled.div`
     font-size: 18px;
     line-height: 24px;
     box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-    &:hover, &:active {
-        box-shadow: none;
+    border: none;
+    &:hover,
+    &:active {
+      box-shadow: none;
     }
    }      
 
