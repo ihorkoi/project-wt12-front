@@ -12,3 +12,4 @@ export const selectIsLoading = store => store.water.isLoading;
 
 export const selectError = store => store.water.error;
 
+export const dailyWaterRequirement = store => store.user.dailyWaterRequirement

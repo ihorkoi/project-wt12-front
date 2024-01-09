@@ -23,10 +23,10 @@ import {
   CloseIcon,
 } from './MyDailyNormaModal.styled';
 
-import { updateUserInfo } from '../../redux/user/userSlice';
 import { useContext } from 'react';
 import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
 import * as Yup from 'yup';
+import { updateWaterNorm } from '../../redux/user/userOperations';
 
 const validationSchema = Yup.object({
   gender: Yup.string().required('Required'),
@@ -55,9 +55,11 @@ const MyDailyNormaModal = () => {
     setWaterAmount(calculatedAmount.toFixed(2));
   }, []);
 
-  const handleSubmit = async () => {
-    dispatch(updateUserInfo(formik.values.drunkWaterAmount));
-    formik.resetForm();
+  const handleSubmit = async (values, { resetForm }) => {
+    dispatch(
+      updateWaterNorm({ dailyWaterRequirement: values.drunkWaterAmount })
+    );
+    // formik.resetForm();
 
     toggleModal();
   };
@@ -121,7 +123,7 @@ const MyDailyNormaModal = () => {
             of loads (in the absence of these, you must set 0)
           </FormulasDescription>
 
-          <StyledForm>
+          <StyledForm onSubmit={formik.handleSubmit}>
             <FormTitle>Calculate your rate:</FormTitle>
 
             <CalculatesWrapper>
@@ -196,9 +198,7 @@ const MyDailyNormaModal = () => {
             />
 
             <SaveBtnWrapper>
-              <Button type="submit" onClick={handleSubmit}>
-                Save
-              </Button>
+              <Button onClick={handleSubmit}>Save</Button>
             </SaveBtnWrapper>
           </StyledForm>
         </>

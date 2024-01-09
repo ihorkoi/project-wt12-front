@@ -1,10 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { updateUserInfo, fetchUserInfo } from './userOperations';
+import {
+  updateUserInfo,
+  fetchUserInfo,
+  updateWaterNorm,
+} from './userOperations';
 
 const initialState = {
   avatar: '',
   name: '',
-  dailyNorma: 0,
+  dailyWaterRequirement: 0,
+  gender: null,
   status: 'idle',
   error: null,
 };
@@ -21,7 +26,7 @@ const userSlice = createSlice({
         state.status = 'succeeded';
         state.avatar = action.payload.avatar;
         state.name = action.payload.name;
-        state.dailyNorma = action.payload.dailyNorma;
+        state.dailyWaterRequirement = action.payload.dailyWaterRequirement;
         state.gender = action.payload.gender;
         state.email = action.payload.email;
       })
@@ -36,11 +41,22 @@ const userSlice = createSlice({
         state.status = 'succeeded';
         state.avatar = action.payload.avatar;
         state.name = action.payload.name;
-        state.dailyNorma = action.payload.dailyNorma;
+        state.dailyWaterRequirement = action.payload.dailyWaterRequirement;
         state.gender = action.payload.gender;
         state.email = action.payload.email;
       })
       .addCase(fetchUserInfo.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(updateWaterNorm.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(updateWaterNorm.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.dailyWaterRequirement = action.payload.dailyWaterRequirement;
+      })
+      .addCase(updateWaterNorm.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
