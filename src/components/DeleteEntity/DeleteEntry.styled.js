@@ -39,6 +39,8 @@ export const LogoutContainerStyled = styled.div`
     .title{
         font-size: 26px;
         line-height: 32px;
+        font-weight: 500;
+
     }
     .question{
         font-size: 18px;
@@ -85,7 +87,7 @@ export const LogoutContainerStyled = styled.div`
     @media screen and (max-width: 767px) {
             top: 80px;
             max-width: 280px;
-            max-height: 260px;
+            max-height: 280px;
             .btn-container {
                 flex-direction: column;
             }
