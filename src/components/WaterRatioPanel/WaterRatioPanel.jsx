@@ -15,8 +15,7 @@ import {
 import { Resizable } from 'react-resizable';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectTodayWater } from '../../redux/selectors';
-// import { Scale } from './Scale';
+import { getTodayWater } from '../../redux/water/waterOperations';
 
 const RatioSize = [
   {
@@ -26,13 +25,12 @@ const RatioSize = [
 ];
 
 export const WaterRatioPanel = () => {
-  //   const [value, setValue] = useState();
   const [ratio, setRatio] = useState(RatioSize);
-  const [activePercentage, setActivePercentage] = useState(0);
+  // const [activePercentage, setActivePercentage] = useState(0);
 
-  const dailyNorma = useSelector(selectTodayWater);
+  const normaPercentage = useSelector(getTodayWater);
 
-  // const  =
+  const scaleWidth = (normaPercentage / 100) * ratio.width;
 
   const onResize = (event, { size }) => {
     setRatio({
@@ -51,25 +49,17 @@ export const WaterRatioPanel = () => {
             height={ratio.height}
             onResize={onResize}
           >
-            <Range
-            //   style={{
-            //     width: ratio.width + 'px',
-            //     height: ratio.height + 'px',
-            //   }}
-            >
-              {activePercentage ? <CircleIcon /> : null}
-
-              {/* <RangeList>
-                <RangeItem>0%</RangeItem>
-                <RangeItem>50%</RangeItem>
-                <RangeItem>100%</RangeItem>
-              </RangeList> */}
-
+            <Range>
+              {normaPercentage > 0 ? (
+                <CircleIcon width={`${scaleWidth}px`} />
+              ) : (
+                <CircleIcon width="0" />
+              )}
               <RangeList>
                 {[0, 50, 100].map(percentage => (
                   <RangeItem
                     key={percentage}
-                    className={percentage === activePercentage ? 'active' : ''}
+                    className={percentage === normaPercentage ? 'active' : ''}
                   >
                     {percentage}%
                   </RangeItem>
@@ -77,9 +67,6 @@ export const WaterRatioPanel = () => {
               </RangeList>
             </Range>
           </Resizable>
-          {/* <Range>
-            <Scale minValue={0} maxValue={100} step={50} value={setValue} />
-          </Range> */}
         </RangeWrapper>
         <Button>
           <WrapperTextBtn>
