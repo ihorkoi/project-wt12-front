@@ -19,14 +19,18 @@ import pencilSquare from '../../img/icons/pencilSquare.svg';
 import trash from '../../img/icons/trash.svg';
 import cup from '../../img/icons/cup.svg'
 import { useState } from 'react';
+import { DeleteEntity } from 'components/DeleteEntity/DeleteEntry.jsx';
 
 export function TodayWaterListItemInfo({ record }) {
 
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
-  const dispatch = useDispatch();
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+  // const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deletetWaterRecord(record._id));
+    setDeleteModalIsOpen(prevState => !prevState)
+    // dispatch(deletetWaterRecord(record._id));  
+
   };
 
   const handleUpdate = () => {
@@ -49,6 +53,7 @@ export function TodayWaterListItemInfo({ record }) {
         <BTN onClick={handleDelete}>
           <img src={trash} alt="trash" />
         </BTN>
+        {deleteModalIsOpen && <DeleteEntity handleCloseModal={() => setDeleteModalIsOpen(false)} id={record._id} />}
       </ButtonWrappper>
     </ListItem>
   );

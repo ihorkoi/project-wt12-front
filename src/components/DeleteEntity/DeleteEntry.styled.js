@@ -51,8 +51,8 @@ export const LogoutContainerStyled = styled.div`
     }
     .cancel-btn{
         display: flex;
-        border:none;
         align-items: center;
+        border:none;
         justify-content: center;
         height: 44px;
         width: 160px;
@@ -63,11 +63,11 @@ export const LogoutContainerStyled = styled.div`
     .logout-btn{
         display: flex;
         align-items: center;
-        border:none;
-        color:#fff;
         justify-content: center;
         height: 44px;
         width: 160px;
+        color: #fff;
+        border:none;
         border-radius: 10px;
         background-color: var(--secondary-red);
         box-shadow: 0 4px 8px rgba(64, 123, 255, 0.2);
