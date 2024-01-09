@@ -49,7 +49,7 @@ export function TodayWaterListItemInfo({ record }) {
         <BTN onClick={handleUpdate}>
           <img src={pencilSquare} alt="pencil-square" />
         </BTN>
-        <EditWaterModal modalIsOpen={editModalIsOpen} setIsOpen={setEditModalIsOpen} waterAmount={record.waterAmount} _id={record._id} />
+        <EditWaterModal modalIsOpen={editModalIsOpen} setIsOpen={setEditModalIsOpen} waterAmount={record.waterAmount} _id={record._id} time={record.time} />
         <BTN onClick={handleDelete}>
           <img src={trash} alt="trash" />
         </BTN>

@@ -30,6 +30,7 @@ export const EditWaterModal = ({
   setIsOpen,
   waterAmount,
   _id,
+  time,
 }) => {
   // const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -116,7 +117,7 @@ export const EditWaterModal = ({
           {waterLastCup.length === 0 ? (
             <PreviousTime>No notes yet</PreviousTime>
           ) : (
-            <PreviousTime>{lastCup.startDate}</PreviousTime>
+            <PreviousTime>{time}</PreviousTime>
           )}
         </WaterInfo>
 
