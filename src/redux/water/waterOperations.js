@@ -6,8 +6,8 @@ export const addWaterRecord = createAsyncThunk(
     async (water, thunkAPI) => {
         const { time, waterAmount } = water;
         try {
-            const data = await axios.post("/waterrate/", { waterAmount, time });
-            console.log('inside')
+            const response = await axios.post("/waterrate/", { waterAmount, time },);
+            const data = response.data;
             return data;
         }
         catch (error) {
@@ -19,9 +19,10 @@ export const addWaterRecord = createAsyncThunk(
 export const editWaterRecord = createAsyncThunk(
     "waterrate/updatetWater",
     async (water, thunkAPI) => {
-        const { id, time, waterAmount } = water;
+        const { _id, time, waterAmount } = water;
         try {
-            const data = await axios.put(`/waterrate/${id}`, { waterAmount, time });
+            const response = await axios.put(`/waterrate/${_id}`, { waterAmount, time });
+            const data = response.data;
             return data;
         }
         catch (error) {
@@ -32,10 +33,10 @@ export const editWaterRecord = createAsyncThunk(
 
 export const deletetWaterRecord = createAsyncThunk(
     "waterrate/deleteWater",
-    async (water, thunkAPI) => {
-        const { id, time, waterAmount } = water;
+    async (id, thunkAPI) => {
         try {
-            const data = await axios.delete(`/waterrate/${id}`, { waterAmount, time });
+            const response = await axios.delete(`/waterrate/${id}`);
+            const data = response.data;
             return data;
         }
         catch (error) {

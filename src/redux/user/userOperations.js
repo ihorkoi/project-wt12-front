@@ -2,17 +2,17 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 
-// export const fetchStorages = createAsyncThunk(
-//   'storages/fetchStorages',
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await axios.get('/storages');
-//       return response.data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
+export const fetchUserInfo = createAsyncThunk(
+  'auth/fetchuserInfo',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('auth/current');
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
 
 // export const addStorage = createAsyncThunk(
 //   'storages/addStorage',
@@ -38,10 +38,23 @@ import axios from 'axios';
 
 //   }
 export const updateUserInfo = createAsyncThunk(
-  'user/updateUserInfo',
+  'auth/updateUserInfo',
   async (userData, thunkAPI) => {
     try {
-      const response = await axios.post(`/storages/updateUserInfo`, userData);
+      const { id } = userData
+      const response = await axios.post(`/auth/${id}`, userData);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const updateWaterNorm = createAsyncThunk(
+  'auth/updateWaterNorm',
+  async (dailyWaterRequirement, thunkAPI) => {
+    try {
+      const response = await axios.patch(`/auth/update-water-norm`, dailyWaterRequirement);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

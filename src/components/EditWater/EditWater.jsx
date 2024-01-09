@@ -1,74 +1,44 @@
 import Modal from 'react-modal';
-import { useMediaQuery } from 'react-responsive';
 import { useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { useSelector, useDispatch } from 'react-redux';
+import { editWaterRecord } from '../../redux/water/waterOperations';
+import {
+  customStylesTablet,
+  customStylesPhone,
+  customStylesDesktop,
+} from 'components/AddWater/AddWater';
+import { ModalParams } from 'components/AddWater/CommonModalComp';
 import {
   IconClose,
   ModalName,
   Subtitle,
   Wrapper,
-  ButtonModal,
+  ButtonEditModal,
   SpanTextModal,
-} from './AddWater_styled';
-import { ModalParams } from './CommonModalComp';
-import { useDispatch } from 'react-redux';
-import { addWaterRecord } from '../../redux/water/waterOperations';
-
-export const customStylesPhone = {
-  content: {
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    bottom: 'auto',
-    padding: '24px 12px',
-    borderRadius: '10px',
-    background: '#FFF',
-    minWidth: '280px',
-    inset: '40px 20px auto',
-  },
-  overlay: {
-    background: 'rgba(0, 0, 0, 0.80)',
-  },
-};
-
-export const customStylesTablet = {
-  content: {
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    bottom: 'auto',
-    width: '704px',
-    padding: '32px 24px',
-    borderRadius: '10px',
-    background: '#FFF',
-  },
-  overlay: {
-    background: 'rgba(0, 0, 0, 0.80)',
-  },
-};
-
-export const customStylesDesktop = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    width: '592px',
-    padding: '32px 24px',
-    borderRadius: '10px',
-    background: '#FFF',
-  },
-  overlay: {
-    background: 'rgba(0, 0, 0, 0.80)',
-  },
-};
+  WaterInfo,
+  WaterGlass,
+  WaterMl,
+  PreviousTime,
+} from './EditWater_styled';
+import { selectTodayWater } from '../../redux/selectors';
 
 Modal.setAppElement('#modal_addWater-root');
 
-export const AddWaterModal = () => {
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [currentWater, setCurrentWater] = useState(0);
+export const EditWaterModal = ({
+  modalIsOpen,
+  setIsOpen,
+  waterAmount,
+  _id,
+}) => {
+  // const [modalIsOpen, setIsOpen] = useState(false);
+
+  const [currentWater, setCurrentWater] = useState(waterAmount);
   const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
+
+  const waterLastCup = useSelector(selectTodayWater);
+  const lastCup = waterLastCup[waterLastCup.length - 1];
 
   const isPhone = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({
@@ -105,24 +75,20 @@ export const AddWaterModal = () => {
   const handleSubmit = (values, { resetForm }) => {
     const newCupWater = {
       waterAmount: currentWater.toString(),
-      time: startDate.toLocaleTimeString(navigator.language, {
+      time: values.startDate.toLocaleTimeString(navigator.language, {
         hour: '2-digit',
         minute: '2-digit',
       }),
+      _id,
     };
 
-    dispatch(addWaterRecord(newCupWater));
-    closeModal();
+    dispatch(editWaterRecord(newCupWater));
     resetForm();
-
-    setCurrentWater(0);
+    closeModal();
   };
 
   return (
     <>
-      <ButtonModal onClick={openModal}>
-        <SpanTextModal>Add water</SpanTextModal>
-      </ButtonModal>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -137,10 +103,24 @@ export const AddWaterModal = () => {
         contentLabel="Example Modal"
       >
         <Wrapper>
-          <ModalName>Add water</ModalName>
+          <ModalName>Edit the entered amount of water</ModalName>
           <IconClose onClick={closeModal} />
         </Wrapper>
-        <Subtitle>Choose a value:</Subtitle>
+        <WaterInfo>
+          <WaterGlass />
+          {waterLastCup.length === 0 ? (
+            <WaterMl>0 ml</WaterMl>
+          ) : (
+            <WaterMl>{currentWater} ml</WaterMl>
+          )}
+          {waterLastCup.length === 0 ? (
+            <PreviousTime>No notes yet</PreviousTime>
+          ) : (
+            <PreviousTime>{lastCup.startDate}</PreviousTime>
+          )}
+        </WaterInfo>
+
+        <Subtitle>Correct entered data:</Subtitle>
         <ModalParams
           decrement={decrement}
           increment={increment}

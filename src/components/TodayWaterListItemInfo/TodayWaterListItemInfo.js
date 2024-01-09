@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import {
   deletetWaterRecord,
   editWaterRecord,
+  getTodayWater,
 } from '../../redux/water/waterOperations.js';
 import {
   ListItem,
@@ -9,38 +10,51 @@ import {
   PagagrapherForAmount,
   PagagrapherForTime,
   BTN,
+  ButtonWrappper,
 } from './TodayWaterListItemInfo.styled';
+
+import { EditWaterModal } from 'components/EditWater/EditWater.jsx';
 
 import pencilSquare from '../../img/icons/pencilSquare.svg';
 import trash from '../../img/icons/trash.svg';
 import cup from '../../img/icons/cup.svg'
+import { useState } from 'react';
+import { DeleteEntity } from 'components/DeleteEntity/DeleteEntry.jsx';
 
 export function TodayWaterListItemInfo({ record }) {
-  const dispatch = useDispatch();
+
+  const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+  // const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deletetWaterRecord(record._id));
+    setDeleteModalIsOpen(prevState => !prevState)
+    // dispatch(deletetWaterRecord(record._id));  
+
   };
 
   const handleUpdate = () => {
-    dispatch(editWaterRecord(record));
+    setEditModalIsOpen(true)
+    // dispatch(editWaterRecord(record));
   };
 
   return (
-    <ListItem>
-      <img src={cup} alt="cup" width={36} height={36} />
+    <ListItem key={record._id}>
       <WrapperForParagrapher>
-        <PagagrapherForAmount>{record.waterAmount}</PagagrapherForAmount>
+        <img src={cup} alt="cup" width={36} height={36} />
+        <PagagrapherForAmount>{record.waterAmount} ml</PagagrapherForAmount>
         <PagagrapherForTime>{record.time}</PagagrapherForTime>
       </WrapperForParagrapher>
-      <div>
+      <ButtonWrappper>
         <BTN onClick={handleUpdate}>
           <img src={pencilSquare} alt="pencil-square" />
         </BTN>
+        <EditWaterModal modalIsOpen={editModalIsOpen} setIsOpen={setEditModalIsOpen} waterAmount={record.waterAmount} _id={record._id} />
         <BTN onClick={handleDelete}>
           <img src={trash} alt="trash" />
         </BTN>
-      </div>
+        {deleteModalIsOpen && <DeleteEntity handleCloseModal={() => setDeleteModalIsOpen(false)} id={record._id} />}
+      </ButtonWrappper>
     </ListItem>
   );
 }

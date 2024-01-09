@@ -4,6 +4,7 @@ import { addWaterRecord, editWaterRecord, deletetWaterRecord, getTodayWater, get
 const initialState = {
     isLoading: false,
     error: null,
+    percentage: 0,
     waterTodayRecords: [],
     waterMonthRecords: [],
 };
@@ -34,9 +35,11 @@ const waterSlice = createSlice({
             })
             .addCase(editWaterRecord.fulfilled, (state, action) => {
                 const idx = state.waterTodayRecords.findIndex(
-                    water => water.id === action.payload.id
+                    water => water._id === action.payload._id
                 );
-                state.waterTodayRecords[idx] = { ...state.waterTodayRecords[idx], ...action.payload }
+                state.isLoading = false;
+                state.waterTodayRecords[idx].time = action.payload.time;
+                state.waterTodayRecords[idx].waterAmount = action.payload.waterAmount;
             })
             .addCase(deletetWaterRecord.pending, state => {
                 state.isLoading = true;
@@ -48,7 +51,7 @@ const waterSlice = createSlice({
             .addCase(deletetWaterRecord.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
-                state.items = state.items.filter(item => item.id !== action.payload.id);
+                state.waterTodayRecords = state.waterTodayRecords.filter(item => item._id !== action.payload.id);
             })
             .addCase(getTodayWater.pending, state => {
                 state.isLoading = true;
@@ -60,7 +63,9 @@ const waterSlice = createSlice({
             .addCase(getTodayWater.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
-                state.waterTodayRecords = action.payload;
+                state.waterTodayRecords = action.payload.waterRecords;
+                state.percentage = action.payload.percentage
+
             })
             .addCase(getMonthWater.pending, state => {
                 state.isLoading = true;
