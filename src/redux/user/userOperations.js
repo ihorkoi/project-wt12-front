@@ -38,10 +38,23 @@ export const fetchUserInfo = createAsyncThunk(
 
 //   }
 export const updateUserInfo = createAsyncThunk(
-  'user/updateUserInfo',
+  'auth/updateUserInfo',
   async (userData, thunkAPI) => {
     try {
-      const response = await axios.post(`/storages/updateUserInfo`, userData);
+      const { id } = userData
+      const response = await axios.post(`/auth/${id}`, userData);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const updateWaterNorm = createAsyncThunk(
+  'auth/updateWaterNorm',
+  async (dailyWaterRequirement, thunkAPI) => {
+    try {
+      const response = await axios.patch(`/auth/update-water-norm`, dailyWaterRequirement);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
