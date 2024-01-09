@@ -41,7 +41,7 @@ export function TodayWaterList() {
       minute: '2-digit',
     });
 
-    dispatch(addWaterRecord({ waterAmount: 250, time: currentTime }));
+    // dispatch(addWaterRecord({ waterAmount: 250, time: currentTime }));
   };
 
   return (

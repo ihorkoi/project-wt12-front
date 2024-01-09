@@ -2,7 +2,7 @@ import Modal from 'react-modal';
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from 'react-redux';
-import { addWaterRecord } from '../../redux/water/waterOperations';
+import { editWaterRecord } from '../../redux/water/waterOperations';
 import {
   customStylesTablet,
   customStylesPhone,
@@ -25,9 +25,15 @@ import { selectTodayWater } from '../../redux/selectors';
 
 Modal.setAppElement('#modal_addWater-root');
 
-export const EditWaterModal = ({ modalIsOpen, setIsOpen }) => {
+export const EditWaterModal = ({
+  modalIsOpen,
+  setIsOpen,
+  waterAmount,
+  _id,
+}) => {
   // const [modalIsOpen, setIsOpen] = useState(false);
-  const [currentWater, setCurrentWater] = useState(0);
+
+  const [currentWater, setCurrentWater] = useState(waterAmount);
   const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
 
@@ -68,11 +74,15 @@ export const EditWaterModal = ({ modalIsOpen, setIsOpen }) => {
 
   const handleSubmit = (values, { resetForm }) => {
     const newCupWater = {
-      waterAmount: values.currentWater,
-      time: values.startDate,
+      waterAmount: currentWater.toString(),
+      time: values.startDate.toLocaleTimeString(navigator.language, {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
+      _id,
     };
 
-    dispatch(addWaterRecord(newCupWater));
+    dispatch(editWaterRecord(newCupWater));
     resetForm();
     closeModal();
   };
@@ -101,7 +111,7 @@ export const EditWaterModal = ({ modalIsOpen, setIsOpen }) => {
           {waterLastCup.length === 0 ? (
             <WaterMl>0 ml</WaterMl>
           ) : (
-            <WaterMl>{lastCup.currentWater} ml</WaterMl>
+            <WaterMl>{currentWater} ml</WaterMl>
           )}
           {waterLastCup.length === 0 ? (
             <PreviousTime>No notes yet</PreviousTime>
