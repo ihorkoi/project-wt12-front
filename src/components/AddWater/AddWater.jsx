@@ -105,7 +105,7 @@ export const AddWaterModal = () => {
   const handleSubmit = (values, { resetForm }) => {
     const newCupWater = {
       waterAmount: currentWater.toString(),
-      time: values.startDate.toLocaleTimeString(navigator.language, {
+      time: startDate.toLocaleTimeString(navigator.language, {
         hour: '2-digit',
         minute: '2-digit',
       }),
