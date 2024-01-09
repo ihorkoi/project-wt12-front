@@ -5,13 +5,18 @@ import { ReactComponent as EyeSlash } from '../../img/icons/eye-slash.svg';
 import defaultPhoto from '../../img/Default-photo.png';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateUserInfo } from '../../redux/user/userOperations';
 
 export function UserInfoModal({ handleCloseModal }) {
   const imgRef = useRef();
+  const dispatch = useDispatch();
   const user = useSelector(state => state.auth.user);
-  const [userInfo, setUserInfo] = useState({ ...user });
-
+  const [userInfo, setUserInfo] = useState({
+    ...user,
+    gender: user.gender || 'female',
+  });
+  const [selectedGender, setSelectedGender] = useState(user.gender || 'female');
   useEffect(() => {
     const handleKeyPress = event => {
       if (event.key === 'Escape') {
@@ -43,6 +48,19 @@ export function UserInfoModal({ handleCloseModal }) {
         [nameField]: target.value,
       }));
     return infoHandler;
+  };
+
+  const handleGenderChange = gender => {
+    setSelectedGender(gender);
+    setUserInfo(prevState => ({
+      ...prevState,
+      gender,
+    }));
+  };
+
+  const handleSave = () => {
+    dispatch(updateUserInfo(userInfo));
+    handleCloseModal();
   };
 
   return createPortal(
@@ -85,13 +103,8 @@ export function UserInfoModal({ handleCloseModal }) {
                     id="girl"
                     name="gender"
                     value="girl"
-                    checked={userInfo.gender === 'female'}
-                    onChange={() =>
-                      setUserInfo(prevState => ({
-                        ...prevState,
-                        gender: 'female',
-                      }))
-                    }
+                    checked={selectedGender === 'female'}
+                    onChange={() => handleGenderChange('female')}
                   />{' '}
                   <label htmlFor="girl">Girl</label>
                   <input
@@ -99,13 +112,8 @@ export function UserInfoModal({ handleCloseModal }) {
                     id="man"
                     name="gender"
                     value="man"
-                    checked={userInfo.gender === 'male'}
-                    onChange={() =>
-                      setUserInfo(prevState => ({
-                        ...prevState,
-                        gender: 'male',
-                      }))
-                    }
+                    checked={selectedGender === 'male'}
+                    onChange={() => handleGenderChange('male')}
                   />{' '}
                   <label htmlFor="man">Man</label>
                 </div>
@@ -157,7 +165,9 @@ export function UserInfoModal({ handleCloseModal }) {
             </div>
           </div>
 
-          <button className="btn">Save</button>
+          <button className="btn" onClick={handleSave}>
+            Save
+          </button>
         </form>
       </SettingContainerStyled>
     </>,
