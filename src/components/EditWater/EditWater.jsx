@@ -14,8 +14,6 @@ import {
   ModalName,
   Subtitle,
   Wrapper,
-  ButtonEditModal,
-  SpanTextModal,
   WaterInfo,
   WaterGlass,
   WaterMl,
@@ -32,23 +30,20 @@ export const EditWaterModal = ({
   _id,
   time,
 }) => {
-  // const [modalIsOpen, setIsOpen] = useState(false);
-
   const [currentWater, setCurrentWater] = useState(waterAmount);
   const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
 
   const waterLastCup = useSelector(selectTodayWater);
-  const lastCup = waterLastCup[waterLastCup.length - 1];
 
   const isPhone = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({
     query: '(min-width: 768px) and (max-width: 1439px)',
   });
 
-  const openModal = () => {
-    setIsOpen(true);
-  };
+  // const openModal = () => {
+  //   setIsOpen(true);
+  // };
 
   const afterOpenModal = () => {
     return;
