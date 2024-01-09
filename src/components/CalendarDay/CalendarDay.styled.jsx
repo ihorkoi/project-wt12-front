@@ -12,7 +12,7 @@ margin-bottom:16px;
 
 `
 
-export const Day = styled.div`
+export const Day = styled.button`
 width:32px;
 height:32px;
 padding:7px 6px;
@@ -22,6 +22,7 @@ text-align: center;
 font-size: 14px;
 font-weight: 400;
 border-radius:50%;
+border: none;
 cursor:pointer;
 @media screen and (min-width: 768px) {
     width:34px;

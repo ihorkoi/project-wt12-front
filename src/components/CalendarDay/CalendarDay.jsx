@@ -1,13 +1,31 @@
+import { CalendarModal } from 'components/CalendarModal/CalendarModal';
 import { DayWrapper, Day, DayPercent } from './CalendarDay.styled';
+import { useRef, useState } from 'react';
+
 
 export const CalendarDay = ({
   idx,
-  handleClick,
   // completedDays,
   monthWater,
   currentMonth,
   currentYear,
+  onClose,
 }) => {
+  const [isActiveDayModal, setIsActiveDayModal] = useState(false);
+  const [selectedDay, setSelectedDay] = useState(null);
+
+  const buttonRef = useRef()
+  const handleClick = () => {
+    setSelectedDay(dayNumber);
+    setIsActiveDayModal(true);  
+  };
+
+  const handleClose = () => {
+    setSelectedDay(null);
+    setIsActiveDayModal(false);
+    onClose(); 
+  };
+
   const dayNumber = idx + 1;
   // const isNotCompleted = completedDays.includes(dayNumber);
   const moreThanCurrentDate =
@@ -17,8 +35,9 @@ export const CalendarDay = ({
   const percent = dayData ? Math.round(dayData.percent) : 0;
 
   return (
+    <>
     <DayWrapper onClick={handleClick} id={idx}>
-      <Day
+      <Day ref={buttonRef}
         style={{
           border:
             percent < 100 && moreThanCurrentDate
@@ -30,5 +49,7 @@ export const CalendarDay = ({
       </Day>
       <DayPercent>{percent}%</DayPercent>
     </DayWrapper>
+    <CalendarModal isOpen={isActiveDayModal} onClose={handleClose}  selectedDay={dayNumber} selectedMonth={currentMonth} buttonRef={buttonRef}/>
+    </>
   );
 };

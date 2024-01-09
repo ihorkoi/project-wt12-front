@@ -13,6 +13,7 @@ export const Calendar = () => {
   const [isActiveDayModal, setIsActiveDayModal] = useState(false);
   const [selectedDay, setSelectedDay] = useState(null);
 
+
   const monthWater = useSelector(selectMonthRecords);
 
   const dispatch = useDispatch();
@@ -50,6 +51,9 @@ export const Calendar = () => {
   };
   const completedDays = getCompletedDays();
 
+  const handleCloseModal = () => {
+    setIsActiveDayModal(false);
+  };
   return (
     <>
       <PickerWrapper>
@@ -70,6 +74,8 @@ export const Calendar = () => {
               monthWater={monthWater}
               currentYear={currentYear}
               currentMonth={currentMonth}
+              isActiveDayModal={isActiveDayModal}
+              onClose={handleCloseModal}
             />
           );
         })}
