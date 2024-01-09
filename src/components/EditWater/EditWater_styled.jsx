@@ -57,6 +57,7 @@ export const WaterInfo = styled.div`
   align-items: center;
   background-color: var(--secondary-verylightblue);
   border-radius: 10px;
+  width: 254px;
   padding: 8px 24px;
   margin-bottom: 24px;
 `;
