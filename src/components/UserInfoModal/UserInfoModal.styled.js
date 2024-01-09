@@ -16,13 +16,15 @@ export const SettingContainerStyled = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
+    width: 280px;
+    height: 852px;
     max-width: 1008px;
-    max-height: 592px;
+    // max-height: 592px;
     background-color: var(--primary-white);
     border-radius: 10px;
-    padding: 32px 24px;
+    // padding: 32px 24px;
+    padding: 32px 12px;
+
     >div {
         display: flex;
         align-items: center;
@@ -51,7 +53,7 @@ export const SettingContainerStyled = styled.div`
             border: 1px solid #D7E3FF;
             outline: none;
             border-radius: 6px;
-            width: 100%;
+            width: 256px;
             padding: 12px 10px;
             color: var(--primary-color);
              &::placeholder{
@@ -91,11 +93,12 @@ export const SettingContainerStyled = styled.div`
             }
         }
         .under-photo-container {
-        display: flex;
+        // display: flex;
         gap: 24px;
         .input-container {
-            width: 392px;
-            height: 272px;
+            // width: 392px;
+            // height: 272px;
+            margin-bottom:24px;
             p {
                 margin-bottom: 12px;
                 }
@@ -106,7 +109,9 @@ export const SettingContainerStyled = styled.div`
                  }
                 }
             .gender-container {
-                margin-bottom: 52px;
+                // margin-bottom: 52px;
+                margin-bottom: 24px;
+
                 
                
                 div{
@@ -153,10 +158,11 @@ export const SettingContainerStyled = styled.div`
 }
 .btn {
     display: block;
-    position: absolute;
+    // position: absolute;
     bottom: 32px;
     right: 24px;
-    width: 160px;
+    // width: 160px;
+    width: 256px;
     height: 44px;
     background-color: var(--primary-color);
     border-radius: 10px;
@@ -169,5 +175,41 @@ export const SettingContainerStyled = styled.div`
         box-shadow: none;
     }
    }      
+
+@media screen and (min-width: 768px) {
+    width:704px;
+    height:860px;
+    padding: 32px 24px;
+     form {
+        input[type='text'], input[type='password']{
+            width: 372px;
+            padding: 12px 10px;
+        }
+         .password-input{
+             width: 372px;
+        }
+        .btn {
+    display: block;
+    position: absolute;
+    bottom: 32px;
+    right: 24px;
+    width: 160px;
+    height: 44px;
+   } }
+@media screen and (min-width: 1440px) {
+    width:1008px;
+    height:592px;
+    .under-photo-container {
+        display: flex;
+  }
+    form {
+        .under-photo-container{
+            .input-container {
+            .gender-container {
+                 margin-bottom: 52px; 
+    }
+}
+  }
+}
 `
 
