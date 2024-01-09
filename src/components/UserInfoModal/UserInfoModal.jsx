@@ -3,11 +3,14 @@ import { ReactComponent as CloseIcon } from '../../img/icons/close-icon.svg';
 import { ReactComponent as UploadIcon } from '../../img/icons/arrow-up-tray.svg';
 import { ReactComponent as EyeSlash } from '../../img/icons/eye-slash.svg';
 import defaultPhoto from '../../img/Default-photo.png';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useSelector } from 'react-redux';
 
 export function UserInfoModal({ handleCloseModal }) {
   const imgRef = useRef();
+  const user = useSelector(state => state.auth.user);
+  const [userInfo, setUserInfo] = useState({ ...user });
 
   useEffect(() => {
     const handleKeyPress = event => {
@@ -32,6 +35,16 @@ export function UserInfoModal({ handleCloseModal }) {
       reader.readAsDataURL(file);
     }
   };
+
+  const handleChangeInput = (nameField, callback) => {
+    const infoHandler = ({ target }) =>
+      callback(prevState => ({
+        ...prevState,
+        [nameField]: target.value,
+      }));
+    return infoHandler;
+  };
+
   return createPortal(
     <>
       <BackDropStyled onClick={handleCloseModal}></BackDropStyled>
@@ -67,21 +80,57 @@ export function UserInfoModal({ handleCloseModal }) {
               <div className="gender-container">
                 <p>Your gender identity</p>
                 <div>
-                  <input type="radio" id="girl" name="gender"></input>
+                  <input
+                    type="radio"
+                    id="girl"
+                    name="gender"
+                    value="girl"
+                    checked={userInfo.gender === 'female'}
+                    onChange={() =>
+                      setUserInfo(prevState => ({
+                        ...prevState,
+                        gender: 'female',
+                      }))
+                    }
+                  />{' '}
                   <label htmlFor="girl">Girl</label>
-                  <input type="radio" id="man" name="gender"></input>
+                  <input
+                    type="radio"
+                    id="man"
+                    name="gender"
+                    value="man"
+                    checked={userInfo.gender === 'male'}
+                    onChange={() =>
+                      setUserInfo(prevState => ({
+                        ...prevState,
+                        gender: 'male',
+                      }))
+                    }
+                  />{' '}
                   <label htmlFor="man">Man</label>
                 </div>
               </div>
 
               <div className="input-text">
                 <p>Your name</p>
-                <input type="text" id="name" placeholder="Your name" />
+                <input
+                  required
+                  type="text"
+                  id="name"
+                  value={userInfo.name}
+                  placeholder="Your name"
+                  onChange={handleChangeInput('name', setUserInfo)}
+                />
               </div>
 
               <div className="input-text">
                 <p>E-mail</p>
-                <input type="text" id="email" placeholder="Email" />
+                <input
+                  id="email"
+                  value={userInfo.email}
+                  placeholder="Email"
+                  onChange={handleChangeInput('email', setUserInfo)}
+                />
               </div>
             </div>
             <div className="input-container">

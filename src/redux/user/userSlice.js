@@ -23,6 +23,7 @@ const userSlice = createSlice({
         state.name = action.payload.name;
         state.dailyNorma = action.payload.dailyNorma;
         state.gender = action.payload.gender;
+        state.email = action.payload.email;
       })
       .addCase(updateUserInfo.rejected, (state, action) => {
         state.status = 'failed';
@@ -37,12 +38,12 @@ const userSlice = createSlice({
         state.name = action.payload.name;
         state.dailyNorma = action.payload.dailyNorma;
         state.gender = action.payload.gender;
+        state.email = action.payload.email;
       })
       .addCase(fetchUserInfo.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
-
   },
   // .addCase(fetchStorages.pending, state => {
   //   state.status = 'loading';
