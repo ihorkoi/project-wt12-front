@@ -3,12 +3,20 @@ import { ReactComponent as CloseIcon } from '../../img/icons/close-icon.svg';
 import { ReactComponent as UploadIcon } from '../../img/icons/arrow-up-tray.svg';
 import { ReactComponent as EyeSlash } from '../../img/icons/eye-slash.svg';
 import defaultPhoto from '../../img/Default-photo.png';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateUserInfo } from '../../redux/user/userOperations';
 
 export function UserInfoModal({ handleCloseModal }) {
   const imgRef = useRef();
-
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.auth.user);
+  const [userInfo, setUserInfo] = useState({
+    ...user,
+    gender: user.gender || 'female',
+  });
+  const [selectedGender, setSelectedGender] = useState(user.gender || 'female');
   useEffect(() => {
     const handleKeyPress = event => {
       if (event.key === 'Escape') {
@@ -32,6 +40,29 @@ export function UserInfoModal({ handleCloseModal }) {
       reader.readAsDataURL(file);
     }
   };
+
+  const handleChangeInput = (nameField, callback) => {
+    const infoHandler = ({ target }) =>
+      callback(prevState => ({
+        ...prevState,
+        [nameField]: target.value,
+      }));
+    return infoHandler;
+  };
+
+  const handleGenderChange = gender => {
+    setSelectedGender(gender);
+    setUserInfo(prevState => ({
+      ...prevState,
+      gender,
+    }));
+  };
+
+  const handleSave = () => {
+    dispatch(updateUserInfo(userInfo));
+    handleCloseModal();
+  };
+
   return createPortal(
     <>
       <BackDropStyled onClick={handleCloseModal}></BackDropStyled>
@@ -67,21 +98,48 @@ export function UserInfoModal({ handleCloseModal }) {
               <div className="gender-container">
                 <p>Your gender identity</p>
                 <div>
-                  <input type="radio" id="girl" name="gender"></input>
+                  <input
+                    type="radio"
+                    id="girl"
+                    name="gender"
+                    value="girl"
+                    checked={selectedGender === 'female'}
+                    onChange={() => handleGenderChange('female')}
+                  />{' '}
                   <label htmlFor="girl">Girl</label>
-                  <input type="radio" id="man" name="gender"></input>
+                  <input
+                    type="radio"
+                    id="man"
+                    name="gender"
+                    value="man"
+                    checked={selectedGender === 'male'}
+                    onChange={() => handleGenderChange('male')}
+                  />{' '}
                   <label htmlFor="man">Man</label>
                 </div>
               </div>
 
               <div className="input-text">
                 <p>Your name</p>
-                <input type="text" id="name" placeholder="Your name" />
+                <input
+                  required
+                  type="text"
+                  id="name"
+                  value={userInfo.name.split('@')[0]}
+                  placeholder="Your name"
+                  onChange={handleChangeInput('name', setUserInfo)}
+                />
               </div>
 
               <div className="input-text">
                 <p>E-mail</p>
-                <input type="text" id="email" placeholder="Email" />
+                <input
+                  type="text"
+                  id="email"
+                  value={userInfo.email}
+                  placeholder="Email"
+                  onChange={handleChangeInput('email', setUserInfo)}
+                />
               </div>
             </div>
             <div className="input-container">
@@ -107,7 +165,9 @@ export function UserInfoModal({ handleCloseModal }) {
             </div>
           </div>
 
-          <button className="btn">Save</button>
+          <button className="btn" onClick={handleSave}>
+            Save
+          </button>
         </form>
       </SettingContainerStyled>
     </>,

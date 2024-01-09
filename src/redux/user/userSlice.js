@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { updateUserInfo, fetchUserInfo, updateWaterNorm } from './userOperations';
+import {
+  updateUserInfo,
+  fetchUserInfo,
+  updateWaterNorm,
+} from './userOperations';
 
 const initialState = {
   avatar: '',
@@ -24,6 +28,7 @@ const userSlice = createSlice({
         state.name = action.payload.name;
         state.dailyWaterRequirement = action.payload.dailyWaterRequirement;
         state.gender = action.payload.gender;
+        state.email = action.payload.email;
       })
       .addCase(updateUserInfo.rejected, (state, action) => {
         state.status = 'failed';
@@ -38,6 +43,7 @@ const userSlice = createSlice({
         state.name = action.payload.name;
         state.dailyWaterRequirement = action.payload.dailyWaterRequirement;
         state.gender = action.payload.gender;
+        state.email = action.payload.email;
       })
       .addCase(fetchUserInfo.rejected, (state, action) => {
         state.status = 'failed';
@@ -53,8 +59,7 @@ const userSlice = createSlice({
       .addCase(updateWaterNorm.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
-      })
-
+      });
   },
   // .addCase(fetchStorages.pending, state => {
   //   state.status = 'loading';

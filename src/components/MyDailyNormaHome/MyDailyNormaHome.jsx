@@ -22,7 +22,7 @@ const MyDailyNormaHome = () => {
     <Container>
       <Header>My daily norma</Header>
       <WaterAmountWrapper>
-        <WaterAmount>{`${dailyNorma / 1000} L`}</WaterAmount>
+        <WaterAmount>{`${dailyNorma} L`}</WaterAmount>
         <Button onClick={openMyDailyNormaModal}>Edit</Button>
       </WaterAmountWrapper>
     </Container>
