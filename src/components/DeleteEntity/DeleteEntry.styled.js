@@ -39,6 +39,8 @@ export const LogoutContainerStyled = styled.div`
     .title{
         font-size: 26px;
         line-height: 32px;
+        font-weight: 500;
+
     }
     .question{
         font-size: 18px;
@@ -51,8 +53,8 @@ export const LogoutContainerStyled = styled.div`
     }
     .cancel-btn{
         display: flex;
-        border:none;
         align-items: center;
+        border:none;
         justify-content: center;
         height: 44px;
         width: 160px;
@@ -63,11 +65,11 @@ export const LogoutContainerStyled = styled.div`
     .logout-btn{
         display: flex;
         align-items: center;
-        border:none;
-        color:#fff;
         justify-content: center;
         height: 44px;
         width: 160px;
+        color: #fff;
+        border:none;
         border-radius: 10px;
         background-color: var(--secondary-red);
         box-shadow: 0 4px 8px rgba(64, 123, 255, 0.2);
@@ -85,7 +87,7 @@ export const LogoutContainerStyled = styled.div`
     @media screen and (max-width: 767px) {
             top: 80px;
             max-width: 280px;
-            max-height: 260px;
+            max-height: 280px;
             .btn-container {
                 flex-direction: column;
             }

@@ -33,8 +33,27 @@ export const Paragrapher = styled.p`
 `;
 
 export const List = styled.ul`
-  display: flex;
+  /* display: flex; */
+  height:150px;
   margin-bottom: 12px;
+  overflow-y:scroll;
+  //  scrollbar-color: red orange;
+  &::-webkit-scrollbar {
+    width: 4px;
+    border-radius: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color:var(--secondary-textcolor);
+    border-radius: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background-color:  var(--secondary-lighblue);
+    border-radius: 8px;
+  }
+
+  
 `;
 
 export const BTN = styled.button`
@@ -55,14 +74,21 @@ export const BTN = styled.button`
 export const WrapperForBTN = styled.div`
 display: flex;
 margin-bottom: 24px;
+  button{
+    background: inherit;
+  span{    
+    color: var(--primary-color);
+    }
+  }
 `;
+
 
 export const Img = styled.img`
 margin-right: 8px;
 `
 
 export const PagagrapherForEmpty = styled.p`
-  color: #EF5050;
+  color: #2f2f2f;
   font-family: Roboto;
   font-size: 18px;
   font-style: normal;

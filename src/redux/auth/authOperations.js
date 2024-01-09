@@ -3,6 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://project-wt12.onrender.com/api';
 
+
 const setToken = token => {
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 };
