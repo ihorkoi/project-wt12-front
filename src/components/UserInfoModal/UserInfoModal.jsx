@@ -117,7 +117,7 @@ export function UserInfoModal({ handleCloseModal }) {
                   required
                   type="text"
                   id="name"
-                  value={userInfo.name}
+                  value={userInfo.name.split('@')[0]}
                   placeholder="Your name"
                   onChange={handleChangeInput('name', setUserInfo)}
                 />
@@ -126,6 +126,7 @@ export function UserInfoModal({ handleCloseModal }) {
               <div className="input-text">
                 <p>E-mail</p>
                 <input
+                  type="text"
                   id="email"
                   value={userInfo.email}
                   placeholder="Email"

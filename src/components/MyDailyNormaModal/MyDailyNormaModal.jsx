@@ -55,23 +55,25 @@ const MyDailyNormaModal = () => {
     setWaterAmount(calculatedAmount.toFixed(2));
   }, []);
 
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleSubmit = () => {
+    formik.handleSubmit();
     dispatch(
-      updateWaterNorm({ dailyWaterRequirement: values.drunkWaterAmount })
+      updateWaterNorm({ dailyWaterRequirement: formik.values.drunkWaterAmount })
     );
-    // formik.resetForm();
-
     toggleModal();
   };
 
   const handleInputChange = (e, fieldName) => {
-    formik.handleChange(e);
-    const inputText = e.target.value;
-    let numericValue = parseFloat(inputText);
-    if (isNaN(numericValue)) {
-      numericValue = 0;
-    }
-    formik.setFieldValue(fieldName, numericValue);
+    const { value } = e.target;
+
+    const sanitizedValue = value.replace(',', '.');
+
+    formik.setFieldValue(fieldName, sanitizedValue);
+
+    calculateWaterAmount({
+      ...formik.values,
+      [fieldName]: sanitizedValue,
+    });
   };
 
   const formik = useFormik({
@@ -187,7 +189,8 @@ const MyDailyNormaModal = () => {
                   Write down how much water you will drink:
                 </span>
               }
-              value={formik.values.drunkWaterAmount}
+              type="text"
+              value={formik.values.drunkWaterAmount.toString()}
               onChange={e => handleInputChange(e, 'drunkWaterAmount')}
               onBlur={formik.handleBlur}
               name="drunkWaterAmount"
