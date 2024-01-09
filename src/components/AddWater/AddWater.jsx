@@ -133,12 +133,18 @@ export const AddWaterModal = () => {
 
   const handleSubmit = (values, { resetForm }) => {
     const newCupWater = {
-      waterAmount: values.currentWater,
-      time: values.startDate,
+      waterAmount: currentWater.toString(),
+      time: values.startDate.toLocaleTimeString(navigator.language, {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
     };
 
     dispatch(addWaterRecord(newCupWater));
+    closeModal();
     resetForm();
+
+    setCurrentWater(0);
   };
 
   return (

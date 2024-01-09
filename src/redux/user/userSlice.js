@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { updateUserInfo } from './userOperations';
+import { updateUserInfo, fetchUserInfo } from './userOperations';
 
 const initialState = {
   avatar: '',
@@ -27,7 +27,22 @@ const userSlice = createSlice({
       .addCase(updateUserInfo.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+      })
+      .addCase(fetchUserInfo.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(fetchUserInfo.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.avatar = action.payload.avatar;
+        state.name = action.payload.name;
+        state.dailyNorma = action.payload.dailyNorma;
+        state.gender = action.payload.gender;
+      })
+      .addCase(fetchUserInfo.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
       });
+
   },
   // .addCase(fetchStorages.pending, state => {
   //   state.status = 'loading';

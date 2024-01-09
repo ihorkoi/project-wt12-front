@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import {
   deletetWaterRecord,
   editWaterRecord,
+  getTodayWater,
 } from '../../redux/water/waterOperations.js';
 import {
   ListItem,
@@ -9,6 +10,7 @@ import {
   PagagrapherForAmount,
   PagagrapherForTime,
   BTN,
+  ButtonWrappper,
 } from './TodayWaterListItemInfo.styled';
 
 import pencilSquare from '../../img/icons/pencilSquare.svg';
@@ -27,20 +29,20 @@ export function TodayWaterListItemInfo({ record }) {
   };
 
   return (
-    <ListItem>
-      <img src={cup} alt="cup" width={36} height={36} />
+    <ListItem key={record._id}>
       <WrapperForParagrapher>
-        <PagagrapherForAmount>{record.waterAmount}</PagagrapherForAmount>
+        <img src={cup} alt="cup" width={36} height={36} />
+        <PagagrapherForAmount>{record.waterAmount} ml</PagagrapherForAmount>
         <PagagrapherForTime>{record.time}</PagagrapherForTime>
       </WrapperForParagrapher>
-      <div>
+      <ButtonWrappper>
         <BTN onClick={handleUpdate}>
           <img src={pencilSquare} alt="pencil-square" />
         </BTN>
         <BTN onClick={handleDelete}>
           <img src={trash} alt="trash" />
         </BTN>
-      </div>
+      </ButtonWrappper>
     </ListItem>
   );
 }
