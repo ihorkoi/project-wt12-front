@@ -5,6 +5,7 @@ export const ListItem = styled.li`
   display: flex;
   border-bottom: 1px solid #d7e3ff;
   padding: 6px 0 6px 0;
+  justify-content: space-around;
 `;
 
 export const WrapperForParagrapher = styled.div`
@@ -12,6 +13,7 @@ export const WrapperForParagrapher = styled.div`
   gap: 16px;
   padding: 6px;
   margin-right: 38px;
+  align-items: center;
   @media screen and (min-width: 768px) {
     margin-right: 390px;
   }
@@ -22,6 +24,7 @@ export const WrapperForParagrapher = styled.div`
 `;
 
 export const PagagrapherForAmount = styled.p`
+  width:60px;
   color:  #407bff;
   font-family: Roboto;
   font-size: 18px;
@@ -44,3 +47,6 @@ export const BTN = styled.button`
 background: none;
 border: none;
 `
+
+export const ButtonWrappper = styled.div`
+display:flex`

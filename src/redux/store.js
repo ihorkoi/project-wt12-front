@@ -24,12 +24,14 @@ const authPersistConfig = {
 const authPersistedReducer = persistReducer(authPersistConfig, authReducer);
 const userPersistedReducer = persistReducer(authPersistConfig, userReducer);
 
+
 export const store = configureStore({
   reducer: { auth: authPersistedReducer, water: waterReducer, user: userPersistedReducer },
   middleware: getDefaultMiddleware => {
     return getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredPaths: ['payload.headers'],
       },
     });
   },

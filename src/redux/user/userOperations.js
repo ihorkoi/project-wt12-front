@@ -2,17 +2,17 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 
-// export const fetchStorages = createAsyncThunk(
-//   'storages/fetchStorages',
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await axios.get('/storages');
-//       return response.data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
+export const fetchUserInfo = createAsyncThunk(
+  'auth/fetchuserInfo',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('auth/current');
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
 
 // export const addStorage = createAsyncThunk(
 //   'storages/addStorage',
