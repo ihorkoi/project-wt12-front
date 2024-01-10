@@ -16,16 +16,24 @@ import {
 import { Resizable } from 'react-resizable';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectMonthRecords } from '../../redux/selectors';
+import { selectTodayWater } from '../../redux/selectors';
 import { useMediaQuery } from 'react-responsive';
 
 export const WaterRatioPanel = () => {
   const [, setActiveWidth] = useState('');
 
-  const dayPercent = useSelector(selectMonthRecords);
+  const dayPercent = useSelector(selectTodayWater);
 
-  const dayData = dayPercent.find(data => data.percent);
-  const percent = dayData ? Math.round(dayData.percent) : 0;
+  const dailyNorm = useSelector(state => state.user.dailyWaterRequirement);
+
+  const calculatePercentage = dayPercent => {
+    const sum = dayPercent.reduce(
+      (accumulator, record) => accumulator + Number(record.waterAmount),
+      0
+    );
+    return (sum / dailyNorm) * 100;
+  };
+  const percent = calculatePercentage(dayPercent);
 
   const onResize = (event, { node, size, handle }) => {
     setActiveWidth(size.width);
@@ -75,7 +83,7 @@ export const WaterRatioPanel = () => {
       <ContainerTodayWater>
         <RangeWrapper>
           <TodayRange>Today</TodayRange>
-          <Resizable onResize={onResize}>
+          <Resizable onResize={onResize} height={8} width={10}>
             <Range1>
               <CircleIcon style={style} />
               <Range style={filledStyle}>
