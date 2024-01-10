@@ -131,6 +131,7 @@ export const EditWaterModal = ({
           handleSubmit={handleSubmit}
           handleWater={handleWater}
           setIsTimeChanged={setIsTimeChanged}
+          time={time}
         />
       </Modal>
     </>

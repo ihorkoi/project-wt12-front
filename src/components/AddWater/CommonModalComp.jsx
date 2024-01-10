@@ -29,6 +29,7 @@ export const ModalParams = ({
   handleSubmit,
   handleWater,
   setIsTimeChanged,
+  time,
 }) => {
   return (
     <>
@@ -58,6 +59,7 @@ export const ModalParams = ({
               startDate={startDate}
               setStartDate={setStartDate}
               setIsTimeChanged={setIsTimeChanged}
+              time={time}
             />
           </InfoTime>
           <IntoWaterData>
