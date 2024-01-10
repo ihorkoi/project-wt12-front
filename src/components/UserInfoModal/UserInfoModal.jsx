@@ -66,7 +66,8 @@ export function UserInfoModal({ handleCloseModal }) {
     }));
   };
 
-  const handleSave = () => {
+  const handleSave = e => {
+    e.preventDefault();
     dispatch(updateUserInfo(userInfo));
     handleCloseModal();
   };
@@ -79,7 +80,7 @@ export function UserInfoModal({ handleCloseModal }) {
           <p>Setting</p>
           <CloseIcon width={12} height={12} onClick={handleCloseModal} />
         </div>
-        <form>
+        <form onSubmit={handleSave}>
           <p>Your photo</p>
           <div className="photo-container">
             <img
@@ -173,7 +174,7 @@ export function UserInfoModal({ handleCloseModal }) {
             </div>
           </div>
 
-          <button className="btn" onClick={handleSave}>
+          <button className="btn" type="submit">
             Save
           </button>
         </form>

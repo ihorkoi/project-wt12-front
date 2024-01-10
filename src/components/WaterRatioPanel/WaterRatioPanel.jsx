@@ -5,6 +5,7 @@ import {
   ContainerTodayWater,
   Plus,
   Range,
+  Range1,
   RangeItem,
   RangeList,
   RangeWrapper,
@@ -15,57 +16,91 @@ import {
 import { Resizable } from 'react-resizable';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getTodayWater } from '../../redux/water/waterOperations';
-
-const RatioSize = [
-  {
-    width: '391px',
-    height: '8px',
-  },
-];
+import { selectTodayWater } from '../../redux/selectors';
+import { useMediaQuery } from 'react-responsive';
 
 export const WaterRatioPanel = () => {
-  const [ratio, setRatio] = useState(RatioSize);
-  // const [activePercentage, setActivePercentage] = useState(0);
+  const [, setActiveWidth] = useState('');
 
-  const normaPercentage = useSelector(getTodayWater);
+  const dayPercent = useSelector(selectTodayWater);
 
-  const scaleWidth = (normaPercentage / 100) * ratio.width;
+  const dailyNorm = useSelector(state => state.user.dailyWaterRequirement);
 
-  const onResize = (event, { size }) => {
-    setRatio({
-      width: size.width,
-      height: size.height,
-    });
+  const calculatePercentage = dayPercent => {
+    const sum = dayPercent.reduce(
+      (accumulator, record) => accumulator + Number(record.waterAmount),
+      0
+    );
+    return (sum / dailyNorm) * 100;
   };
+  const percent = calculatePercentage(dayPercent);
+
+  const onResize = (event, { node, size, handle }) => {
+    setActiveWidth(size.width);
+  };
+
+  const isPhone = useMediaQuery({ query: '(max-width: 767px)' });
+  const isTablet = useMediaQuery({
+    query: '(min-width: 768px) and (max-width: 1439px)',
+  });
+
+  const marginPhone = {
+    marginLeft: `${(percent / 100) * 280}px`,
+  };
+  const marginTab = {
+    marginLeft: `${(percent / 100) * 356}px`,
+  };
+  const marginDesk = {
+    marginLeft: `${(percent / 100) * 391}px`,
+  };
+
+  const style = isPhone ? marginPhone : isTablet ? marginTab : marginDesk;
+
+  const filledStylePhone = {
+    background: 'var(--secondary-textcolor)',
+    width: style.marginLeft,
+    maxWidth: '280px',
+  };
+  const filledStyleTab = {
+    background: 'var(--secondary-textcolor)',
+    width: style.marginLeft,
+    maxWidth: '356px',
+  };
+  const filledStyleDesk = {
+    background: 'var(--secondary-textcolor)',
+    width: style.marginLeft,
+    maxWidth: '391px',
+  };
+
+  const filledStyle = isPhone
+    ? filledStylePhone
+    : isTablet
+    ? filledStyleTab
+    : filledStyleDesk;
 
   return (
     <>
       <ContainerTodayWater>
         <RangeWrapper>
           <TodayRange>Today</TodayRange>
-          <Resizable
-            width={ratio.width}
-            height={ratio.height}
-            onResize={onResize}
-          >
-            <Range>
-              {normaPercentage > 0 ? (
-                <CircleIcon width={`${scaleWidth}px`} />
-              ) : (
-                <CircleIcon width="0" />
-              )}
-              <RangeList>
-                {[0, 50, 100].map(percentage => (
-                  <RangeItem
-                    key={percentage}
-                    className={percentage === normaPercentage ? 'active' : ''}
-                  >
-                    {percentage}%
-                  </RangeItem>
-                ))}
-              </RangeList>
-            </Range>
+          <Resizable onResize={onResize} height={8} width={10}>
+            <Range1>
+              <CircleIcon style={style} />
+              <Range style={filledStyle}>
+                <div>
+                  <RangeList>
+                    {[0, 50, 100].map(percentage => (
+                      <RangeItem
+                        key={percentage}
+                        className={percentage === percent ? 'active' : ''}
+                      >
+                        {percentage}%
+                      </RangeItem>
+                    ))}
+                  </RangeList>
+                </div>
+              </Range>
+            </Range1>
           </Resizable>
         </RangeWrapper>
         <Button>

@@ -35,21 +35,13 @@ export function TodayWaterList() {
     dispatch(getTodayWater());
   }, [dispatch]);
 
-  // const handleAddWater = () => {
-  //   const currentTime = new Date().toLocaleTimeString([], {
-  //     hour: '2-digit',
-  //     minute: '2-digit',
-  //   });
-
-  // dispatch(addWaterRecord({ waterAmount: 250, time: currentTime }));
-  // };
 
   return (
     <MainWrapper>
       <Paragrapher>Today</Paragrapher>
       <List>
         {isLoading && !error ? (
-          <PagagrapherForEmpty>please waite</PagagrapherForEmpty>
+          <PagagrapherForEmpty>Updating...</PagagrapherForEmpty>
         ) : waterConsumptions.length === 0 && !error ? (
           <PagagrapherForEmpty>
             You haven't drunk water yet. <br />

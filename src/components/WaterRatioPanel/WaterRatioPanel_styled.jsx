@@ -51,6 +51,21 @@ export const TodayRange = styled.h3`
 `;
 
 export const Range = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: var(--secondary-lighblue);
+
+  &.active {
+    background: var(--secondary-textcolor);
+  }
+`;
+
+export const Range1 = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
   height: 8px;
@@ -58,10 +73,6 @@ export const Range = styled.div`
   border-radius: 10px;
   background: var(--secondary-lighblue);
   margin-top: 16px;
-
-  &.active {
-    background: var(--secondary-textcolor);
-  }
 `;
 
 export const RangeList = styled.ul`
@@ -95,11 +106,10 @@ export const RangeItem = styled.li`
   }
 `;
 
-export const Button = styled.button`
+export const Button = styled.div`
   display: block;
   padding: 6px 76px;
   width: 280px;
-  /* height: 44px; */
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -153,7 +163,93 @@ export const Plus = styled(PlusCircle)`
 `;
 
 export const CircleIcon = styled(Elipse)`
+  position: relative;
+  top: -50%;
   width: 14px;
   height: 14px;
   stroke-width: 1px;
+  color: black;
+`;
+
+export const RangeInput = styled.input`
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background:var(--secondary-lighblue);
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 16px;
+    width: 325px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 360px;
+  }
+  &:hover {
+    opacity: 1;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background:var(--secondary-lighblue)
+    border: 2px solid
+    cursor: pointer;
+    transform: translateY(-20%);
+  }
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(to right
+      var(--secondary-textcolor) 0%,
+      var(--secondary-lighblue) 100%);
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+  }
+
+  &::after {
+    content: '';
+    width: 1px;
+    height: 8px;
+    background:var(--secondary-lighblue)
+    position: absolute;
+    top: 360px;
+    transform: translateY(-50%);
+    left: 10px;
+    z-index: -1;
+    @media screen and (min-width: 768px) {
+      top: 555px;
+    }
+    @media screen and (min-width: 1440px) {
+      top: 685px;
+    }
+  }
+  &::before {
+    content: '';
+    width: 1px;
+    height: 8px;
+    background:var(--secondary-lighblue)
+    position: absolute;
+    top: 360px;
+    transform: translateY(-50%);
+    left: 132px;
+    z-index: -1;
+    @media screen and (min-width: 768px) {
+      left: 170px;
+      top: 555px;
+    }
+    @media screen and (min-width: 1440px) {
+      top: 685px;
+      left: 190px;
+    }
+  }
 `;
