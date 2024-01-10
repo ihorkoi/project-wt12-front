@@ -2,7 +2,6 @@ import { BackDropStyled, LogoutContainerStyled } from './DeleteEntry.styled.js';
 import { ReactComponent as CloseIcon } from '../../img/icons/close-icon.svg';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../redux/auth/authOperations';
 import { createPortal } from 'react-dom';
 import { deletetWaterRecord } from '../../redux/water/waterOperations.js';
 
