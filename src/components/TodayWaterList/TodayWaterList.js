@@ -1,9 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import {
-//   fetchAllConsumption,
-//   addWatter,
-// } from '../../redux/waterConsumptionOperations.js';
 import { getTodayWater } from '../../redux/water/waterOperations.js';
 import {
   selectTodayWater,
@@ -58,7 +54,6 @@ export function TodayWaterList() {
       </List>
       <WrapperForBTN>
         <Img src={plus} alt="plus" height={24} width={24} />
-        {/* <BTN onClick={handleAddWater}>Add water</BTN> */}
         <AddWaterModal />
 
       </WrapperForBTN>

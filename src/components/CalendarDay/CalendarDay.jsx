@@ -4,7 +4,6 @@ import { useRef, useState } from 'react';
 
 export const CalendarDay = ({
   idx,
-  // completedDays,
   monthWater,
   currentMonth,
   currentYear,

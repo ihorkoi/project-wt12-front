@@ -9,7 +9,6 @@ import {
   selectTodayWater,
 } from '../../redux/selectors.js';
 import { MonthPicker } from 'components/MonthPicker/MonthPicker';
-// import { CalendarModal } from 'components/CalendarModal/CalendarModal';
 import { CalendarDay } from 'components/CalendarDay/CalendarDay';
 
 export const Calendar = () => {

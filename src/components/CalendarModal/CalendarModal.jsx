@@ -20,7 +20,6 @@ export const CalendarModal = ({
   dayData,
 }) => {
   const isPhone = useMediaQuery({ query: '(max-width: 767px)' });
-  // const isDesktop = useMediaQuery({ query: '(max-width: 1444px)' });
   const dailyNorm = useSelector(state => state.user.dailyWaterRequirement);
 
   useEffect(() => {
@@ -85,7 +84,6 @@ export const CalendarModal = ({
     calculateModalPosition();
   }, [isOpen, buttonRef, isPhone]);
 
-  // console.log(isOpen);
   if (!isOpen) return null;
   return (
     <Overlay onClick={handleClose}>

@@ -1,9 +1,3 @@
-// import { useDispatch } from 'react-redux';
-// import {
-//   deletetWaterRecord,
-//   editWaterRecord,
-//   getTodayWater,
-// } from '../../redux/water/waterOperations.js';
 import {
   ListItem,
   WrapperForParagrapher,
@@ -25,17 +19,14 @@ export function TodayWaterListItemInfo({ record }) {
 
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
-  // const dispatch = useDispatch();
 
   const handleDelete = () => {
     setDeleteModalIsOpen(prevState => !prevState)
-    // dispatch(deletetWaterRecord(record._id));  
 
   };
 
   const handleUpdate = () => {
     setEditModalIsOpen(true)
-    // dispatch(editWaterRecord(record));
   };
 
   return (

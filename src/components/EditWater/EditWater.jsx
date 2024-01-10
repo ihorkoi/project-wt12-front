@@ -41,10 +41,6 @@ export const EditWaterModal = ({
     query: '(min-width: 768px) and (max-width: 1439px)',
   });
 
-  // const openModal = () => {
-  //   setIsOpen(true);
-  // };
-
   const afterOpenModal = () => {
     return;
   };
