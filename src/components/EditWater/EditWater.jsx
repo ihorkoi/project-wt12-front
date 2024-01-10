@@ -71,7 +71,6 @@ export const EditWaterModal = ({
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log(isTimeChanged);
     const newCupWater = {
       waterAmount: currentWater.toString(),
       time: isTimeChanged
@@ -131,7 +130,6 @@ export const EditWaterModal = ({
           handleSubmit={handleSubmit}
           handleWater={handleWater}
           setIsTimeChanged={setIsTimeChanged}
-          time={time}
         />
       </Modal>
     </>
