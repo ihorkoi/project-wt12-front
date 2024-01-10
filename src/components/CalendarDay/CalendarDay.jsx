@@ -50,7 +50,7 @@ export const CalendarDay = ({
       <CalendarModal
         isOpen={isActiveDayModal}
         onClose={handleClose}
-        selectedDay={dayNumber}
+        selectedDay={selectedDay}
         selectedMonth={currentMonth}
         dayData={dayData}
         buttonRef={buttonRef}

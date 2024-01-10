@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
 import closesvg from '../../img/icons/close-icon.svg';
-import { CloseIcon, Modal, Overlay, StyledP,StyledData, StyledSpan } from './CalendarModal.styled';
+import {
+  CloseIcon,
+  Modal,
+  Overlay,
+  StyledP,
+  StyledData,
+  StyledSpan,
+} from './CalendarModal.styled';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector } from 'react-redux';
-
 
 export const CalendarModal = ({
   isOpen,
@@ -11,11 +17,11 @@ export const CalendarModal = ({
   selectedDay,
   selectedMonth,
   buttonRef,
-  dayData
+  dayData,
 }) => {
   const isPhone = useMediaQuery({ query: '(max-width: 767px)' });
-  const isDesktop = useMediaQuery({ query: '(max-width: 1444px)' });
-  const dailyNorm = useSelector(state=>state.user.dailyWaterRequirement)
+  // const isDesktop = useMediaQuery({ query: '(max-width: 1444px)' });
+  const dailyNorm = useSelector(state => state.user.dailyWaterRequirement);
 
   useEffect(() => {
     const handleKeyDown = event => {
@@ -54,7 +60,6 @@ export const CalendarModal = ({
       if (buttonRef.current) {
         const buttonRect = buttonRef.current.getBoundingClientRect();
         const screenWidth = window.innerWidth;
-        const screenHeight = window.innerHeight;
 
         let left = buttonRect.left;
         let top = buttonRect.top;
@@ -91,9 +96,18 @@ export const CalendarModal = ({
         <StyledData>
           {selectedDay}, {selectedMonthName}
         </StyledData>
-        <StyledP>Daily norma:<StyledSpan> {dailyNorm / 1000} L</StyledSpan></StyledP>
-        <StyledP>Fulfillment of the daily norm:<StyledSpan> {dayData? dayData.percent: 0}%</StyledSpan></StyledP>
-        <StyledP>How many servings of water:<StyledSpan> {dayData? dayData.recordsCount: 0}</StyledSpan></StyledP>
+        <StyledData>{selectedMonthName}</StyledData>
+        <StyledP>
+          Daily norma:<StyledSpan> {dailyNorm / 1000} L</StyledSpan>
+        </StyledP>
+        <StyledP>
+          Fulfillment of the daily norm:
+          <StyledSpan> {dayData ? dayData.percent : 0}%</StyledSpan>
+        </StyledP>
+        <StyledP>
+          How many servings of water:
+          <StyledSpan> {dayData ? dayData.recordsCount : 0}</StyledSpan>
+        </StyledP>
       </Modal>
     </Overlay>
   );
