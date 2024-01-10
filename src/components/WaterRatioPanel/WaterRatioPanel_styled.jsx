@@ -51,6 +51,21 @@ export const TodayRange = styled.h3`
 `;
 
 export const Range = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: var(--secondary-lighblue);
+
+  &.active {
+    background: var(--secondary-textcolor);
+  }
+`;
+
+export const Range1 = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
   height: 8px;
@@ -58,10 +73,6 @@ export const Range = styled.div`
   border-radius: 10px;
   background: var(--secondary-lighblue);
   margin-top: 16px;
-
-  &.active {
-    background: var(--secondary-textcolor);
-  }
 `;
 
 export const RangeList = styled.ul`
@@ -99,7 +110,6 @@ export const Button = styled.button`
   display: block;
   padding: 6px 76px;
   width: 280px;
-  /* height: 44px; */
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -153,7 +163,10 @@ export const Plus = styled(PlusCircle)`
 `;
 
 export const CircleIcon = styled(Elipse)`
+  position: relative;
+  top: -50%;
   width: 14px;
   height: 14px;
   stroke-width: 1px;
+  color: black;
 `;

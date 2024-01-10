@@ -50,7 +50,6 @@ export const Calendar = () => {
     setIsActiveDayModal(!isActiveDayModal);
   };
   const completedDays = getCompletedDays();
-  console.log(selectedDay);
 
   return (
     <>
