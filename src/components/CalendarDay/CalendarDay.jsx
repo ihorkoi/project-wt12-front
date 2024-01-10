@@ -3,13 +3,11 @@ import { DayWrapper, Day, DayPercent } from './CalendarDay.styled';
 export const CalendarDay = ({
   idx,
   handleClick,
-  // completedDays,
   monthWater,
   currentMonth,
   currentYear,
 }) => {
   const dayNumber = idx + 1;
-  // const isNotCompleted = completedDays.includes(dayNumber);
   const moreThanCurrentDate =
     new Date() > new Date(currentYear, currentMonth - 1, dayNumber);
 

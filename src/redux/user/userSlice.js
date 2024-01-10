@@ -1,8 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { updateUserInfo, fetchUserInfo, updateWaterNorm } from './userOperations';
+import {
+  updateUserInfo,
+  fetchUserInfo,
+  updateWaterNorm,
+} from './userOperations';
+
 
 const initialState = {
-  avatar: '',
+  avatarURL: '',
   name: '',
   dailyWaterRequirement: 0,
   gender: null,
@@ -13,6 +18,18 @@ const initialState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
+  reducers: {
+    setUserInfo: (state, action) => {
+      // Оновіть стан користувача на основі отриманих даних
+      console.log(action.payload)
+      const { avatarURL, name, dailyWaterRequirement, gender, email } = action.payload;
+      state.avatarURL = avatarURL;
+      state.name = name;
+      state.dailyWaterRequirement = dailyWaterRequirement;
+      state.gender = gender;
+      state.email = email;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(updateUserInfo.pending, state => {
@@ -24,6 +41,7 @@ const userSlice = createSlice({
         state.name = action.payload.name;
         state.dailyWaterRequirement = action.payload.dailyWaterRequirement;
         state.gender = action.payload.gender;
+        state.email = action.payload.email;
       })
       .addCase(updateUserInfo.rejected, (state, action) => {
         state.status = 'failed';
@@ -34,10 +52,11 @@ const userSlice = createSlice({
       })
       .addCase(fetchUserInfo.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.avatar = action.payload.avatar;
+        state.avatarURL = action.payload.avatarURL;
         state.name = action.payload.name;
         state.dailyWaterRequirement = action.payload.dailyWaterRequirement;
         state.gender = action.payload.gender;
+        state.email = action.payload.email;
       })
       .addCase(fetchUserInfo.rejected, (state, action) => {
         state.status = 'failed';
@@ -53,8 +72,7 @@ const userSlice = createSlice({
       .addCase(updateWaterNorm.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
-      })
-
+      });
   },
   // .addCase(fetchStorages.pending, state => {
   //   state.status = 'loading';
@@ -93,6 +111,6 @@ const userSlice = createSlice({
   //   state.error = action.error.message;
   // });
 });
-
+export const { setUserInfo } = userSlice.actions;
 export const userReducer = userSlice.reducer;
 export { updateUserInfo };

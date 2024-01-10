@@ -3,7 +3,7 @@ import '../../css/styles.css';
 import '../../css/fonts.css';
 
 export const Container = styled.div`
-  width: 165px;
+  width: 166px;
   padding: 8px 20px 8px 20px;
   border-radius: 10px;
   display: flex;

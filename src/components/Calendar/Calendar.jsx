@@ -3,7 +3,11 @@ import { CalendarTitle, PickerWrapper, DaysList } from './Calendar.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMonthWater } from '../../redux/water/waterOperations';
 
-import { selectMonthRecords, selectTodayWater } from '../../redux/selectors.js';
+import {
+  dailyWaterRequirement,
+  selectMonthRecords,
+  selectTodayWater,
+} from '../../redux/selectors.js';
 import { MonthPicker } from 'components/MonthPicker/MonthPicker';
 import { CalendarModal } from 'components/CalendarModal/CalendarModal';
 import { CalendarDay } from 'components/CalendarDay/CalendarDay';
@@ -15,6 +19,7 @@ export const Calendar = () => {
 
   const todayWater = useSelector(selectTodayWater);
   const monthWater = useSelector(selectMonthRecords);
+  const dailyNorm = useSelector(dailyWaterRequirement);
 
   const dispatch = useDispatch();
 
@@ -24,7 +29,7 @@ export const Calendar = () => {
         currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1)
       )
     );
-  }, [dispatch, currentDate, todayWater]);
+  }, [dispatch, currentDate, todayWater, dailyNorm]);
 
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.getMonth() + 1;
@@ -62,7 +67,6 @@ export const Calendar = () => {
         />
       </PickerWrapper>
       <DaysList>
-        {/* <CalendarModal /> */}
         {getDaysInMonth(currentYear, currentMonth).map((day, idx) => {
           return (
             <CalendarDay
