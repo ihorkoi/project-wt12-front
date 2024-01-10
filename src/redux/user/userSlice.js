@@ -3,6 +3,7 @@ import {
   updateUserInfo,
   fetchUserInfo,
   updateWaterNorm,
+  updateUserAvatar
 } from './userOperations';
 
 
@@ -18,18 +19,6 @@ const initialState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    setUserInfo: (state, action) => {
-      // Оновіть стан користувача на основі отриманих даних
-      console.log(action.payload)
-      const { avatarURL, name, dailyWaterRequirement, gender, email } = action.payload;
-      state.avatarURL = avatarURL;
-      state.name = name;
-      state.dailyWaterRequirement = dailyWaterRequirement;
-      state.gender = gender;
-      state.email = email;
-    },
-  },
   extraReducers: builder => {
     builder
       .addCase(updateUserInfo.pending, state => {
@@ -37,9 +26,7 @@ const userSlice = createSlice({
       })
       .addCase(updateUserInfo.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.avatar = action.payload.avatar;
         state.name = action.payload.name;
-        state.dailyWaterRequirement = action.payload.dailyWaterRequirement;
         state.gender = action.payload.gender;
         state.email = action.payload.email;
       })
@@ -72,7 +59,17 @@ const userSlice = createSlice({
       .addCase(updateWaterNorm.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
-      });
+      })
+      .addCase(updateUserAvatar.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(updateUserAvatar.fulfilled, (state, action) => {
+        state.avatarURL = action.payload.avatarURL;
+      })
+      .addCase(updateUserAvatar.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
   },
   // .addCase(fetchStorages.pending, state => {
   //   state.status = 'loading';
