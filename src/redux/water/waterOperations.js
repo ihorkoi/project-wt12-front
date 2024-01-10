@@ -6,10 +6,7 @@ export const addWaterRecord = createAsyncThunk(
   async (water, thunkAPI) => {
     const { time, waterAmount } = water;
     try {
-      const response = await axios.post('/waterrate/', {
-        waterAmount,
-        time,
-      });
+      const response = await axios.post('/waterrate/', { waterAmount, time });
       const data = response.data;
       return data;
     } catch (error) {
