@@ -2,12 +2,17 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import { Wrapper, CalendarGlobalStyles } from './Datepicker_styled';
 
-export const TimeChange = ({ startDate, setStartDate }) => {
+export const TimeChange = ({ startDate, setStartDate, setIsTimeChanged }) => {
+  const handleTimeChange = date => {
+    setStartDate(date);
+    setIsTimeChanged(true);
+  };
+
   return (
     <Wrapper>
       <DatePicker
         selected={startDate}
-        onChange={date => setStartDate(date)}
+        onChange={handleTimeChange}
         showTimeSelect
         showTimeSelectOnly
         timeIntervals={5}

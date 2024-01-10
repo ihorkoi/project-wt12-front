@@ -32,6 +32,8 @@ export const EditWaterModal = ({
 }) => {
   const [currentWater, setCurrentWater] = useState(waterAmount);
   const [startDate, setStartDate] = useState(new Date());
+  const [isTimeChanged, setIsTimeChanged] = useState(false);
+
   const dispatch = useDispatch();
 
   const waterLastCup = useSelector(selectTodayWater);
@@ -71,10 +73,12 @@ export const EditWaterModal = ({
   const handleSubmit = (values, { resetForm }) => {
     const newCupWater = {
       waterAmount: currentWater.toString(),
-      time: values.startDate.toLocaleTimeString(navigator.language, {
-        hour: '2-digit',
-        minute: '2-digit',
-      }),
+      time: isTimeChanged
+        ? values.startDate.toLocaleTimeString(navigator.language, {
+            hour: '2-digit',
+            minute: '2-digit',
+          })
+        : time,
       _id,
     };
 
@@ -125,6 +129,7 @@ export const EditWaterModal = ({
           setStartDate={setStartDate}
           handleSubmit={handleSubmit}
           handleWater={handleWater}
+          setIsTimeChanged={setIsTimeChanged}
         />
       </Modal>
     </>
