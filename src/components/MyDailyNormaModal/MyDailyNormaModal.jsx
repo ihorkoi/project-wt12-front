@@ -77,6 +77,9 @@ const MyDailyNormaModal = () => {
   const formik = useFormik({
     initialValues: {
       drunkWaterAmount: 0,
+      activityTime: 0,
+      weight: 0,
+      WaterAmount: 1.8,
     },
     validationSchema: validationSchema,
     onSubmit: handleSubmit,
@@ -128,7 +131,7 @@ const MyDailyNormaModal = () => {
                 <input
                   type="radio"
                   name="gender"
-                  checked={userGender === 'female'}
+                  checked={formik.values.gender === 'female'}
                   onChange={() => formik.setFieldValue('gender', 'female')}
                 />
                 For girl
@@ -138,7 +141,7 @@ const MyDailyNormaModal = () => {
                 <input
                   type="radio"
                   name="gender"
-                  checked={userGender === 'male'}
+                  checked={formik.values.gender === 'male'}
                   onChange={() => formik.setFieldValue('gender', 'male')}
                 />
                 For man
