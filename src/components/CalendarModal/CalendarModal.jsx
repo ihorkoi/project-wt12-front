@@ -96,7 +96,6 @@ export const CalendarModal = ({
         <StyledData>
           {selectedDay}, {selectedMonthName}
         </StyledData>
-        <StyledData>{selectedMonthName}</StyledData>
         <StyledP>
           Daily norma:<StyledSpan> {dailyNorm / 1000} L</StyledSpan>
         </StyledP>
