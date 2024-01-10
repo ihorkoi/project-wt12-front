@@ -17,7 +17,9 @@ export function UserInfoModal({ handleCloseModal }) {
   const user = useSelector(state => state.user);
   const avatar = useSelector(state => state.user.avatarURL);
   const [userInfo, setUserInfo] = useState({
-    ...user,
+    name: user.name,
+    email: user.email,
+    password: user.password,
     gender: user.gender || 'female',
   });
   const [selectedGender, setSelectedGender] = useState(user.gender || 'female');
