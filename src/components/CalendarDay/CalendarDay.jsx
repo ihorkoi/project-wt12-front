@@ -2,7 +2,6 @@ import { CalendarModal } from 'components/CalendarModal/CalendarModal';
 import { DayWrapper, Day, DayPercent } from './CalendarDay.styled';
 import { useRef, useState } from 'react';
 
-
 export const CalendarDay = ({
   idx,
   // completedDays,
@@ -14,20 +13,19 @@ export const CalendarDay = ({
   const [isActiveDayModal, setIsActiveDayModal] = useState(false);
   const [selectedDay, setSelectedDay] = useState(null);
 
-  const buttonRef = useRef()
+  const buttonRef = useRef();
   const handleClick = () => {
     setSelectedDay(dayNumber);
-    setIsActiveDayModal(true);  
+    setIsActiveDayModal(true);
   };
 
   const handleClose = () => {
     setSelectedDay(null);
     setIsActiveDayModal(false);
-    onClose(); 
+    onClose();
   };
 
   const dayNumber = idx + 1;
-  // const isNotCompleted = completedDays.includes(dayNumber);
   const moreThanCurrentDate =
     new Date() > new Date(currentYear, currentMonth - 1, dayNumber);
 
@@ -36,20 +34,27 @@ export const CalendarDay = ({
 
   return (
     <>
-    <DayWrapper onClick={handleClick} id={idx}>
-      <Day ref={buttonRef}
-        style={{
-          border:
-            percent < 100 && moreThanCurrentDate
-              ? '1px solid var(--secondary-orange)'
-              : '',
-        }}
-      >
-        {idx + 1}
-      </Day>
-      <DayPercent>{percent}%</DayPercent>
-    </DayWrapper>
-    <CalendarModal isOpen={isActiveDayModal} onClose={handleClose}  selectedDay={dayNumber} selectedMonth={currentMonth} buttonRef={buttonRef}/>
+      <DayWrapper onClick={handleClick} id={idx}>
+        <Day
+          ref={buttonRef}
+          style={{
+            border:
+              percent < 100 && moreThanCurrentDate
+                ? '1px solid var(--secondary-orange)'
+                : '',
+          }}
+        >
+          {idx + 1}
+        </Day>
+        <DayPercent>{percent}%</DayPercent>
+      </DayWrapper>
+      <CalendarModal
+        isOpen={isActiveDayModal}
+        onClose={handleClose}
+        selectedDay={dayNumber}
+        selectedMonth={currentMonth}
+        buttonRef={buttonRef}
+      />
     </>
   );
 };

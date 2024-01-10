@@ -41,9 +41,29 @@ export const updateUserInfo = createAsyncThunk(
   'auth/updateUserInfo',
   async (userData, thunkAPI) => {
     try {
-      const { id } = userData
-      const response = await axios.post(`/auth/${id}`, userData);
+      const response = await axios.patch(`/auth/`, userData);
       return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const updateUserAvatar = createAsyncThunk(
+  'auth/updateUserAvatar',
+  async (avatar, thunkAPI) => {
+    try {
+      const formData = new FormData();
+      formData.append('avatarURL', avatar);
+
+      const response = await axios.patch(`/auth/avatars/`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+      });
+
+      return response.data;
+
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
