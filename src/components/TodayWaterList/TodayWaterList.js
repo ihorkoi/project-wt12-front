@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import {
 //   fetchAllConsumption,
 //   addWatter,
 // } from '../../redux/waterConsumptionOperations.js';
-import { getTodayWater, addWaterRecord } from '../../redux/water/waterOperations.js';
+import { getTodayWater } from '../../redux/water/waterOperations.js';
 import {
   selectTodayWater,
   selectIsLoading,
@@ -35,14 +35,14 @@ export function TodayWaterList() {
     dispatch(getTodayWater());
   }, [dispatch]);
 
-  const handleAddWater = () => {
-    const currentTime = new Date().toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit',
-    });
+  // const handleAddWater = () => {
+  //   const currentTime = new Date().toLocaleTimeString([], {
+  //     hour: '2-digit',
+  //     minute: '2-digit',
+  //   });
 
-    // dispatch(addWaterRecord({ waterAmount: 250, time: currentTime }));
-  };
+  // dispatch(addWaterRecord({ waterAmount: 250, time: currentTime }));
+  // };
 
   return (
     <MainWrapper>
