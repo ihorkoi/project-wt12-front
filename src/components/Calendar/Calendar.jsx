@@ -3,9 +3,9 @@ import { CalendarTitle, PickerWrapper, DaysList } from './Calendar.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMonthWater } from '../../redux/water/waterOperations';
 
-import { selectMonthRecords } from '../../redux/selectors.js';
+import { selectMonthRecords, selectTodayWater } from '../../redux/selectors.js';
 import { MonthPicker } from 'components/MonthPicker/MonthPicker';
-// import { CalendarModal } from 'components/CalendarModal/CalendarModal';
+import { CalendarModal } from 'components/CalendarModal/CalendarModal';
 import { CalendarDay } from 'components/CalendarDay/CalendarDay';
 
 export const Calendar = () => {
@@ -13,7 +13,7 @@ export const Calendar = () => {
   const [isActiveDayModal, setIsActiveDayModal] = useState(false);
   const [selectedDay, setSelectedDay] = useState(null);
 
-
+  const todayWater = useSelector(selectTodayWater);
   const monthWater = useSelector(selectMonthRecords);
 
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ export const Calendar = () => {
         currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1)
       )
     );
-  }, [dispatch, currentDate]);
+  }, [dispatch, currentDate, todayWater]);
 
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.getMonth() + 1;
@@ -50,6 +50,7 @@ export const Calendar = () => {
     setIsActiveDayModal(!isActiveDayModal);
   };
   const completedDays = getCompletedDays();
+  console.log(selectedDay);
 
   const handleCloseModal = () => {
     setIsActiveDayModal(false);
@@ -64,6 +65,7 @@ export const Calendar = () => {
         />
       </PickerWrapper>
       <DaysList>
+        {/* <CalendarModal /> */}
         {getDaysInMonth(currentYear, currentMonth).map((day, idx) => {
           return (
             <CalendarDay
