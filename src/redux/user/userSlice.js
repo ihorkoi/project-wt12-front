@@ -18,18 +18,6 @@ const initialState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    setUserInfo: (state, action) => {
-      // Оновіть стан користувача на основі отриманих даних
-      console.log(action.payload)
-      const { avatarURL, name, dailyWaterRequirement, gender, email } = action.payload;
-      state.avatarURL = avatarURL;
-      state.name = name;
-      state.dailyWaterRequirement = dailyWaterRequirement;
-      state.gender = gender;
-      state.email = email;
-    },
-  },
   extraReducers: builder => {
     builder
       .addCase(updateUserInfo.pending, state => {

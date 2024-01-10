@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import closesvg from '../../img/icons/close-icon.svg';
-import { CloseIcon, Modal, Overlay, StyledP } from './CalendarModal.styled';
+import { CloseIcon, Modal, Overlay, StyledP,StyledData, StyledSpan } from './CalendarModal.styled';
+import { useMediaQuery } from 'react-responsive';
+import { useSelector } from 'react-redux';
+
 
 export const CalendarModal = ({
   isOpen,
@@ -8,7 +11,12 @@ export const CalendarModal = ({
   selectedDay,
   selectedMonth,
   buttonRef,
+  dayData
 }) => {
+  const isPhone = useMediaQuery({ query: '(max-width: 767px)' });
+  const isDesktop = useMediaQuery({ query: '(max-width: 1444px)' });
+  const dailyNorm = useSelector(state=>state.user.dailyWaterRequirement)
+
   useEffect(() => {
     const handleKeyDown = event => {
       if (event.key === 'Escape') {
@@ -49,7 +57,7 @@ export const CalendarModal = ({
         const screenHeight = window.innerHeight;
 
         let left = buttonRect.left;
-        let top = buttonRect.top + buttonRect.height;
+        let top = buttonRect.top;
 
         if (left < 0) {
           left = buttonRect.right;
@@ -62,30 +70,30 @@ export const CalendarModal = ({
         if (left + modalWidth > screenWidth) {
           left = screenWidth - modalWidth;
         }
-
-        setModalStyle({
-          left: `${left}px`,
-          top: `${top}px`,
-        });
+        top -= 190;
+        const style = isPhone
+          ? { top: `${top}px` }
+          : { left: `${left}px`, top: `${top}px` };
+        setModalStyle(style);
       }
     };
     calculateModalPosition();
-  }, [isOpen, buttonRef]);
+  }, [isOpen, buttonRef, isPhone]);
 
   // console.log(isOpen);
   if (!isOpen) return null;
   return (
     <Overlay onClick={handleClose}>
-      <Modal onClick={handleModalClick}>
+      <Modal onClick={handleModalClick} style={{ ...modalStyle }}>
         <CloseIcon>
           <img src={closesvg} alt="close icon" onClick={handleClose} />
         </CloseIcon>
-        <div>
+        <StyledData>
           {selectedDay}, {selectedMonthName}
-        </div>
-        <StyledP>Daily norma:</StyledP>
-        <p>Fulfillment of the daily norm:</p>
-        <p>How many servings of water:</p>
+        </StyledData>
+        <StyledP>Daily norma:<StyledSpan> {dailyNorm / 1000} L</StyledSpan></StyledP>
+        <StyledP>Fulfillment of the daily norm:<StyledSpan> {dayData? dayData.percent: 0}%</StyledSpan></StyledP>
+        <StyledP>How many servings of water:<StyledSpan> {dayData? dayData.recordsCount: 0}</StyledSpan></StyledP>
       </Modal>
     </Overlay>
   );
