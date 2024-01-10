@@ -55,7 +55,6 @@ export const Calendar = () => {
     setIsActiveDayModal(!isActiveDayModal);
   };
   const completedDays = getCompletedDays();
-  console.log(selectedDay);
 
   const handleCloseModal = () => {
     setIsActiveDayModal(false);

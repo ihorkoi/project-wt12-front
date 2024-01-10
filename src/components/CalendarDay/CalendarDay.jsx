@@ -31,7 +31,6 @@ export const CalendarDay = ({
 
   const dayData = monthWater.find(data => data.dayNumber === dayNumber);
   const percent = dayData ? Math.round(dayData.percent) : 0;
-  console.log(dayData)
   return (
     <>
       <DayWrapper onClick={handleClick} id={idx}>
