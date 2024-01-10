@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
-
 export const ListItem = styled.li`
   display: flex;
   border-bottom: 1px solid #d7e3ff;
-  padding: 6px 0 6px 0;
   justify-content: space-around;
 `;
 
@@ -24,8 +22,8 @@ export const WrapperForParagrapher = styled.div`
 `;
 
 export const PagagrapherForAmount = styled.p`
-  width:60px;
-  color:  #407bff;
+  width: 60px;
+  color: #407bff;
   font-family: Roboto;
   font-size: 18px;
   font-style: normal;
@@ -42,11 +40,11 @@ export const PagagrapherForTime = styled.p`
   line-height: 2;
 `;
 
-
 export const BTN = styled.button`
-background: none;
-border: none;
-`
+  background: none;
+  border: none;
+`;
 
 export const ButtonWrappper = styled.div`
-display:flex`
+  display: flex;
+`;
