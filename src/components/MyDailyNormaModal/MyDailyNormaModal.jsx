@@ -27,15 +27,9 @@ import { useContext } from 'react';
 import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
 import * as Yup from 'yup';
 import { updateWaterNorm } from '../../redux/user/userOperations';
+import { dailyWaterRequirement } from '../../redux/selectors';
 
 const validationSchema = Yup.object({
-  gender: Yup.string().required('Required'),
-  weight: Yup.number()
-    .required('Required')
-    .min(0, 'Weight must be a positive number'),
-  activityTime: Yup.number()
-    .required('Required')
-    .min(0, 'Activity time must be a positive number'),
   drunkWaterAmount: Yup.number().required('Required'),
 });
 
@@ -45,6 +39,7 @@ const MyDailyNormaModal = () => {
   const userGender = useSelector(state => state.user.gender);
 
   const [WaterAmount, setWaterAmount] = useState(0);
+  const waterRequirement = useSelector(dailyWaterRequirement) / 1000;
 
   const calculateWaterAmount = useCallback(values => {
     const time = values.gender === 'female' ? 0.4 : 0.6;
@@ -55,10 +50,13 @@ const MyDailyNormaModal = () => {
     setWaterAmount(calculatedAmount.toFixed(2));
   }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = async e => {
+    e.preventDefault();
     formik.handleSubmit();
     dispatch(
-      updateWaterNorm({ dailyWaterRequirement: formik.values.drunkWaterAmount })
+      updateWaterNorm({
+        dailyWaterRequirement: formik.values.drunkWaterAmount * 1000,
+      })
     );
     toggleModal();
   };
@@ -78,9 +76,6 @@ const MyDailyNormaModal = () => {
 
   const formik = useFormik({
     initialValues: {
-      gender: userGender,
-      weight: 0,
-      activityTime: 0,
       drunkWaterAmount: 0,
     },
     validationSchema: validationSchema,
@@ -125,7 +120,7 @@ const MyDailyNormaModal = () => {
             of loads (in the absence of these, you must set 0)
           </FormulasDescription>
 
-          <StyledForm onSubmit={formik.handleSubmit}>
+          <StyledForm onSubmit={handleSubmit}>
             <FormTitle>Calculate your rate:</FormTitle>
 
             <CalculatesWrapper>
@@ -172,7 +167,9 @@ const MyDailyNormaModal = () => {
             <RequiredAmount>
               <>The required amount of water in liters per day:</>
               <CalculatedAmount>
-                {isNaN(WaterAmount) ? 'Invalid' : `${WaterAmount} L`}
+                {isNaN(WaterAmount)
+                  ? `${waterRequirement} L`
+                  : `${WaterAmount} L`}
               </CalculatedAmount>
             </RequiredAmount>
 
@@ -190,7 +187,11 @@ const MyDailyNormaModal = () => {
                 </span>
               }
               type="text"
-              value={formik.values.drunkWaterAmount.toString()}
+              value={
+                formik.values.drunkWaterAmount === 0
+                  ? ''
+                  : formik.values.drunkWaterAmount
+              }
               onChange={e => handleInputChange(e, 'drunkWaterAmount')}
               onBlur={formik.handleBlur}
               name="drunkWaterAmount"
@@ -201,7 +202,7 @@ const MyDailyNormaModal = () => {
             />
 
             <SaveBtnWrapper>
-              <Button onClick={handleSubmit}>Save</Button>
+              <Button type="submit">Save</Button>
             </SaveBtnWrapper>
           </StyledForm>
         </>
