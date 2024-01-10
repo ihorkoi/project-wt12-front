@@ -13,8 +13,7 @@ export const Overlay = styled.div `
     `
 
 export const Modal = styled.div `
-position: relative;
-
+position: absolute;
 height: 188px;
 width: 292px;
 background: #FFFFFF;
