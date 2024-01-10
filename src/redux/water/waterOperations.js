@@ -1,15 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useSelector } from "react-redux";
-import { dailyWaterRequirement, dailyWaterRequirement } from "redux/selectors";
 
 export const addWaterRecord = createAsyncThunk(
     "waterrate/addWater",
     async (water, thunkAPI) => {
         const { time, waterAmount } = water;
-        const dailyWaterRequirement = useSelector(dailyWaterRequirement)
         try {
-            const response = await axios.post("/waterrate/", { waterAmount, time, dailyWaterRequirement },);
+            const response = await axios.post("/waterrate/", { waterAmount, time },);
             const data = response.data;
             return data;
         }
