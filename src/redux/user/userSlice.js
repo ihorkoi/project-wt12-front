@@ -3,6 +3,7 @@ import {
   updateUserInfo,
   fetchUserInfo,
   updateWaterNorm,
+  updateUserAvatar
 } from './userOperations';
 
 
@@ -25,9 +26,7 @@ const userSlice = createSlice({
       })
       .addCase(updateUserInfo.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.avatar = action.payload.avatar;
         state.name = action.payload.name;
-        state.dailyWaterRequirement = action.payload.dailyWaterRequirement;
         state.gender = action.payload.gender;
         state.email = action.payload.email;
       })
@@ -60,7 +59,17 @@ const userSlice = createSlice({
       .addCase(updateWaterNorm.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
-      });
+      })
+      .addCase(updateUserAvatar.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(updateUserAvatar.fulfilled, (state, action) => {
+        state.avatarURL = action.payload.avatarURL;
+      })
+      .addCase(updateUserAvatar.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
   },
   // .addCase(fetchStorages.pending, state => {
   //   state.status = 'loading';
