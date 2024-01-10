@@ -6,17 +6,22 @@ import defaultPhoto from '../../img/Default-photo.png';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUserInfo } from '../../redux/user/userOperations';
+import {
+  updateUserAvatar,
+  updateUserInfo,
+} from '../../redux/user/userOperations';
 
 export function UserInfoModal({ handleCloseModal }) {
   const imgRef = useRef();
   const dispatch = useDispatch();
   const user = useSelector(state => state.auth.user);
+  const avatar = useSelector(state => state.auth.user.avatarURL);
   const [userInfo, setUserInfo] = useState({
     ...user,
     gender: user.gender || 'female',
   });
   const [selectedGender, setSelectedGender] = useState(user.gender || 'female');
+
   useEffect(() => {
     const handleKeyPress = event => {
       if (event.key === 'Escape') {
@@ -39,6 +44,7 @@ export function UserInfoModal({ handleCloseModal }) {
       };
       reader.readAsDataURL(file);
     }
+    dispatch(updateUserAvatar(file));
   };
 
   const handleChangeInput = (nameField, callback) => {
@@ -76,7 +82,7 @@ export function UserInfoModal({ handleCloseModal }) {
           <div className="photo-container">
             <img
               ref={imgRef}
-              src={defaultPhoto}
+              src={avatar ? avatar : defaultPhoto}
               width={80}
               height={80}
               alt="user-img"

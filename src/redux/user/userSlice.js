@@ -5,8 +5,9 @@ import {
   updateWaterNorm,
 } from './userOperations';
 
+
 const initialState = {
-  avatar: '',
+  avatarURL: '',
   name: '',
   dailyWaterRequirement: 0,
   gender: null,
@@ -17,6 +18,18 @@ const initialState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
+  reducers: {
+    setUserInfo: (state, action) => {
+      // Оновіть стан користувача на основі отриманих даних
+      console.log(action.payload)
+      const { avatarURL, name, dailyWaterRequirement, gender, email } = action.payload;
+      state.avatarURL = avatarURL;
+      state.name = name;
+      state.dailyWaterRequirement = dailyWaterRequirement;
+      state.gender = gender;
+      state.email = email;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(updateUserInfo.pending, state => {
@@ -39,7 +52,7 @@ const userSlice = createSlice({
       })
       .addCase(fetchUserInfo.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.avatar = action.payload.avatar;
+        state.avatarURL = action.payload.avatarURL;
         state.name = action.payload.name;
         state.dailyWaterRequirement = action.payload.dailyWaterRequirement;
         state.gender = action.payload.gender;
@@ -98,6 +111,6 @@ const userSlice = createSlice({
   //   state.error = action.error.message;
   // });
 });
-
+export const { setUserInfo } = userSlice.actions;
 export const userReducer = userSlice.reducer;
 export { updateUserInfo };
