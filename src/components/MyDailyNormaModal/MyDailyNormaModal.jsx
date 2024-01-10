@@ -36,7 +36,7 @@ const validationSchema = Yup.object({
 const MyDailyNormaModal = () => {
   const dispatch = useDispatch();
   const toggleModal = useContext(ModalContext);
-  const userGender = useSelector(state => state.user.gender);
+  // const userGender = useSelector(state => state.user.gender);
 
   const [WaterAmount, setWaterAmount] = useState(0);
   const waterRequirement = useSelector(dailyWaterRequirement) / 1000;
