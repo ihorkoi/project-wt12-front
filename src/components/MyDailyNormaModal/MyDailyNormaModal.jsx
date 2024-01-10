@@ -128,7 +128,7 @@ const MyDailyNormaModal = () => {
                 <input
                   type="radio"
                   name="gender"
-                  checked={formik.values.gender === 'female'}
+                  checked={userGender === 'female'}
                   onChange={() => formik.setFieldValue('gender', 'female')}
                 />
                 For girl
@@ -138,7 +138,7 @@ const MyDailyNormaModal = () => {
                 <input
                   type="radio"
                   name="gender"
-                  checked={formik.values.gender === 'male'}
+                  checked={userGender === 'male'}
                   onChange={() => formik.setFieldValue('gender', 'male')}
                 />
                 For man
