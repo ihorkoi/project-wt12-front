@@ -51,10 +51,10 @@ export const updateUserInfo = createAsyncThunk(
 
 export const updateUserAvatar = createAsyncThunk(
   'auth/updateUserAvatar',
-  async (avatar, thunkAPI) => {
+  async (avatarURL, thunkAPI) => {
     try {
       const formData = new FormData();
-      formData.append('avatarURL', avatar);
+      formData.append('avatarURL', avatarURL);
 
       const response = await axios.patch(`/auth/avatars/`, formData, {
         headers: {

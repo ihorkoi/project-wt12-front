@@ -9,7 +9,7 @@ import {
   selectTodayWater,
 } from '../../redux/selectors.js';
 import { MonthPicker } from 'components/MonthPicker/MonthPicker';
-import { CalendarModal } from 'components/CalendarModal/CalendarModal';
+// import { CalendarModal } from 'components/CalendarModal/CalendarModal';
 import { CalendarDay } from 'components/CalendarDay/CalendarDay';
 
 export const Calendar = () => {
@@ -55,8 +55,10 @@ export const Calendar = () => {
     setIsActiveDayModal(!isActiveDayModal);
   };
   const completedDays = getCompletedDays();
-  console.log(selectedDay);
 
+  const handleCloseModal = () => {
+    setIsActiveDayModal(false);
+  };
   return (
     <>
       <PickerWrapper>
@@ -74,9 +76,12 @@ export const Calendar = () => {
               idx={idx}
               handleClick={handleClick}
               completedDays={completedDays}
+              selectedDay={selectedDay}
               monthWater={monthWater}
               currentYear={currentYear}
               currentMonth={currentMonth}
+              isActiveDayModal={isActiveDayModal}
+              onClose={handleCloseModal}
             />
           );
         })}
