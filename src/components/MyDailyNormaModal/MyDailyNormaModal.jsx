@@ -198,6 +198,7 @@ const MyDailyNormaModal = () => {
               onChange={e => handleInputChange(e, 'drunkWaterAmount')}
               onBlur={formik.handleBlur}
               name="drunkWaterAmount"
+              required
               error={
                 formik.touched.drunkWaterAmount &&
                 formik.errors.drunkWaterAmount

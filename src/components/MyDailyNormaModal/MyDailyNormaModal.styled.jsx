@@ -7,10 +7,10 @@ export const ModalWrapper = styled.div`
   z-index: 1000;
   margin-top: 40px;
   margin-bottom: 40px;
-  position: fixed;
-  top: 50%;
+  position: absolute;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%);
 
   background-color: white;
   width: 280px;
@@ -25,11 +25,14 @@ export const ModalWrapper = styled.div`
   @media screen and (min-width: 768px) {
     padding: 32px 24px 32px 24px;
     min-height: 676px;
-    width: 656px;
+    width: 704px;
   }
   @media screen and (min-width: 1440px) {
     min-height: 712px;
-    width: 544px;
+    width: 592px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 0;
   }
 `;
 
@@ -131,8 +134,8 @@ export const CalculatesWrapper = styled.div`
 
   input[type='radio'] {
     &:checked {
-      background-color: var(--primary-color); 
-      border-color: var(--primary-color); /
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
     }
   }
 `;
